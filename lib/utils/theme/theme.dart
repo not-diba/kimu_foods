@@ -6,6 +6,7 @@ class KimuFoodsTheme {
   // Font Theme
   static ThemeData light() {
     return ThemeData(
+      useMaterial3: true,
       brightness: Brightness.light,
       primarySwatch: pumpkin,
       textTheme: GoogleFonts.ralewayTextTheme(),
@@ -15,6 +16,7 @@ class KimuFoodsTheme {
 
   static ThemeData dark() {
     return ThemeData(
+      useMaterial3: true,
       brightness: Brightness.dark,
       primarySwatch: pumpkin,
       textTheme: GoogleFonts.ralewayTextTheme(),
