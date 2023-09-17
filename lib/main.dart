@@ -11,15 +11,13 @@ class KimuFoods extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: KimuFoodsTheme.light(),
+        theme: KimuFoodsTheme.light(),
         title: 'Kimu Foods',
         home: Scaffold(
           appBar: AppBar(
-            title: const Text('Kimu Foods'),
+            title: Text('Kimu Foods'),
           ),
-          body: const Center(
-            child: Text('Kimu Foods App')
-          ),
+          body: const Center(child: Text('Kimu Foods App')),
         ));
   }
 }
