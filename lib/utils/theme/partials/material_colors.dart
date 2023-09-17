@@ -1,5 +1,21 @@
 import 'package:flutter/material.dart';
 
+const MaterialColor teal = MaterialColor(
+  0xFF03989E, // The primary color value
+  <int, Color>{
+    50: Color(0xFFE0F5F6),
+    100: Color(0xFFB3E7EA),
+    200: Color(0xFF80D9DE),
+    300: Color(0xFF4DCBD2),
+    400: Color(0xFF26BEC7),
+    500: Color(0xFF03989E), // The primary color value
+    600: Color(0xFF038C93),
+    700: Color(0xFF038187),
+    800: Color(0xFF03757C),
+    900: Color(0xFF036971),
+  },
+);
+
 const MaterialColor pumpkin = MaterialColor(
     0xFFff7518,
     <int, Color>{

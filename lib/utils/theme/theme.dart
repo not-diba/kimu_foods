@@ -9,12 +9,12 @@ class KimuFoodsTheme {
     return ThemeData(
       // useMaterial3: true,
       brightness: Brightness.light,
-      primarySwatch: pumpkin,
+      primarySwatch: teal,
       textTheme: GoogleFonts.ralewayTextTheme(),
       scaffoldBackgroundColor: backgroundColor,
       appBarTheme: AppBarTheme(
         titleTextStyle: kimuFoodsTitleTextStyle,
-      )
+      ),
     );
   }
 

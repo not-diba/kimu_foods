@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kimu_foods/screens/kimu.dart';
 import 'utils/theme/theme.dart';
 
 void main() {
@@ -11,13 +12,9 @@ class KimuFoods extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: KimuFoodsTheme.light(),
-        title: 'Kimu Foods',
-        home: Scaffold(
-          appBar: AppBar(
-            title: Text('Kimu Foods'),
-          ),
-          body: const Center(child: Text('Kimu Foods App')),
-        ));
+      theme: KimuFoodsTheme.light(),
+      title: 'Kimu Foods',
+      home: const Kimu(),
+    );
   }
 }
