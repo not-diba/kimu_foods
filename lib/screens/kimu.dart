@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:kimu_foods/utils/theme/partials/material_colors.dart';
+import 'package:kimu_foods/widgets/icon_with_label.dart';
 import 'package:line_icons/line_icons.dart';
 
 class Kimu extends StatefulWidget {
@@ -27,53 +28,62 @@ class _KimuState extends State<Kimu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          leading: const Icon(LineIcons.hamburger),
-          // leadingWidth: 40,
-          title: const Text('Kimu Foods'),
-        ),
-        body: _views[_selectedIndex],
-        bottomNavigationBar: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 20,
-                color: Colors.black.withOpacity(.1),
+      floatingActionButton: FloatingActionButton(
+        //Floating action button on Scaffold
+        onPressed: () {
+          //code to execute on button press
+        },
+        child: Icon(LineIcons.utensils), //icon inside button
+      ),
+
+      floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
+      //floating action button location to left
+
+      bottomNavigationBar: BottomAppBar(
+        //bottom navigation bar on scaffold
+        color: Colors.white,
+        shape: CircularNotchedRectangle(), //shape of notch
+        notchMargin:
+            5, //notche margin between floating button and bottom appbar
+        child: Row(
+          //children inside bottom appbar
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(left: 90),
+              child: IconButtonWithLabel(
+                icon: LineIcons.book,
+                label: 'Recipes',
+                onPressed: () {
+                  // Handle the button press
+                },
               ),
-            ],
-          ),
-          child: Padding(
-            padding:
-                const EdgeInsets.only(bottom: 8, top: 8, left: 15, right: 15),
-            child: GNav(
-              rippleColor: Colors.grey[300]!,
-              hoverColor: Colors.grey[100]!,
-              gap: 8,
-              activeColor: teal,
-              iconSize: 24,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              duration: const Duration(milliseconds: 500),
-              tabBackgroundColor: Colors.grey[100]!,
-              color: Colors.black,
-              tabs: const [
-                GButton(
-                  icon: LineIcons.shapes,
-                  text: 'Categories',
-                ),
-                GButton(
-                  icon: LineIcons.utensils,
-                  text: 'Recipes',
-                ),
-                GButton(
-                  icon: LineIcons.shoppingBag,
-                  text: 'Groceries',
-                ),
-              ],
-              selectedIndex: _selectedIndex,
-              onTabChange: _navigateBottomBar,
             ),
-          ),
-        ));
+            IconButtonWithLabel(
+              icon: LineIcons.store,
+              label: 'Products',
+              onPressed: () {
+                // Handle the button press
+              },
+            ),
+            IconButtonWithLabel(
+              icon: LineIcons.shoppingBasket,
+              label: 'Basket',
+              onPressed: () {
+                // Handle the button press
+              },
+            ),
+            IconButtonWithLabel(
+              icon: LineIcons.user,
+              label: 'Profile',
+              onPressed: () {
+                // Handle the button press
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

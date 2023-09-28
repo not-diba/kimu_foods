@@ -9,7 +9,7 @@ class KimuFoodsTheme {
     return ThemeData(
       // useMaterial3: true,
       brightness: Brightness.light,
-      primarySwatch: teal,
+      primarySwatch: mainColor,
       textTheme: GoogleFonts.ralewayTextTheme(),
       scaffoldBackgroundColor: backgroundColor,
       appBarTheme: AppBarTheme(
