@@ -1,5 +1,101 @@
 import 'package:flutter/material.dart';
 
+const MaterialColor mainColor = MaterialColor(
+  0xFFF07167, // The primary color value
+  <int, Color>{
+    50: Color(0xFFFFE8E4),
+    100: Color(0xFFFFD0C9),
+    200: Color(0xFFFFB8B3),
+    300: Color(0xFFFFA09D),
+    400: Color(0xFFFF8877),
+    500: Color(0xFFF07167), // The primary color value
+    600: Color(0xFFE9695E),
+    700: Color(0xFFE16257),
+    800: Color(0xFFDA5B50),
+    900: Color(0xFFD25249),
+  },
+);
+
+const MaterialColor secondaryColorBlue = MaterialColor(
+  0xFF0081A7, // The primary color value
+  <int, Color>{
+    50: Color(0xFFE1F2F8),
+    100: Color(0xFFB4DBEC),
+    200: Color(0xFF82C2E0),
+    300: Color(0xFF50A9D4),
+    400: Color(0xFF2696CA),
+    500: Color(0xFF0081A7), // The primary color value
+    600: Color(0xFF007599),
+    700: Color(0xFF00698B),
+    800: Color(0xFF005C7E),
+    900: Color(0xFF004E70),
+  },
+);
+
+const MaterialColor secondaryColorTeal = MaterialColor(
+  0xFF00AFB9, // The primary color value
+  <int, Color>{
+    50: Color(0xFFE3F5F6),
+    100: Color(0xFFB6E8EC),
+    200: Color(0xFF84DAD9),
+    300: Color(0xFF53CCCB),
+    400: Color(0xFF2AC0BF),
+    500: Color(0xFF00AFB9), // The primary color value
+    600: Color(0xFF009FA9),
+    700: Color(0xFF008F99),
+    800: Color(0xFF007F89),
+    900: Color(0xFF006E79),
+  },
+);
+
+const MaterialColor purple = MaterialColor(
+  0xFF451F55, // The primary color value
+  <int, Color>{
+    50: Color(0xFFE2D7E4),
+    100: Color(0xFFB5A7BD),
+    200: Color(0xFF85668D),
+    300: Color(0xFF54345E),
+    400: Color(0xFF3B1F44),
+    500: Color(0xFF451F55), // The primary color value
+    600: Color(0xFF3D1C4C),
+    700: Color(0xFF34193E),
+    800: Color(0xFF2C1631),
+    900: Color(0xFF231324),
+  },
+);
+
+const MaterialColor grey = MaterialColor(
+  0xFF3A3636, // The primary color value
+  <int, Color>{
+    50: Color(0xFFD8D6D6),
+    100: Color(0xFFADA9A9),
+    200: Color(0xFF827C7C),
+    300: Color(0xFF576F6F),
+    400: Color(0xFF3C6262),
+    500: Color(0xFF3A3636), // The primary color value
+    600: Color(0xFF342E2E),
+    700: Color(0xFF2D2626),
+    800: Color(0xFF271E1E),
+    900: Color(0xFF201515),
+  },
+);
+
+const MaterialColor darkGrey = MaterialColor(
+  0xFF1C1C1C, // The primary color value
+  <int, Color>{
+    50: Color(0xFF8E8E8E),
+    100: Color(0xFF646464),
+    200: Color(0xFF3B3B3B),
+    300: Color(0xFF121212),
+    400: Color(0xFF070707),
+    500: Color(0xFF1C1C1C), // The primary color value
+    600: Color(0xFF161616),
+    700: Color(0xFF0F0F0F),
+    800: Color(0xFF090909),
+    900: Color(0xFF030303),
+  },
+);
+
 const MaterialColor teal = MaterialColor(
   0xFF03989E, // The primary color value
   <int, Color>{
