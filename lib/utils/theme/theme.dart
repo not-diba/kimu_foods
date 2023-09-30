@@ -11,7 +11,7 @@ class KimuFoodsTheme {
       brightness: Brightness.light,
       primarySwatch: mainColor,
       textTheme: GoogleFonts.ralewayTextTheme(),
-      scaffoldBackgroundColor: backgroundColor,
+      scaffoldBackgroundColor: backgroundColor[100],
       appBarTheme: AppBarTheme(
         titleTextStyle: kimuFoodsTitleTextStyle,
       ),
