@@ -46,6 +46,7 @@ class _KimuState extends State<Kimu> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        extendBody: true,
         body: PageStorage(
           bucket: bucket,
           child: _screens[_selectedIndex],
