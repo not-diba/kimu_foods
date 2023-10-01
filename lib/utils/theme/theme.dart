@@ -10,7 +10,7 @@ class KimuFoodsTheme {
       // useMaterial3: true,
       brightness: Brightness.light,
       primarySwatch: mainColor,
-      textTheme: GoogleFonts.ralewayTextTheme(),
+      textTheme: GoogleFonts.rubikTextTheme(),
       scaffoldBackgroundColor: backgroundColor[100],
       appBarTheme: AppBarTheme(
         titleTextStyle: kimuFoodsTitleTextStyle,
