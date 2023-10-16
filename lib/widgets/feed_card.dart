@@ -82,7 +82,7 @@ class _FeedCardState extends State<FeedCard> {
                             ),
                             Padding(
                               padding:
-                                  const EdgeInsets.only(top: 14, bottom: 2),
+                                  const EdgeInsets.only(top: 14),
                               child: SizedBox(
                                 width: double.infinity,
                                 child: Row(
@@ -107,11 +107,11 @@ class _FeedCardState extends State<FeedCard> {
                                             left: 4,
                                           ),
                                           child: Container(
-                                            padding: EdgeInsets.only(
+                                            padding: const EdgeInsets.only(
                                                 left: 8,
                                                 right: 8,
-                                                top: 4,
-                                                bottom: 4),
+                                                top: 6,
+                                                bottom: 6),
                                             decoration: BoxDecoration(
                                               color: secondaryColorTeal[500],
                                               borderRadius:
@@ -207,7 +207,7 @@ class _FeedCardState extends State<FeedCard> {
                                     Padding(
                                       padding: EdgeInsets.only(left: 2),
                                       child: Text(
-                                        "BUY NOW",
+                                        "VIEW",
                                         textAlign: TextAlign.start,
                                         style: GoogleFonts.rubik(
                                           fontSize: 20,
