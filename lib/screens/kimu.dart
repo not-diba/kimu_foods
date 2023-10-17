@@ -52,28 +52,23 @@ class _KimuState extends State<Kimu> {
           child: _screens[_selectedIndex],
         ),
         floatingActionButton: FloatingActionButton(
+          shape: CircleBorder(),
           backgroundColor: _selectedIndex != 0 ? grey[100] : mainColor,
-          // foregroundColor: _selectedIndex != 0 ? darkGrey[900] : Colors.white,
-          //Floating action button on Scaffold
+          foregroundColor: _selectedIndex != 0 ? darkGrey[900] : Colors.white,
           onPressed: () {
             _navigateToView(0);
           },
           child: const Icon(LineIcons.utensils), //icon inside button
         ),
-
         floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
-        //floating action button location to left
-
         bottomNavigationBar: BottomAppBar(
-          //bottom navigation bar on scaffold
+          height: 56.0,
+          padding: const EdgeInsets.all(0),
           color: Colors.white,
-          shape: const CircularNotchedRectangle(), //shape of notch
-          notchMargin:
-              7.5, //notch margin between floating button and bottom appbar
+          shape: const CircularNotchedRectangle(),
           child: Row(
-            //children inside bottom appbar
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(left: 90),

@@ -17,28 +17,26 @@ class IconButtonWithLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.only(bottom: 8, top: 6),
-        child: GestureDetector(
-          onTap: onPressed,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                icon,
-                color: selectedColor,
-                size: 30,
-              ),
-              const SizedBox(height: 2.5),
-              Text(
-                label,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: selectedColor,
-                ),
-              ),
-            ],
+    return GestureDetector(
+      onTap: onPressed,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Icon(
+            icon,
+            color: selectedColor,
+            size: 30,
           ),
-        ));
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 9,
+              color: selectedColor,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

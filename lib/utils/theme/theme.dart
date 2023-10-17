@@ -7,11 +7,11 @@ class KimuFoodsTheme {
   // Font Theme
   static ThemeData light() {
     return ThemeData(
-      // useMaterial3: true,
+      useMaterial3: true,
       brightness: Brightness.light,
       primarySwatch: mainColor,
       textTheme: GoogleFonts.rubikTextTheme(),
-      scaffoldBackgroundColor: backgroundColor[100],
+      scaffoldBackgroundColor: backgroundColor[300],
       appBarTheme: AppBarTheme(
         titleTextStyle: kimuFoodsTitleTextStyle,
       ),

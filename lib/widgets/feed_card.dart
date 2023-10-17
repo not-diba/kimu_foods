@@ -14,9 +14,9 @@ class _FeedCardState extends State<FeedCard> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 560,
+      height: 580,
       child: Card(
-        elevation: 100,
+        elevation: 10,
         shadowColor: Colors.transparent,
         color: Colors.white,
         shape: RoundedRectangleBorder(
