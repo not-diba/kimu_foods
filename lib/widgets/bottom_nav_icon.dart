@@ -30,7 +30,7 @@ class BottomNavIcon extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Badge(
-            backgroundColor: mainColor[500],
+            backgroundColor: secondaryColorTeal[500],
             label: badgeText,
             isLabelVisible: isBadgeTextPresent || badge,
             child: Icon(
