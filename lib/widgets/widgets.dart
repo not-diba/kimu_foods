@@ -1,2 +1,2 @@
 export './feed_card.dart';
-export './icon_with_label.dart';
+export 'bottom_nav_icon.dart';

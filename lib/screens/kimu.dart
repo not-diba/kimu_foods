@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kimu_foods/screens/screens.dart';
 import 'package:kimu_foods/utils/theme/partials/material_colors.dart';
-import 'package:kimu_foods/widgets/icon_with_label.dart';
+import 'package:kimu_foods/widgets/bottom_nav_icon.dart';
 import 'package:line_icons/line_icons.dart';
 
 class Kimu extends StatefulWidget {
@@ -72,7 +72,7 @@ class _KimuState extends State<Kimu> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(left: 90),
-                child: IconButtonWithLabel(
+                child: BottomNavIcon(
                   selectedColor:
                       _selectedIndex == 1 ? mainColor : grey[100] ?? grey,
                   icon: LineIcons.book,
@@ -82,16 +82,17 @@ class _KimuState extends State<Kimu> {
                   },
                 ),
               ),
-              IconButtonWithLabel(
+              BottomNavIcon(
                 selectedColor:
                     _selectedIndex == 2 ? mainColor : grey[100] ?? grey,
                 icon: LineIcons.store,
                 label: 'Products',
+                badge: true,
                 onPressed: () {
                   _navigateToView(2);
                 },
               ),
-              IconButtonWithLabel(
+              BottomNavIcon(
                 selectedColor:
                     _selectedIndex == 3 ? mainColor : grey[100] ?? grey,
                 icon: LineIcons.shoppingBasket,
@@ -102,11 +103,12 @@ class _KimuState extends State<Kimu> {
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 12),
-                child: IconButtonWithLabel(
+                child: BottomNavIcon(
                   selectedColor:
                       _selectedIndex == 4 ? mainColor : grey[100] ?? grey,
                   icon: LineIcons.user,
                   label: 'Profile',
+                  badgeText: Text('99+'),
                   onPressed: () {
                     _navigateToView(4);
                   },

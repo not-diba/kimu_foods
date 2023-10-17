@@ -20,7 +20,7 @@ class _FeedCardState extends State<FeedCard> {
         shadowColor: Colors.transparent,
         color: Colors.white,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(18),
         ),
         child: Stack(
           children: [
@@ -31,7 +31,10 @@ class _FeedCardState extends State<FeedCard> {
                   width: double.infinity,
                   child: ClipRRect(
                     borderRadius:
-                        const BorderRadius.vertical(top: Radius.circular(20)),
+                        const BorderRadius.only(
+                      topRight: Radius.circular(18),
+                      topLeft: Radius.circular(18),
+                    ),
                     child: Image.network(
                       'https://wallpapers.com/images/hd/food-4k-1pf6px6ryqfjtnyr.jpg',
                       fit: BoxFit.cover,
@@ -234,8 +237,8 @@ class _FeedCardState extends State<FeedCard> {
                 decoration: BoxDecoration(
                   color: backgroundColor[600],
                   borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20)),
+                      topLeft: Radius.circular(18),
+                      bottomRight: Radius.circular(18)),
                 ),
                 child: Text(
                   "BADGE TEXT",
