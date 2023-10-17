@@ -52,7 +52,7 @@ class _KimuState extends State<Kimu> {
           child: _screens[_selectedIndex],
         ),
         floatingActionButton: FloatingActionButton(
-          shape: CircleBorder(),
+          shape: const CircleBorder(),
           backgroundColor: _selectedIndex != 0 ? grey[100] : mainColor,
           foregroundColor: _selectedIndex != 0 ? darkGrey[900] : Colors.white,
           onPressed: () {
