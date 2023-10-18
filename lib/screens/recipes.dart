@@ -27,7 +27,7 @@ class _RecipesState extends State<Recipes> {
                 size: 26,
               ),
               hintText: 'Search in Categories',
-              elevation: MaterialStatePropertyAll<double>(0),
+              elevation: MaterialStatePropertyAll<double>(0.0),
               padding: MaterialStatePropertyAll<EdgeInsets>(
                   EdgeInsets.symmetric(horizontal: 15)),
             ),

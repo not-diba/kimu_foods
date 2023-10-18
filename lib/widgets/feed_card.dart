@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kimu_foods/utils/utils.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:kimu_foods/widgets/widgets.dart';
 
 class FeedCard extends StatefulWidget {
   const FeedCard({super.key});
@@ -30,8 +31,7 @@ class _FeedCardState extends State<FeedCard> {
                   height: 380,
                   width: double.infinity,
                   child: ClipRRect(
-                    borderRadius:
-                        const BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       topRight: Radius.circular(18),
                       topLeft: Radius.circular(18),
                     ),
@@ -50,7 +50,8 @@ class _FeedCardState extends State<FeedCard> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 16, right: 16, bottom: 6),
+                        padding: const EdgeInsets.only(
+                            left: 16, right: 16, bottom: 6),
                         child: Column(
                           children: [
                             Padding(
@@ -84,8 +85,7 @@ class _FeedCardState extends State<FeedCard> {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 14),
+                              padding: const EdgeInsets.only(top: 14),
                               child: SizedBox(
                                 width: double.infinity,
                                 child: Row(
@@ -123,10 +123,9 @@ class _FeedCardState extends State<FeedCard> {
                                             child: Text(
                                               "LOCAL CUISINE",
                                               style: GoogleFonts.rubik(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w500,
-                                                color: backgroundColor[50]
-                                              ),
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: backgroundColor[50]),
                                             ),
                                           ),
                                         )
@@ -229,27 +228,7 @@ class _FeedCardState extends State<FeedCard> {
                 )
               ],
             ),
-            Positioned(
-              top: 0, // Adjust the top position as needed
-              left: 0, // Adjust the left position as needed
-              child: Container(
-                padding: EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: backgroundColor[600],
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(18),
-                      bottomRight: Radius.circular(18)),
-                ),
-                child: Text(
-                  "BADGE TEXT",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w900,
-                    color: backgroundColor[50], // Customize text color
-                    fontSize: 16, // Customize text size
-                  ),
-                ),
-              ),
-            ),
+            const LabelBadge(badgeText: 'DELICIOUS MEALS'),
           ],
         ),
       ),
