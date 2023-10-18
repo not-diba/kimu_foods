@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:kimu_foods/widgets/recents_card.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:kimu_foods/widgets/widgets.dart';
 
 class Recipes extends StatefulWidget {
   const Recipes({super.key});
@@ -32,11 +34,7 @@ class _RecipesState extends State<Recipes> {
                   EdgeInsets.symmetric(horizontal: 15)),
             ),
           ),
-          Expanded(
-            child: Container(
-              color: Colors.red,
-            ),
-          )
+          RecentsCard(),
         ],
       ),
     );
