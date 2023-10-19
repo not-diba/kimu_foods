@@ -34,7 +34,7 @@ class _RecipesState extends State<Recipes> {
                   EdgeInsets.symmetric(horizontal: 15)),
             ),
           ),
-          RecentsCard(),
+          CategoriesCard(),
         ],
       ),
     );
