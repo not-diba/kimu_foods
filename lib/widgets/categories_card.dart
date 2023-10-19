@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kimu_foods/widgets/widgets.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CategoriesCard extends StatelessWidget {
