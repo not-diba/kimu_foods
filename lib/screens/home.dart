@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../widgets/widgets.dart';
+import 'package:kimu_foods/components/components.dart';
 
 class Home extends StatefulWidget {
   Home({super.key});

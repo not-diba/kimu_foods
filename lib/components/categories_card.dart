@@ -6,9 +6,9 @@ class CategoriesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double cardHeight = MediaQuery.of(context).size.height *.12;
     return SizedBox(
-      height: 120,
-      width: double.infinity,
+      height: cardHeight,
       child: Card(
         elevation: 10,
         shadowColor: Colors.transparent,
@@ -23,9 +23,10 @@ class CategoriesCard extends StatelessWidget {
                 Radius.circular(18),
               ),
               child: Image.network(
-                'https://wallpaperaccess.com/full/767277.jpg',
+                'https://wallpaperaccess.com/full/438099.jpg',
                 fit: BoxFit.cover,
                 width: double.infinity,
+                height: cardHeight,
               ),
             ),
             Container(
@@ -36,7 +37,7 @@ class CategoriesCard extends StatelessWidget {
                 gradient: LinearGradient(
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
-                  stops: const [.55, 1],
+                  stops: const [.35, 1],
                   colors: [
                     Colors.white.withOpacity(.9),
                     Colors.transparent,
@@ -51,7 +52,7 @@ class CategoriesCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'Vegan',
+                    'Fruits',
                     style: GoogleFonts.rubik(
                         fontSize: 18, fontWeight: FontWeight.w400),
                   )

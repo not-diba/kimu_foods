@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kimu_foods/utils/utils.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:kimu_foods/widgets/widgets.dart';
+import 'package:kimu_foods/components/components.dart';
 
 class FeedCard extends StatefulWidget {
   const FeedCard({super.key});
@@ -15,7 +15,7 @@ class _FeedCardState extends State<FeedCard> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 580,
+      height: MediaQuery.of(context).size.height * 0.67,
       child: Card(
         elevation: 10,
         shadowColor: Colors.transparent,
@@ -28,7 +28,7 @@ class _FeedCardState extends State<FeedCard> {
             Column(
               children: [
                 SizedBox(
-                  height: 380,
+                  height: MediaQuery.of(context).size.height * 0.44,
                   width: double.infinity,
                   child: ClipRRect(
                     borderRadius: const BorderRadius.only(
@@ -165,7 +165,7 @@ class _FeedCardState extends State<FeedCard> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
-                            top: 6, bottom: 4, left: 16, right: 16),
+                            top: 6, left: 16, right: 16),
                         child: SizedBox(
                             width: double.infinity,
                             child: Row(
@@ -207,7 +207,7 @@ class _FeedCardState extends State<FeedCard> {
                                       color: mainColor[500],
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(left: 2),
+                                      padding: const EdgeInsets.only(left: 2),
                                       child: Text(
                                         "VIEW",
                                         textAlign: TextAlign.start,

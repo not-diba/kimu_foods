@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kimu_foods/widgets/widgets.dart';
+import 'package:kimu_foods/components/components.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -9,8 +9,8 @@ class RecentsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 180,
-      width: double.infinity,
+      height: MediaQuery.of(context).size.height * 0.1,
+      width: MediaQuery.of(context).size.width * .8,
       child: Card(
         elevation: 10,
         shadowColor: Colors.transparent,

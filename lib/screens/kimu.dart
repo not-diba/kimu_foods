@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kimu_foods/screens/screens.dart';
 import 'package:kimu_foods/utils/theme/partials/material_colors.dart';
-import 'package:kimu_foods/widgets/bottom_nav_icon.dart';
+import 'package:kimu_foods/components/bottom_nav_icon.dart';
 import 'package:line_icons/line_icons.dart';
 
 class Kimu extends StatefulWidget {

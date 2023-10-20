@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kimu_foods/widgets/recents_card.dart';
-import 'package:line_icons/line_icons.dart';
+import 'package:kimu_foods/components/components.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:kimu_foods/widgets/categories_list_view.dart';
 import 'package:kimu_foods/widgets/widgets.dart';
 
 class Recipes extends StatefulWidget {
@@ -20,6 +21,8 @@ class _RecipesState extends State<Recipes> {
         top: 20,
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        // mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const Padding(
             padding: EdgeInsets.only(bottom: 15),
@@ -34,7 +37,11 @@ class _RecipesState extends State<Recipes> {
                   EdgeInsets.symmetric(horizontal: 15)),
             ),
           ),
-          CategoriesCard(),
+          RecommendedListView(),
+          SizedBox(height: 24),
+          Text('CATEGORIES', style: GoogleFonts.rubik(fontSize: 12, fontWeight: FontWeight.w700)),
+           const SizedBox(height: 5),
+          CategoriesListView(),
         ],
       ),
     );
