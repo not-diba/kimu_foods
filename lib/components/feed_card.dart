@@ -5,7 +5,15 @@ import 'package:line_icons/line_icons.dart';
 import 'package:kimu_foods/components/components.dart';
 
 class FeedCard extends StatefulWidget {
-  const FeedCard({super.key});
+  final String recipeName;
+  final String categoryName;
+  final String imageUrl;
+
+  const FeedCard(
+      {super.key,
+      required this.recipeName,
+      required this.categoryName,
+      required this.imageUrl});
 
   @override
   State<FeedCard> createState() => _FeedCardState();
@@ -36,7 +44,7 @@ class _FeedCardState extends State<FeedCard> {
                       topLeft: Radius.circular(18),
                     ),
                     child: Image.network(
-                      'https://wallpapers.com/images/hd/food-4k-1pf6px6ryqfjtnyr.jpg',
+                      widget.imageUrl,
                       fit: BoxFit.cover,
                       height: 300,
                       width: double.infinity,
@@ -59,7 +67,7 @@ class _FeedCardState extends State<FeedCard> {
                               child: SizedBox(
                                 width: double.infinity,
                                 child: Text(
-                                  "CHAPATI & BEEF",
+                                  widget.recipeName.toUpperCase(),
                                   textAlign: TextAlign.start,
                                   style: GoogleFonts.rubik(
                                     fontSize: 20,
@@ -121,7 +129,7 @@ class _FeedCardState extends State<FeedCard> {
                                                   BorderRadius.circular(6),
                                             ),
                                             child: Text(
-                                              "LOCAL CUISINE",
+                                              widget.categoryName.toUpperCase(),
                                               style: GoogleFonts.rubik(
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.w500,
@@ -164,8 +172,8 @@ class _FeedCardState extends State<FeedCard> {
                         thickness: .75,
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
-                            top: 6, left: 16, right: 16),
+                        padding:
+                            const EdgeInsets.only(top: 6, left: 16, right: 16),
                         child: SizedBox(
                             width: double.infinity,
                             child: Row(
@@ -228,7 +236,7 @@ class _FeedCardState extends State<FeedCard> {
                 )
               ],
             ),
-            const LabelBadge(badgeText: 'DELICIOUS MEALS'),
+            LabelBadge(badgeText: widget.categoryName.toUpperCase()),
           ],
         ),
       ),

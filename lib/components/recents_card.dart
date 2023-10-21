@@ -4,7 +4,14 @@ import 'package:line_icons/line_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RecentsCard extends StatelessWidget {
-  const RecentsCard({super.key});
+  final String imageUrl;
+  final String recipeName;
+  final String categoryName;
+  const RecentsCard(
+      {super.key,
+      required this.imageUrl,
+      required this.recipeName,
+      required this.categoryName});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +32,7 @@ class RecentsCard extends StatelessWidget {
                 Radius.circular(18),
               ),
               child: Image.network(
-                'https://wallpapers.com/images/hd/food-4k-m37wpodzrcbv5gvw.jpg',
+                imageUrl,
                 fit: BoxFit.cover,
                 width: double.infinity,
               ),
@@ -89,7 +96,7 @@ class RecentsCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 30),
                       Text(
-                        "LASAGNA",
+                        recipeName.toUpperCase(),
                         textAlign: TextAlign.start,
                         style: GoogleFonts.rubik(
                           fontSize: 20,
@@ -102,7 +109,7 @@ class RecentsCard extends StatelessWidget {
                 ),
               ],
             ),
-            const LabelBadge(badgeText: 'CATEGORIES'),
+            LabelBadge(badgeText: categoryName.toUpperCase(),),
           ],
         ),
       ),

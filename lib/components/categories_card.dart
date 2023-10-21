@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CategoriesCard extends StatelessWidget {
-  const CategoriesCard({super.key});
+  final String imageUrl;
+  final String categoryName;
+
+  const CategoriesCard(
+      {super.key, required this.imageUrl, required this.categoryName});
 
   @override
   Widget build(BuildContext context) {
-    final double cardHeight = MediaQuery.of(context).size.height *.12;
+    final double cardHeight = MediaQuery.of(context).size.height * .12;
     return SizedBox(
       height: cardHeight,
       child: Card(
@@ -23,7 +27,7 @@ class CategoriesCard extends StatelessWidget {
                 Radius.circular(18),
               ),
               child: Image.network(
-                'https://wallpaperaccess.com/full/438099.jpg',
+                imageUrl,
                 fit: BoxFit.cover,
                 width: double.infinity,
                 height: cardHeight,
@@ -37,9 +41,9 @@ class CategoriesCard extends StatelessWidget {
                 gradient: LinearGradient(
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
-                  stops: const [.35, 1],
+                  stops: const [.3, 1],
                   colors: [
-                    Colors.white.withOpacity(.9),
+                    Colors.white.withOpacity(1),
                     Colors.transparent,
                   ],
                 ),
@@ -52,7 +56,7 @@ class CategoriesCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'Fruits',
+                    categoryName,
                     style: GoogleFonts.rubik(
                         fontSize: 18, fontWeight: FontWeight.w400),
                   )
