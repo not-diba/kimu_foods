@@ -1,2 +1,1 @@
-export './feed_card.dart';
-export 'bottom_nav_icon.dart';
+export 'recommended_list_view.dart';

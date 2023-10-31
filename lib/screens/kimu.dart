@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kimu_foods/screens/screens.dart';
 import 'package:kimu_foods/utils/theme/partials/material_colors.dart';
-import 'package:kimu_foods/widgets/bottom_nav_icon.dart';
+import 'package:kimu_foods/components/bottom_nav_icon.dart';
 import 'package:line_icons/line_icons.dart';
 
 class Kimu extends StatefulWidget {
@@ -52,7 +52,7 @@ class _KimuState extends State<Kimu> {
           child: _screens[_selectedIndex],
         ),
         floatingActionButton: FloatingActionButton(
-          shape: CircleBorder(),
+          shape: const CircleBorder(),
           backgroundColor: _selectedIndex != 0 ? grey[100] : mainColor,
           foregroundColor: _selectedIndex != 0 ? darkGrey[900] : Colors.white,
           onPressed: () {

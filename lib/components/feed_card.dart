@@ -2,9 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kimu_foods/utils/utils.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:kimu_foods/components/components.dart';
 
 class FeedCard extends StatefulWidget {
-  const FeedCard({super.key});
+  final String recipeName;
+  final String categoryName;
+  final String imageUrl;
+
+  const FeedCard(
+      {super.key,
+      required this.recipeName,
+      required this.categoryName,
+      required this.imageUrl});
 
   @override
   State<FeedCard> createState() => _FeedCardState();
@@ -14,7 +23,7 @@ class _FeedCardState extends State<FeedCard> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 580,
+      height: MediaQuery.of(context).size.height * 0.67,
       child: Card(
         elevation: 10,
         shadowColor: Colors.transparent,
@@ -27,16 +36,15 @@ class _FeedCardState extends State<FeedCard> {
             Column(
               children: [
                 SizedBox(
-                  height: 380,
+                  height: MediaQuery.of(context).size.height * 0.44,
                   width: double.infinity,
                   child: ClipRRect(
-                    borderRadius:
-                        const BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       topRight: Radius.circular(18),
                       topLeft: Radius.circular(18),
                     ),
                     child: Image.network(
-                      'https://wallpapers.com/images/hd/food-4k-1pf6px6ryqfjtnyr.jpg',
+                      widget.imageUrl,
                       fit: BoxFit.cover,
                       height: 300,
                       width: double.infinity,
@@ -50,7 +58,8 @@ class _FeedCardState extends State<FeedCard> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 16, right: 16, bottom: 6),
+                        padding: const EdgeInsets.only(
+                            left: 16, right: 16, bottom: 6),
                         child: Column(
                           children: [
                             Padding(
@@ -58,7 +67,7 @@ class _FeedCardState extends State<FeedCard> {
                               child: SizedBox(
                                 width: double.infinity,
                                 child: Text(
-                                  "CHAPATI & BEEF",
+                                  widget.recipeName.toUpperCase(),
                                   textAlign: TextAlign.start,
                                   style: GoogleFonts.rubik(
                                     fontSize: 20,
@@ -84,8 +93,7 @@ class _FeedCardState extends State<FeedCard> {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 14),
+                              padding: const EdgeInsets.only(top: 14),
                               child: SizedBox(
                                 width: double.infinity,
                                 child: Row(
@@ -121,12 +129,11 @@ class _FeedCardState extends State<FeedCard> {
                                                   BorderRadius.circular(6),
                                             ),
                                             child: Text(
-                                              "LOCAL CUISINE",
+                                              widget.categoryName.toUpperCase(),
                                               style: GoogleFonts.rubik(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w500,
-                                                color: backgroundColor[50]
-                                              ),
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: backgroundColor[50]),
                                             ),
                                           ),
                                         )
@@ -165,8 +172,8 @@ class _FeedCardState extends State<FeedCard> {
                         thickness: .75,
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
-                            top: 6, bottom: 4, left: 16, right: 16),
+                        padding:
+                            const EdgeInsets.only(top: 6, left: 16, right: 16),
                         child: SizedBox(
                             width: double.infinity,
                             child: Row(
@@ -208,7 +215,7 @@ class _FeedCardState extends State<FeedCard> {
                                       color: mainColor[500],
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(left: 2),
+                                      padding: const EdgeInsets.only(left: 2),
                                       child: Text(
                                         "VIEW",
                                         textAlign: TextAlign.start,
@@ -229,27 +236,7 @@ class _FeedCardState extends State<FeedCard> {
                 )
               ],
             ),
-            Positioned(
-              top: 0, // Adjust the top position as needed
-              left: 0, // Adjust the left position as needed
-              child: Container(
-                padding: EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: backgroundColor[600],
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(18),
-                      bottomRight: Radius.circular(18)),
-                ),
-                child: Text(
-                  "BADGE TEXT",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w900,
-                    color: backgroundColor[50], // Customize text color
-                    fontSize: 16, // Customize text size
-                  ),
-                ),
-              ),
-            ),
+            LabelBadge(badgeText: widget.categoryName.toUpperCase()),
           ],
         ),
       ),
