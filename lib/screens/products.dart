@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kimu_foods/utils/utils.dart';
 
 class Products extends StatefulWidget {
   const Products({super.key});
@@ -41,25 +42,148 @@ class _ProductsState extends State<Products> {
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(18),
-                          color: Colors.red,
+                          color: backgroundColor[600],
                         ),
-                        width: screenWidth / 4,
-                        height: screenHeight / 8,
+                        width: screenWidth / 6,
+                        height: screenHeight / 12,
                       ),
                       SizedBox(width: 24),
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(18),
-                          color: Colors.black,
+                          color: secondaryColorTeal[700],
                         ),
                         width: screenWidth / 3,
                         height: screenHeight / 6,
+                        child: Center(
+                          child: Text(
+                            "Groceries",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.rubik(
+                              fontSize: 24,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
                       ),
                       SizedBox(width: 12),
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(18),
-                          color: Colors.white,
+                          color: darkGrey[200],
+                        ),
+                        width: screenWidth / 4,
+                        height: screenHeight / 8,
+                        child: Center(
+                          child: Text(
+                            "Teas",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.rubik(
+                              fontSize: 22,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 24),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18),
+                          color: darkGrey[300],
+                        ),
+                        width: screenWidth / 3,
+                        height: screenHeight / 6,
+                        child: Center(
+                          child: Text(
+                            "Restock",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.rubik(
+                              fontSize: 22,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 24),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18),
+                          color: teal[400],
+                        ),
+                        width: screenWidth / 3.5,
+                        height: screenHeight / 7,
+                        child: Center(
+                          child: Text(
+                            "Vegetables",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.rubik(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 24),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18),
+                          color: darkGrey[200],
+                        ),
+                        width: screenWidth / 3.5,
+                        height: screenHeight / 7,
+                        child: Center(
+                          child: Text(
+                            "Legumes",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.rubik(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 24),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18),
+                          color: purple[400],
+                        ),
+                        width: screenWidth / 3,
+                        height: screenHeight / 6,
+                        child: Center(
+                          child: Text(
+                            "Water Delivery",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.rubik(
+                              fontSize: 24,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 12),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18),
+                          color: backgroundColor[600],
                         ),
                         width: screenWidth / 6,
                         height: screenHeight / 12,
@@ -74,19 +198,50 @@ class _ProductsState extends State<Products> {
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(18),
-                          color: Colors.black,
+                          color: backgroundColor[600],
                         ),
-                        width: screenWidth / 3,
-                        height: screenHeight / 6,
+                        width: screenWidth / 6,
+                        height: screenHeight / 12,
                       ),
                       SizedBox(width: 24),
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(18),
-                          color: Colors.red,
+                          color: mainColor[500],
                         ),
                         width: screenWidth / 4,
                         height: screenHeight / 8,
+                        child: Center(
+                          child: Text(
+                            "Groceries",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.rubik(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 12),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18),
+                          color: darkGrey[200],
+                        ),
+                        width: screenWidth / 3,
+                        height: screenHeight / 6,
+                        child: Center(
+                          child: Text(
+                            "Water Delivery",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.rubik(
+                              fontSize: 24,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -98,40 +253,27 @@ class _ProductsState extends State<Products> {
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(18),
-                          color: Colors.red,
-                        ),
-                        width: screenWidth / 4,
-                        height: screenHeight / 8,
-                      ),
-                      SizedBox(width: 24),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(18),
-                          color: Colors.black,
+                          color: darkGrey[300],
                         ),
                         width: screenWidth / 3,
                         height: screenHeight / 6,
+                        child: Center(
+                          child: Text(
+                            "Groceries",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.rubik(
+                              fontSize: 24,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
                       ),
                       SizedBox(width: 12),
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(18),
-                          color: Colors.white,
-                        ),
-                        width: screenWidth / 6,
-                        height: screenHeight / 12,
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 24),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(18),
-                          color: Colors.white,
+                          color: backgroundColor[600],
                         ),
                         width: screenWidth / 6,
                         height: screenHeight / 12,
@@ -140,52 +282,21 @@ class _ProductsState extends State<Products> {
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(18),
-                          color: Colors.red,
+                          color: secondaryColorTeal[700],
                         ),
                         width: screenWidth / 4,
                         height: screenHeight / 8,
-                      ),
-                      SizedBox(width: 12),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(18),
-                          color: Colors.black,
+                        child: Center(
+                          child: Text(
+                            "Legumes",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.rubik(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
                         ),
-                        width: screenWidth / 3,
-                        height: screenHeight / 6,
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 24),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(18),
-                          color: Colors.black,
-                        ),
-                        width: screenWidth / 3,
-                        height: screenHeight / 6,
-                      ),
-                      SizedBox(width: 12),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(18),
-                          color: Colors.white,
-                        ),
-                        width: screenWidth / 6,
-                        height: screenHeight / 12,
-                      ),
-                      SizedBox(width: 24),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(18),
-                          color: Colors.red,
-                        ),
-                        width: screenWidth / 4,
-                        height: screenHeight / 8,
                       ),
                     ],
                   ),
