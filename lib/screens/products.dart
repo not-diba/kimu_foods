@@ -186,7 +186,7 @@ class _ProductsState extends State<Products> {
                           child: Padding(
                             padding: const EdgeInsets.all(8),
                             child: Text(
-                              "Water Delivery",
+                              "Spices",
                               textAlign: TextAlign.center,
                               style: GoogleFonts.rubik(
                                 fontSize: 24,
@@ -233,10 +233,10 @@ class _ProductsState extends State<Products> {
                           child: Padding(
                             padding: const EdgeInsets.all(8),
                             child: Text(
-                              "Groceries",
+                              "Cooking Oil",
                               textAlign: TextAlign.center,
                               style: GoogleFonts.rubik(
-                                fontSize: 16,
+                                fontSize: 20,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w700,
                               ),
