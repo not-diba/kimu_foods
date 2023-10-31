@@ -15,7 +15,7 @@ class _ProductsState extends State<Products> {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     return Padding(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
@@ -32,7 +32,7 @@ class _ProductsState extends State<Products> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 16),
+              padding: const EdgeInsets.only(top: 16),
               child: Column(
                 children: [
                   Row(
@@ -47,7 +47,7 @@ class _ProductsState extends State<Products> {
                         width: screenWidth / 6,
                         height: screenHeight / 12,
                       ),
-                      SizedBox(width: 24),
+                      const SizedBox(width: 24),
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(18),
@@ -56,18 +56,21 @@ class _ProductsState extends State<Products> {
                         width: screenWidth / 3,
                         height: screenHeight / 6,
                         child: Center(
-                          child: Text(
-                            "Groceries",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.rubik(
-                              fontSize: 24,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Text(
+                              "Groceries",
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.rubik(
+                                fontSize: 24,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(width: 12),
+                      const SizedBox(width: 12),
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(18),
@@ -76,20 +79,23 @@ class _ProductsState extends State<Products> {
                         width: screenWidth / 4,
                         height: screenHeight / 8,
                         child: Center(
-                          child: Text(
-                            "Teas",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.rubik(
-                              fontSize: 22,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Text(
+                              "Teas",
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.rubik(
+                                fontSize: 22,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -102,18 +108,21 @@ class _ProductsState extends State<Products> {
                         width: screenWidth / 3,
                         height: screenHeight / 6,
                         child: Center(
-                          child: Text(
-                            "Restock",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.rubik(
-                              fontSize: 22,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Text(
+                              "Restock",
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.rubik(
+                                fontSize: 22,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(width: 24),
+                      const SizedBox(width: 24),
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(18),
@@ -122,20 +131,23 @@ class _ProductsState extends State<Products> {
                         width: screenWidth / 3.5,
                         height: screenHeight / 7,
                         child: Center(
-                          child: Text(
-                            "Vegetables",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.rubik(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Text(
+                              "Vegetables",
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.rubik(
+                                fontSize: 16,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -148,18 +160,21 @@ class _ProductsState extends State<Products> {
                         width: screenWidth / 3.5,
                         height: screenHeight / 7,
                         child: Center(
-                          child: Text(
-                            "Legumes",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.rubik(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Text(
+                              "Legumes",
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.rubik(
+                                fontSize: 20,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(width: 24),
+                      const SizedBox(width: 24),
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(18),
@@ -168,18 +183,21 @@ class _ProductsState extends State<Products> {
                         width: screenWidth / 3,
                         height: screenHeight / 6,
                         child: Center(
-                          child: Text(
-                            "Water Delivery",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.rubik(
-                              fontSize: 24,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Text(
+                              "Water Delivery",
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.rubik(
+                                fontSize: 24,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(width: 12),
+                      const SizedBox(width: 12),
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(18),
@@ -190,7 +208,7 @@ class _ProductsState extends State<Products> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -203,7 +221,7 @@ class _ProductsState extends State<Products> {
                         width: screenWidth / 6,
                         height: screenHeight / 12,
                       ),
-                      SizedBox(width: 24),
+                      const SizedBox(width: 24),
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(18),
@@ -212,18 +230,21 @@ class _ProductsState extends State<Products> {
                         width: screenWidth / 4,
                         height: screenHeight / 8,
                         child: Center(
-                          child: Text(
-                            "Groceries",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.rubik(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Text(
+                              "Groceries",
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.rubik(
+                                fontSize: 16,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(width: 12),
+                      const SizedBox(width: 12),
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(18),
@@ -232,20 +253,23 @@ class _ProductsState extends State<Products> {
                         width: screenWidth / 3,
                         height: screenHeight / 6,
                         child: Center(
-                          child: Text(
-                            "Water Delivery",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.rubik(
-                              fontSize: 24,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Text(
+                              "Water Delivery",
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.rubik(
+                                fontSize: 24,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -258,18 +282,21 @@ class _ProductsState extends State<Products> {
                         width: screenWidth / 3,
                         height: screenHeight / 6,
                         child: Center(
-                          child: Text(
-                            "Groceries",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.rubik(
-                              fontSize: 24,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Text(
+                              "Groceries",
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.rubik(
+                                fontSize: 24,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(width: 12),
+                      const SizedBox(width: 12),
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(18),
@@ -278,7 +305,7 @@ class _ProductsState extends State<Products> {
                         width: screenWidth / 6,
                         height: screenHeight / 12,
                       ),
-                      SizedBox(width: 24),
+                      const SizedBox(width: 24),
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(18),
@@ -287,20 +314,23 @@ class _ProductsState extends State<Products> {
                         width: screenWidth / 4,
                         height: screenHeight / 8,
                         child: Center(
-                          child: Text(
-                            "Legumes",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.rubik(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Text(
+                              "Legumes",
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.rubik(
+                                fontSize: 18,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 100),
+                  const SizedBox(height: 100),
                 ],
               ),
             )
