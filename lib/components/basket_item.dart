@@ -39,7 +39,7 @@ class _BasketItemState extends State<BasketItem> {
                   'https://wallpapers.com/images/hd/food-4k-1pf6px6ryqfjtnyr.jpg',
                   fit: BoxFit.cover,
                   height: double.infinity,
-                  width: screenWidth * .35,
+                  width: screenWidth * .34,
                 ),
               ),
               Padding(

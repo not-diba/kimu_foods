@@ -4,3 +4,4 @@ export './feed_card.dart';
 export './label_badge.dart';
 export './recents_card.dart';
 export './basket_item.dart';
+export './recipe_basket_item.dart';
