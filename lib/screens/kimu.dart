@@ -87,7 +87,7 @@ class _KimuState extends State<Kimu> {
                     _selectedIndex == 2 ? mainColor : grey[100] ?? grey,
                 icon: LineIcons.store,
                 label: 'Products',
-                badge: true,
+                badgeText: Text('99+'),
                 onPressed: () {
                   _navigateToView(2);
                 },
@@ -97,6 +97,7 @@ class _KimuState extends State<Kimu> {
                     _selectedIndex == 3 ? mainColor : grey[100] ?? grey,
                 icon: LineIcons.shoppingBasket,
                 label: 'Basket',
+                badgeText: Text('9'),
                 onPressed: () {
                   _navigateToView(3);
                 },
@@ -108,7 +109,7 @@ class _KimuState extends State<Kimu> {
                       _selectedIndex == 4 ? mainColor : grey[100] ?? grey,
                   icon: LineIcons.user,
                   label: 'Profile',
-                  badgeText: Text('99+'),
+                  badge: true,
                   onPressed: () {
                     _navigateToView(4);
                   },
