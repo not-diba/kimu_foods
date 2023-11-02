@@ -175,61 +175,62 @@ class _FeedCardState extends State<FeedCard> {
                         padding:
                             const EdgeInsets.only(top: 6, left: 16, right: 16),
                         child: SizedBox(
-                            width: double.infinity,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Wrap(
-                                  crossAxisAlignment: WrapCrossAlignment.end,
-                                  children: [
-                                    Text(
-                                      "KES. 1,500",
+                          width: double.infinity,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Wrap(
+                                crossAxisAlignment: WrapCrossAlignment.end,
+                                children: [
+                                  Text(
+                                    "KES. 1,500",
+                                    textAlign: TextAlign.start,
+                                    style: GoogleFonts.rubik(
+                                      fontSize: 20,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 4, bottom: 2),
+                                    child: Text(
+                                      'for 3 people',
+                                      style: GoogleFonts.rubik(
+                                        fontSize: 12,
+                                        color: backgroundColor[900],
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Wrap(
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                children: [
+                                  Icon(
+                                    LineIcons.arrowRight,
+                                    size: 20,
+                                    color: mainColor[500],
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 2),
+                                    child: Text(
+                                      "VIEW",
                                       textAlign: TextAlign.start,
                                       style: GoogleFonts.rubik(
                                         fontSize: 20,
-                                        color: Colors.black,
+                                        color: mainColor[500],
                                         fontWeight: FontWeight.w700,
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 4, bottom: 2),
-                                      child: Text(
-                                        'for 3 people',
-                                        style: GoogleFonts.rubik(
-                                          fontSize: 12,
-                                          color: backgroundColor[900],
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Wrap(
-                                  crossAxisAlignment: WrapCrossAlignment.center,
-                                  children: [
-                                    Icon(
-                                      LineIcons.arrowRight,
-                                      size: 20,
-                                      color: mainColor[500],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 2),
-                                      child: Text(
-                                        "VIEW",
-                                        textAlign: TextAlign.start,
-                                        style: GoogleFonts.rubik(
-                                          fontSize: 20,
-                                          color: mainColor[500],
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ],
-                            )),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ],
                   ),
