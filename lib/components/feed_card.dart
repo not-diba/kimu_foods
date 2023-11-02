@@ -25,8 +25,8 @@ class _FeedCardState extends State<FeedCard> {
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.67,
       child: Card(
-        elevation: 10,
-        shadowColor: Colors.transparent,
+        // elevation: 10,
+        // shadowColor: Colors.transparent,
         color: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(18),
