@@ -1,3 +1,3 @@
 export './theme/theme.dart';
 export './theme/partials/partials.dart';
-export './generics/fomart_amount.dart';
+export './generics/format_amount.dart';
