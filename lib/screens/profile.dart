@@ -56,7 +56,7 @@ class _ProfileState extends State<Profile> {
                           shape: BoxShape.circle,
                           image: DecorationImage(
                             image: NetworkImage(
-                                'https://instagram.fnuu2-1.fna.fbcdn.net/v/t51.2885-19/382625308_247856468251330_6112688731889636330_n.jpg?stp=dst-jpg_s320x320&_nc_ht=instagram.fnuu2-1.fna.fbcdn.net&_nc_cat=110&_nc_ohc=g7O26hvVfhEAX_YnKu9&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfC6nzDJeX6c7XVV4D5AE7g_nWil8oTgOnyaskc7ndUIlw&oe=6548A4E2&_nc_sid=8b3546'),
+                                'https://i.pinimg.com/originals/20/92/ee/2092ee80c9f9dad52060c65724b1cc15.png'),
                             fit: BoxFit.cover,
                           ),
                         ),

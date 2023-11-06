@@ -1,10 +1,111 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kimu_foods/components/components.dart';
 import 'package:kimu_foods/utils/theme/partials/material_colors.dart';
 
+class BasketData {
+  final String imageUrl;
+  final String recipeName;
+  final String categoryName;
+  final int serving;
+
+  BasketData({
+    required this.imageUrl,
+    required this.recipeName,
+    required this.categoryName,
+    required this.serving,
+  });
+}
+
 class Basket extends StatefulWidget {
-  const Basket({super.key});
+  Basket({super.key});
+
+  final List<BasketData> recommendedData = [
+    BasketData(
+        imageUrl:
+            'https://wallpapers.com/images/hd/food-4k-1pf6px6ryqfjtnyr.jpg',
+        recipeName: 'Stake',
+        serving: 2,
+        categoryName: 'Grill'),
+    BasketData(
+        imageUrl:
+            'https://wallpapers.com/images/hd/food-4k-m37wpodzrcbv5gvw.jpg',
+        recipeName: 'LASAGNA',
+        serving: 3,
+        categoryName: 'One Pot'),
+    BasketData(
+        imageUrl: 'https://wallpaperaccess.com/full/438099.jpg',
+        recipeName: 'SALAD',
+        serving: 7,
+        categoryName: 'healthy'),
+    BasketData(
+      imageUrl:
+          'https://c4.wallpaperflare.com/wallpaper/234/543/684/food-pizza-wallpaper-preview.jpg',
+      recipeName: 'Pizza',
+      serving: 8,
+      categoryName: 'Fast Food',
+    ),
+    BasketData(
+        imageUrl: 'https://images7.alphacoders.com/110/1103153.jpg',
+        recipeName: 'English Breakfast',
+        serving: 1,
+        categoryName: 'breakfast'),
+    BasketData(
+        imageUrl:
+            'https://i.pinimg.com/originals/ee/08/f2/ee08f2a462156f94e6a7034baa73d6ab.jpg',
+        recipeName: 'Burgers',
+        serving: 4,
+        categoryName: 'fast food'),
+    BasketData(
+        imageUrl:
+            'https://assets.epicurious.com/photos/62c4790ccb99ba31b1339c02/4:3/w_4932,h_3699,c_limit/OnePotSpaghetti_RECIPE_062922_36622.jpg',
+        recipeName: 'Spaghetti',
+        serving: 6,
+        categoryName: 'one pot'),
+    BasketData(
+        imageUrl:
+            'https://www.pixelstalk.net/wp-content/uploads/images5/Free-Download-4K-Food-Wallpaper-for-Desktop.jpg',
+        recipeName: 'milkshakes',
+        serving: 8,
+        categoryName: 'new'),
+    BasketData(
+        imageUrl:
+            'https://t3.ftcdn.net/jpg/02/55/42/50/360_F_255425068_CyDrGsVcu1Bl2SdJ2yXx35Rlp8jyNCCQ.jpg',
+        recipeName: 'Shwarma',
+        serving: 8,
+        categoryName: 'halal'),
+    BasketData(
+        imageUrl:
+            'https://food.mulembenation.co.ke/wp-content/uploads/sites/4/2020/05/ugali-with-fish-and-a-side-of-vegetables.jpg',
+        recipeName: 'Ugali',
+        serving: 12,
+        categoryName: 'local cuisine'),
+    BasketData(
+        imageUrl:
+            'https://e1.pxfuel.com/desktop-wallpaper/903/907/desktop-wallpaper-6-vegan-healthy-food.jpg',
+        recipeName: 'Chapati',
+        serving: 10,
+        categoryName: 'healthy'),
+    BasketData(
+        imageUrl:
+            'https://i.pinimg.com/originals/ee/08/f2/ee08f2a462156f94e6a7034baa73d6ab.jpg',
+        recipeName: 'Burgers',
+        serving: 14,
+        categoryName: 'Quick & Easy'),
+    BasketData(
+        imageUrl:
+            'https://c1.wallpaperflare.com/preview/938/82/575/seafood-platter-crustaceans-food-seafood.jpg',
+        recipeName: 'Lobster',
+        serving: 17,
+        categoryName: 'Sea Food'),
+    BasketData(
+        imageUrl: 'https://images8.alphacoders.com/407/407695.jpg',
+        recipeName: 'Vanilla Cake',
+        serving: 19,
+        categoryName: 'Cakes'),
+  ];
 
   @override
   State<Basket> createState() => _BasketState();
@@ -71,9 +172,14 @@ class _BasketState extends State<Basket> {
               height: screenHeight * .5,
               width: double.infinity,
               child: ListView.separated(
-                itemCount: 10,
+                itemCount: widget.recommendedData.length,
                 itemBuilder: (context, index) {
-                  return BasketItem();
+                  final recipe = widget.recommendedData[index];
+                  return BasketItem(
+                    recipeName: recipe.recipeName,
+                    categoryName: recipe.categoryName,
+                    imageUrl: recipe.imageUrl,
+                  );
                 },
                 separatorBuilder: (context, index) => const SizedBox(
                   height: 10,
@@ -107,9 +213,13 @@ class _BasketState extends State<Basket> {
                     const SizedBox(height: 18),
                     Expanded(
                       child: ListView.separated(
-                        itemCount: 10,
+                        itemCount: widget.recommendedData.length,
                         itemBuilder: (context, index) {
-                          return RecipeBasketItem();
+                          final recipe = widget.recommendedData[index];
+                          return RecipeBasketItem(
+                            recipeName: recipe.recipeName,
+                            serving: recipe.serving,
+                          );
                         },
                         separatorBuilder: (context, index) {
                           return const Divider(
@@ -131,8 +241,10 @@ class _BasketState extends State<Basket> {
                   elevation: 8,
                   backgroundColor: mainColor[500],
                   foregroundColor: Colors.white,
-                  padding: const EdgeInsets.only(left: 50, right: 50, top: 16, bottom: 16),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+                  padding: const EdgeInsets.only(
+                      left: 50, right: 50, top: 16, bottom: 16),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18)),
                   textStyle: GoogleFonts.rubik(
                     fontSize: 18,
                     color: Colors.white,
