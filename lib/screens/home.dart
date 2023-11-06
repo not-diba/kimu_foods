@@ -120,12 +120,12 @@ class _HomeState extends State<Home> {
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.only(bottom: 15),
+            padding: const EdgeInsets.only(bottom: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Today'\s Picks",
+                  "Today's Picks",
                   textAlign: TextAlign.start,
                   style: GoogleFonts.rubik(
                     fontSize: 26,

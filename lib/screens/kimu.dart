@@ -15,18 +15,18 @@ class _KimuState extends State<Kimu> {
   int _selectedIndex = 0;
   final List<Widget> _screens = <Widget>[
     Home(
-      key: PageStorageKey('home'),
+      key: const PageStorageKey('home'),
     ),
-    Recipes(
+    const Recipes(
       key: PageStorageKey('recipes'),
     ),
-    Products(
+    const Products(
       key: PageStorageKey('products'),
     ),
     Basket(
-      key: PageStorageKey('basket'),
+      key: const PageStorageKey('basket'),
     ),
-    Profile(
+    const Profile(
       key: PageStorageKey('profile'),
     ),
   ];
@@ -87,7 +87,7 @@ class _KimuState extends State<Kimu> {
                     _selectedIndex == 2 ? mainColor : grey[100] ?? grey,
                 icon: LineIcons.store,
                 label: 'Products',
-                badgeText: Text('99+'),
+                badgeText: const Text('99+'),
                 onPressed: () {
                   _navigateToView(2);
                 },
@@ -97,7 +97,7 @@ class _KimuState extends State<Kimu> {
                     _selectedIndex == 3 ? mainColor : grey[100] ?? grey,
                 icon: LineIcons.shoppingBasket,
                 label: 'Basket',
-                badgeText: Text('9'),
+                badgeText: const Text('9'),
                 onPressed: () {
                   _navigateToView(3);
                 },

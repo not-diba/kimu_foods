@@ -36,7 +36,7 @@ class _RecipesState extends State<Recipes> {
             ),
           ),
           RecommendedListView(),
-          SizedBox(height: 24),
+          const SizedBox(height: 24),
           Text('CATEGORIES', style: GoogleFonts.rubik(fontSize: 12, fontWeight: FontWeight.w700)),
           CategoriesListView(),
         ],
