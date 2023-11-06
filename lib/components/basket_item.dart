@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kimu_foods/utils/theme/partials/material_colors.dart';
+import 'package:kimu_foods/utils/utils.dart';
 
 class BasketItem extends StatefulWidget {
   final String recipeName;
   final String categoryName;
   final String imageUrl;
-  const BasketItem(
-      {super.key,
-      required this.recipeName,
-      required this.categoryName,
-      required this.imageUrl});
+  final double amount;
+
+  const BasketItem({
+    super.key,
+    required this.recipeName,
+    required this.categoryName,
+    required this.imageUrl,
+    required this.amount,
+  });
 
   @override
   State<BasketItem> createState() => _BasketItemState();
@@ -69,7 +73,7 @@ class _BasketItemState extends State<BasketItem> {
                       ),
                     ),
                     Text(
-                      'KES. 1,500',
+                      formatAmount(widget.amount),
                       style: GoogleFonts.rubik(
                         fontSize: 16,
                         color: backgroundColor[900],
@@ -111,3 +115,4 @@ class _BasketItemState extends State<BasketItem> {
     );
   }
 }
+
