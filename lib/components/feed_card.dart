@@ -8,12 +8,14 @@ class FeedCard extends StatefulWidget {
   final String recipeName;
   final String categoryName;
   final String imageUrl;
+  final double amount;
 
   const FeedCard(
       {super.key,
       required this.recipeName,
       required this.categoryName,
-      required this.imageUrl});
+      required this.imageUrl,
+      required this.amount});
 
   @override
   State<FeedCard> createState() => _FeedCardState();
@@ -184,7 +186,7 @@ class _FeedCardState extends State<FeedCard> {
                                 crossAxisAlignment: WrapCrossAlignment.end,
                                 children: [
                                   Text(
-                                    "KES. 1,500",
+                                    formatAmount(widget.amount),
                                     textAlign: TextAlign.start,
                                     style: GoogleFonts.rubik(
                                       fontSize: 20,
