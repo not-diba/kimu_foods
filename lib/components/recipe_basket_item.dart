@@ -3,7 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kimu_foods/utils/theme/partials/material_colors.dart';
 
 class RecipeBasketItem extends StatefulWidget {
-  const RecipeBasketItem({super.key});
+  final String recipeName;
+  final int serving;
+  const RecipeBasketItem({super.key, required this.recipeName, required this.serving});
 
   @override
   State<RecipeBasketItem> createState() => _RecipeBasketItemState();
@@ -23,7 +25,7 @@ class _RecipeBasketItemState extends State<RecipeBasketItem> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              "Arrow Root",
+              widget.recipeName,
               textAlign: TextAlign.start,
               style: GoogleFonts.rubik(
                 fontSize: 18,
@@ -32,7 +34,7 @@ class _RecipeBasketItemState extends State<RecipeBasketItem> {
               ),
             ),
             Text(
-              "1 tbsp",
+              "${widget.serving} serving",
               textAlign: TextAlign.start,
               style: GoogleFonts.rubik(
                 fontSize: 16,

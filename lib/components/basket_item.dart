@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kimu_foods/utils/theme/partials/material_colors.dart';
+import 'package:kimu_foods/utils/utils.dart';
 
 class BasketItem extends StatefulWidget {
-  const BasketItem({super.key});
+  final String recipeName;
+  final String categoryName;
+  final String imageUrl;
+  final double amount;
+
+  const BasketItem({
+    super.key,
+    required this.recipeName,
+    required this.categoryName,
+    required this.imageUrl,
+    required this.amount,
+  });
 
   @override
   State<BasketItem> createState() => _BasketItemState();
@@ -36,7 +47,7 @@ class _BasketItemState extends State<BasketItem> {
                     topLeft: Radius.circular(14),
                     bottomLeft: Radius.circular(14)),
                 child: Image.network(
-                  'https://wallpapers.com/images/hd/food-4k-1pf6px6ryqfjtnyr.jpg',
+                  widget.imageUrl,
                   fit: BoxFit.cover,
                   height: double.infinity,
                   width: screenWidth * .34,
@@ -53,7 +64,7 @@ class _BasketItemState extends State<BasketItem> {
                     SizedBox(
                       width: 150,
                       child: Text(
-                        'Several Onions for health',
+                        '${widget.recipeName} in ${widget.categoryName}',
                         style: GoogleFonts.rubik(
                           fontSize: 16,
                           color: Colors.black,
@@ -62,7 +73,7 @@ class _BasketItemState extends State<BasketItem> {
                       ),
                     ),
                     Text(
-                      'KES. 1,500',
+                      formatAmount(widget.amount),
                       style: GoogleFonts.rubik(
                         fontSize: 16,
                         color: backgroundColor[900],
@@ -104,3 +115,4 @@ class _BasketItemState extends State<BasketItem> {
     );
   }
 }
+
