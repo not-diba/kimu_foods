@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kimu_foods/components/components.dart';
+import 'package:kimu_foods/screens/recipe_details.dart';
 
 class Recipe {
   final String imageUrl;
@@ -8,12 +9,11 @@ class Recipe {
   final String categoryName;
   final double amount;
 
-  Recipe({
-    required this.imageUrl,
-    required this.recipeName,
-    required this.categoryName,
-    required this.amount
-  });
+  Recipe(
+      {required this.imageUrl,
+      required this.recipeName,
+      required this.categoryName,
+      required this.amount});
 }
 
 class Home extends StatefulWidget {
@@ -146,11 +146,20 @@ class _HomeState extends State<Home> {
               itemCount: widget.recommendedData.length,
               itemBuilder: (context, index) {
                 final recipe = widget.recommendedData[index];
-                return FeedCard(
-                  recipeName: recipe.recipeName,
-                  categoryName: recipe.categoryName,
-                  imageUrl: recipe.imageUrl,
-                  amount: recipe.amount,
+                return InkWell(
+                  child: FeedCard(
+                    recipeName: recipe.recipeName,
+                    categoryName: recipe.categoryName,
+                    imageUrl: recipe.imageUrl,
+                    amount: recipe.amount,
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => RecipeDetails(recipe: recipe)),
+                    );
+                  },
                 );
               },
               separatorBuilder: (context, index) => const SizedBox(
