@@ -9,6 +9,17 @@ class KimuFoodsTheme {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
+      bottomSheetTheme: BottomSheetThemeData(
+        showDragHandle: true,
+        dragHandleSize: const Size(64, 4),
+        backgroundColor: backgroundColor[300],
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(18),
+            topRight: Radius.circular(18),
+          ),
+        ),
+      ),
       primarySwatch: mainColor,
       textTheme: GoogleFonts.rubikTextTheme(),
       scaffoldBackgroundColor: backgroundColor[300],
@@ -28,4 +39,3 @@ class KimuFoodsTheme {
     );
   }
 }
-

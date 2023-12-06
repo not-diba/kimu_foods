@@ -32,7 +32,7 @@ class _IngredientsListState extends State<IngredientsList> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              "Ingredients for Recipes",
+              "Ingredients for Recipe",
               textAlign: TextAlign.start,
               style: GoogleFonts.rubik(
                 fontSize: 22,

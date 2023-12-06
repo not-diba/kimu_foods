@@ -140,7 +140,7 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                 child: InkWell(
                   child: Container(
                     decoration: BoxDecoration(
-                        color: darkGrey.withOpacity(.65),
+                        color: Colors.white,
                         boxShadow: const [
                           BoxShadow(
                             color: Colors.transparent,
@@ -154,7 +154,7 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                     height: 50,
                     child: const Icon(
                       Icons.close_sharp,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                   onTap: () {
@@ -167,7 +167,6 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                 children: [
                   SizedBox(
                     width: double.infinity,
-                    height: screenHeight * .1,
                     child: ClipRRect(
                       child: Image.network(
                         widget.recipe.imageUrl,
@@ -178,9 +177,15 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                   Positioned(
                     width: screenWidth,
                     bottom: 0,
-                    child: Container(
-                      height: 30,
+                    child: Material(
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(8),
+                        topRight: Radius.circular(8),
+                      ),
                       color: backgroundColor[300],
+                      child: Container(
+                        height: 30,
+                      ),
                     ),
                   ),
                   Positioned(
@@ -399,6 +404,75 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                           child: NutritionBox(),
                         ),
                         const SizedBox(height: 15),
+                        Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          children: [
+                            Icon(
+                              LineIcons.arrowRight,
+                              size: 20,
+                              color: mainColor[500],
+                            ),
+                            InkWell(
+                              onTap: () {
+                                showModalBottomSheet<void>(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 20, right: 20, bottom: 20),
+                                        child: SizedBox(
+                                          width: double.infinity,
+                                          height: screenHeight * .9,
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                'Directions',
+                                                textAlign: TextAlign.start,
+                                                style: GoogleFonts.rubik(
+                                                  fontSize: 20,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                              // TODO: Create a custom directions widget
+                                              // Stepper(
+                                              //   steps: <Step>[
+                                              //     Step(
+                                              //       title: const Text(
+                                              //           'Step 1 title'),
+                                              //       content: Text(''),
+                                              //     ),
+                                              //     const Step(
+                                              //       title: Text('Step 2 title'),
+                                              //       content: Text(''),
+                                              //     ),
+                                              //   ],
+                                              // ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    });
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 2),
+                                child: Text(
+                                  "CHECK OUT THE DIRECTIONS",
+                                  textAlign: TextAlign.start,
+                                  style: GoogleFonts.rubik(
+                                    fontSize: 16,
+                                    color: mainColor[500],
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 15),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -418,11 +492,11 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                           ],
                         ),
                         const SizedBox(height: 18),
-                        IngredientsList(recipe: widget.recommendedData),
-                        const SizedBox(height: 18),
                         ElevatedPrimaryButton(
                             amount: widget.recipe.amount * selectedPeople,
                             label: 'ADD TO BASKET'),
+                        const SizedBox(height: 18),
+                        IngredientsList(recipe: widget.recommendedData),
                         const SizedBox(height: 18),
                       ],
                     ),
