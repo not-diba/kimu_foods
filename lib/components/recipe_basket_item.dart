@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kimu_foods/utils/theme/partials/material_colors.dart';
 
-class RecipeBasketItem extends StatefulWidget {
+class IngredientsListItem extends StatefulWidget {
   final String recipeName;
   final int serving;
-  const RecipeBasketItem({super.key, required this.recipeName, required this.serving});
+  const IngredientsListItem({super.key, required this.recipeName, required this.serving});
 
   @override
-  State<RecipeBasketItem> createState() => _RecipeBasketItemState();
+  State<IngredientsListItem> createState() => _IngredientsListItemState();
 }
 
-class _RecipeBasketItemState extends State<RecipeBasketItem> {
+class _IngredientsListItemState extends State<IngredientsListItem> {
   String? _character;
 
   @override

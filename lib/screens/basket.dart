@@ -202,74 +202,10 @@ class _BasketState extends State<Basket> {
               ),
             ),
             const SizedBox(height: 32),
-            Container(
-              width: double.infinity,
-              height: screenHeight * .5,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(18)),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    top: 20, bottom: 20, left: 18, right: 18),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Ingredients for Recipes",
-                      textAlign: TextAlign.start,
-                      style: GoogleFonts.rubik(
-                        fontSize: 22,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const SizedBox(height: 18),
-                    Expanded(
-                      child: ListView.separated(
-                        itemCount: widget.recommendedData.length,
-                        itemBuilder: (context, index) {
-                          final recipe = widget.recommendedData[index];
-                          return RecipeBasketItem(
-                            recipeName: recipe.recipeName,
-                            serving: recipe.serving,
-                          );
-                        },
-                        separatorBuilder: (context, index) {
-                          return const Divider(
-                            height: 24,
-                            color: Colors.grey,
-                            thickness: .3,
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            IngredientsList(recipe: widget.recommendedData),
             const SizedBox(height: 18),
-            Center(
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  elevation: 8,
-                  backgroundColor: mainColor[500],
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.only(
-                      left: 50, right: 50, top: 16, bottom: 16),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18)),
-                  textStyle: GoogleFonts.rubik(
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                onPressed: () {},
-                child: Text('PURCHASE • ${formatAmount(sumAmounts(widget.recommendedData))}'),
-              ),
-            ),
+            ElevatedPrimaryButton(
+                amount: sumAmounts(widget.recommendedData), label: 'PURCHASE'),
             const SizedBox(height: 100),
           ],
         ),
