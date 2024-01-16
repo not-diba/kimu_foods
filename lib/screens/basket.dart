@@ -2,48 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kimu_foods/components/components.dart';
 import 'package:kimu_foods/utils/utils.dart';
+import 'package:kimu_foods/models/models.dart';
 
-class BasketData {
-  final String imageUrl;
-  final String recipeName;
-  final String categoryName;
-  final int serving;
-  final double amount;
-
-  BasketData({
-    required this.imageUrl,
-    required this.recipeName,
-    required this.categoryName,
-    required this.serving,
-    required this.amount,
-  });
-}
 
 class Basket extends StatefulWidget {
   Basket({super.key});
 
-  final List<BasketData> recommendedData = [
-    BasketData(
+  final List<BasketModel> recommendedData = [
+    BasketModel(
         imageUrl:
             'https://wallpapers.com/images/hd/food-4k-1pf6px6ryqfjtnyr.jpg',
         recipeName: 'Stake',
         serving: 2,
         amount: 6000,
         categoryName: 'Grill'),
-    BasketData(
+    BasketModel(
         imageUrl:
             'https://wallpapers.com/images/hd/food-4k-m37wpodzrcbv5gvw.jpg',
         recipeName: 'LASAGNA',
         serving: 3,
         amount: 220,
         categoryName: 'One Pot'),
-    BasketData(
+    BasketModel(
         imageUrl: 'https://wallpaperaccess.com/full/438099.jpg',
         recipeName: 'SALAD',
         serving: 7,
         amount: 320,
         categoryName: 'healthy'),
-    BasketData(
+    BasketModel(
       imageUrl:
           'https://c4.wallpaperflare.com/wallpaper/234/543/684/food-pizza-wallpaper-preview.jpg',
       recipeName: 'Pizza',
@@ -51,69 +37,69 @@ class Basket extends StatefulWidget {
       amount: 850,
       categoryName: 'Fast Food',
     ),
-    BasketData(
+    BasketModel(
         imageUrl: 'https://images7.alphacoders.com/110/1103153.jpg',
         recipeName: 'English Breakfast',
         serving: 1,
         amount: 125,
         categoryName: 'breakfast'),
-    BasketData(
+    BasketModel(
         imageUrl:
             'https://i.pinimg.com/originals/ee/08/f2/ee08f2a462156f94e6a7034baa73d6ab.jpg',
         recipeName: 'Burgers',
         serving: 4,
         amount: 450,
         categoryName: 'fast food'),
-    BasketData(
+    BasketModel(
         imageUrl:
             'https://assets.epicurious.com/photos/62c4790ccb99ba31b1339c02/4:3/w_4932,h_3699,c_limit/OnePotSpaghetti_RECIPE_062922_36622.jpg',
         recipeName: 'Spaghetti',
         serving: 6,
         amount: 200,
         categoryName: 'one pot'),
-    BasketData(
+    BasketModel(
         imageUrl:
             'https://www.pixelstalk.net/wp-content/uploads/images5/Free-Download-4K-Food-Wallpaper-for-Desktop.jpg',
         recipeName: 'milkshakes',
         serving: 8,
         amount: 400,
         categoryName: 'new'),
-    BasketData(
+    BasketModel(
         imageUrl:
             'https://t3.ftcdn.net/jpg/02/55/42/50/360_F_255425068_CyDrGsVcu1Bl2SdJ2yXx35Rlp8jyNCCQ.jpg',
         recipeName: 'Shwarma',
         serving: 8,
         amount: 350,
         categoryName: 'halal'),
-    BasketData(
+    BasketModel(
         imageUrl:
             'https://food.mulembenation.co.ke/wp-content/uploads/sites/4/2020/05/ugali-with-fish-and-a-side-of-vegetables.jpg',
         recipeName: 'Ugali',
         serving: 12,
         amount: 250,
         categoryName: 'local cuisine'),
-    BasketData(
+    BasketModel(
         imageUrl:
             'https://e1.pxfuel.com/desktop-wallpaper/903/907/desktop-wallpaper-6-vegan-healthy-food.jpg',
         recipeName: 'Chapati',
         serving: 10,
         amount: 30,
         categoryName: 'healthy'),
-    BasketData(
+    BasketModel(
         imageUrl:
             'https://i.pinimg.com/originals/ee/08/f2/ee08f2a462156f94e6a7034baa73d6ab.jpg',
         recipeName: 'Burgers',
         serving: 14,
         amount: 450,
         categoryName: 'Quick & Easy'),
-    BasketData(
+    BasketModel(
         imageUrl:
             'https://c1.wallpaperflare.com/preview/938/82/575/seafood-platter-crustaceans-food-seafood.jpg',
         recipeName: 'Lobster',
         serving: 17,
         amount: 3132,
         categoryName: 'Sea Food'),
-    BasketData(
+    BasketModel(
         imageUrl: 'https://images8.alphacoders.com/407/407695.jpg',
         recipeName: 'Vanilla Cake',
         serving: 19,
@@ -215,7 +201,7 @@ class _BasketState extends State<Basket> {
 }
 
 // TODO: remove this sum function
-double sumAmounts(List<BasketData> data) {
+double sumAmounts(List<BasketModel> data) {
   double totalAmount = 0.0;
   for (var item in data) {
     totalAmount += item.amount;

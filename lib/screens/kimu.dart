@@ -31,7 +31,6 @@ class _KimuState extends State<Kimu> {
     ),
   ];
 
-  final PageStorageBucket screenBucket = PageStorageBucket();
   Widget currentScreen = Home();
 
   void _navigateToView(int index) {
