@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:kimu_foods/screens/kimu.dart';
-import 'utils/theme/theme.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:kimu_foods/Routes/routes.dart';
+import 'package:kimu_foods/providers/recipes/get_recipes.dart';
+import 'package:kimu_foods/utils/utils.dart';
+import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  await initHiveForFlutter();
   runApp(const KimuFoods());
 }
 
@@ -11,10 +15,18 @@ class KimuFoods extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: KimuFoodsTheme.light(),
-      title: 'Kimu Foods',
-      home: const Kimu(),
+    return GraphQLProvider(
+      client: EndPoint().getClient(),
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => GetRecipesProvider()),
+        ],
+        child: MaterialApp.router(
+          theme: KimuFoodsTheme.light(),
+          title: 'Kimu Foods',
+          routerConfig: AppRouter().router,
+        ),
+      ),
     );
   }
 }

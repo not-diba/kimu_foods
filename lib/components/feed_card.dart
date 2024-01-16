@@ -5,6 +5,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:kimu_foods/components/components.dart';
 
 class FeedCard extends StatefulWidget {
+  final String id;
   final String recipeName;
   final String categoryName;
   final String imageUrl;
@@ -12,6 +13,7 @@ class FeedCard extends StatefulWidget {
 
   const FeedCard(
       {super.key,
+      required this.id,
       required this.recipeName,
       required this.categoryName,
       required this.imageUrl,
@@ -84,7 +86,8 @@ class _FeedCardState extends State<FeedCard> {
                               child: SizedBox(
                                 width: double.infinity,
                                 child: Text(
-                                  "With extra Vegetables",
+                                  // "With extra Vegetables",
+                                  widget.id,
                                   textAlign: TextAlign.start,
                                   style: GoogleFonts.rubik(
                                     fontSize: 16,
