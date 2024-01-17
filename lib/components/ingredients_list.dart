@@ -4,9 +4,9 @@ import 'package:kimu_foods/models/models.dart';
 import 'package:kimu_foods/components/components.dart';
 
 class IngredientsList extends StatefulWidget {
-  final List<BasketModel> recipe;
+  final List<Ingredient> ingredients;
 
-  const IngredientsList({super.key, required this.recipe});
+  const IngredientsList({super.key, required this.ingredients});
 
   @override
   State<IngredientsList> createState() => _IngredientsListState();
@@ -43,12 +43,12 @@ class _IngredientsListState extends State<IngredientsList> {
             const SizedBox(height: 18),
             Expanded(
               child: ListView.separated(
-                itemCount: widget.recipe.length,
+                itemCount: widget.ingredients.length,
                 itemBuilder: (context, index) {
-                  final recipe = widget.recipe[index];
+                  final ingredient = widget.ingredients[index];
                   return IngredientsListItem(
-                    recipeName: recipe.recipeName,
-                    serving: recipe.serving,
+                    ingredientName: ingredient.name,
+                    serving: ingredient.quantity,
                   );
                 },
                 separatorBuilder: (context, index) {

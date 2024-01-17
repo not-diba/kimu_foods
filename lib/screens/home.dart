@@ -3,12 +3,11 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kimu_foods/Routes/routes.dart';
 import 'package:kimu_foods/components/components.dart';
-import 'package:kimu_foods/models/models.dart';
 import 'package:kimu_foods/providers/recipes/get_recipes.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
-  Home({super.key});
+  const Home({super.key});
 
   @override
   State<Home> createState() => _HomeState();
@@ -73,6 +72,8 @@ class _HomeState extends State<Home> {
                         categoryName: recipe.categoryName,
                         imageUrl: recipe.imageUrl,
                         amount: recipe.amount,
+                        ingredients: recipe.ingredients,
+                        instructions: recipe.instructions,
                       ),
                       onTap: () {
                         context.pushNamed(AppRoutes.recipeDetails,

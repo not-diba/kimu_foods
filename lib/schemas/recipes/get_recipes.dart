@@ -7,8 +7,12 @@ class RecipesSchema {
         imageUrl
         recipeName
         amount
+        ingredients {
+          name
+          quantity
+        }
+        instructions
       }
-}
-
+  }
   """;
 }

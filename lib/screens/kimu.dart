@@ -5,7 +5,7 @@ import 'package:kimu_foods/components/bottom_nav_icon.dart';
 import 'package:line_icons/line_icons.dart';
 
 class Kimu extends StatefulWidget {
-  const Kimu({Key? key}) : super(key: key);
+  const Kimu({super.key});
 
   @override
   State<Kimu> createState() => _KimuState();
@@ -14,8 +14,8 @@ class Kimu extends StatefulWidget {
 class _KimuState extends State<Kimu> {
   int _selectedIndex = 0;
   final List<Widget> _screens = <Widget>[
-    Home(
-      key: const PageStorageKey('home'),
+    const Home(
+      key: PageStorageKey('home'),
     ),
     const Recipes(
       key: PageStorageKey('recipes'),
@@ -31,7 +31,7 @@ class _KimuState extends State<Kimu> {
     ),
   ];
 
-  Widget currentScreen = Home();
+  Widget currentScreen = const Home();
 
   void _navigateToView(int index) {
     setState(() {

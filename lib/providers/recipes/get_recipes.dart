@@ -19,13 +19,9 @@ class GetRecipesProvider extends ChangeNotifier {
   // Get Recipes
   void getRecipes() async {
     try {
-      ValueNotifier<GraphQLClient> _client = _endPoint.getClient();
+      ValueNotifier<GraphQLClient> client = _endPoint.getClient();
 
-      if (_client.value == null) {
-        throw Exception('GraphQL Client is null');
-      }
-
-      QueryResult result = await _client.value.mutate(MutationOptions(
+      QueryResult result = await client.value.mutate(MutationOptions(
         document: gql(RecipesSchema.getRecipesJSON),
       ));
 

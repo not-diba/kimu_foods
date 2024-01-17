@@ -188,7 +188,7 @@ class _BasketState extends State<Basket> {
               ),
             ),
             const SizedBox(height: 32),
-            IngredientsList(recipe: widget.recommendedData),
+            // IngredientsList(recipe: widget.recommendedData),
             const SizedBox(height: 18),
             ElevatedPrimaryButton(
                 amount: sumAmounts(widget.recommendedData), label: 'PURCHASE'),
