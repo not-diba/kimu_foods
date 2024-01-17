@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:kimu_foods/models/recipe/ingredients.dart';
 
 part 'recipe.g.dart';
 
@@ -9,6 +10,8 @@ class RecipeModel {
   final String recipeName;
   final String categoryName;
   final double amount;
+  final List<Ingredient> ingredients;
+  final List<String> instructions;
 
   RecipeModel({
     required this.id,
@@ -16,6 +19,8 @@ class RecipeModel {
     required this.recipeName,
     required this.categoryName,
     required this.amount,
+    required this.ingredients,
+    required this.instructions,
   });
 
   factory RecipeModel.fromJson(Map<String, dynamic> json) =>

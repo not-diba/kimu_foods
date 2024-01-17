@@ -25,8 +25,8 @@ class AppRouter {
         GoRoute(
           name: AppRoutes.home,
           path: 'home',
-          builder: (context, state) => Home(
-            key: const PageStorageKey('home'),
+          builder: (context, state) => const Home(
+            key: PageStorageKey('home'),
           ),
         ),
         GoRoute(

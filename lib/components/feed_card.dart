@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kimu_foods/models/recipe/ingredients.dart';
 import 'package:kimu_foods/utils/utils.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:kimu_foods/components/components.dart';
@@ -10,9 +11,13 @@ class FeedCard extends StatefulWidget {
   final String categoryName;
   final String imageUrl;
   final double amount;
+  final List<Ingredient> ingredients;
+  final List<String> instructions;
 
   const FeedCard(
       {super.key,
+      required this.instructions,
+      required this.ingredients,
       required this.id,
       required this.recipeName,
       required this.categoryName,
@@ -157,7 +162,7 @@ class _FeedCardState extends State<FeedCard> {
                                           ),
                                         ),
                                         Text(
-                                          '12',
+                                          '${widget.ingredients.length}',
                                           style: GoogleFonts.rubik(
                                             fontSize: 14,
                                             color: Colors.black,

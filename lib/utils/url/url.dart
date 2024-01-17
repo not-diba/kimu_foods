@@ -8,12 +8,12 @@ String endpointUrl = Platform.isAndroid ? 'http://10.0.2.2:4000/' : 'http://loca
 
 class EndPoint {
   ValueNotifier<GraphQLClient> getClient() {
-    ValueNotifier<GraphQLClient> _client = ValueNotifier(
+    ValueNotifier<GraphQLClient> client = ValueNotifier(
       GraphQLClient(
         link: HttpLink(endpointUrl, defaultHeaders: {}),
         cache: GraphQLCache(store: HiveStore()),
       ),
     );
-    return _client;
+    return client;
   }
 }

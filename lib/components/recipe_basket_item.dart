@@ -3,9 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kimu_foods/utils/theme/partials/material_colors.dart';
 
 class IngredientsListItem extends StatefulWidget {
-  final String recipeName;
-  final int serving;
-  const IngredientsListItem({super.key, required this.recipeName, required this.serving});
+  final String ingredientName;
+  final String serving;
+  const IngredientsListItem({super.key, required this.ingredientName, required this.serving});
 
   @override
   State<IngredientsListItem> createState() => _IngredientsListItemState();
@@ -25,7 +25,7 @@ class _IngredientsListItemState extends State<IngredientsListItem> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              widget.recipeName,
+              widget.ingredientName,
               textAlign: TextAlign.start,
               style: GoogleFonts.rubik(
                 fontSize: 18,
@@ -34,7 +34,7 @@ class _IngredientsListItemState extends State<IngredientsListItem> {
               ),
             ),
             Text(
-              "${widget.serving} serving",
+              widget.serving,
               textAlign: TextAlign.start,
               style: GoogleFonts.rubik(
                 fontSize: 16,
