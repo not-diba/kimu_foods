@@ -10,6 +10,7 @@ class Directions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const double sharedWidth = 30;
+    const double sharedHeight = 30;
     const double dividerSpacing = 5;
     return ListView.separated(
       itemCount: instructions.length,
@@ -19,7 +20,7 @@ class Directions extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              height: 30,
+              height: sharedHeight,
               width: sharedWidth,
               decoration: BoxDecoration(
                 border: Border.all(
@@ -66,7 +67,7 @@ class Directions extends StatelessWidget {
             const SizedBox(height: dividerSpacing),
             SizedBox(
               width: sharedWidth,
-              height: 30,
+              height: sharedHeight,
               child: Center(
                 child: VerticalDivider(
                   color: darkAccentColor[900],
