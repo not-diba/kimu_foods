@@ -339,20 +339,8 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
-                                              // TODO: Create a custom directions widget
-                                              // Stepper(
-                                              //   steps: <Step>[
-                                              //     Step(
-                                              //       title: const Text(
-                                              //           'Step 1 title'),
-                                              //       content: Text(''),
-                                              //     ),
-                                              //     const Step(
-                                              //       title: Text('Step 2 title'),
-                                              //       content: Text(''),
-                                              //     ),
-                                              //   ],
-                                              // ),
+                                              const SizedBox(height: 20),
+
                                               Expanded(
                                                 child: Directions(
                                                     instructions: widget
