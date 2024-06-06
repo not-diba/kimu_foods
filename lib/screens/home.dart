@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kimu_foods/Routes/routes.dart';
 import 'package:kimu_foods/components/components.dart';
-import 'package:kimu_foods/providers/recipes/get_recipes.dart';
+import 'package:kimu_foods/providers/recipes.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
@@ -50,21 +50,21 @@ class _HomeState extends State<Home> {
           ),
           Expanded(
             child: Consumer<GetRecipesProvider>(
-                builder: (context, recipes, child) {
+                builder: (context, recipesProvider, child) {
               if (isFetched == false) {
-                recipes.getRecipes();
+                recipesProvider.getRecipes();
                 Future.delayed(
                     const Duration(seconds: 2), () => isFetched = true);
               }
               return RefreshIndicator(
                 onRefresh: () {
-                  recipes.getRecipes();
+                  recipesProvider.getRecipes();
                   return Future.delayed(const Duration(seconds: 2));
                 },
                 child: ListView.separated(
-                  itemCount: recipes.getResponseData().length,
+                  itemCount: recipesProvider.getResponseData().length,
                   itemBuilder: (context, index) {
-                    final recipe = recipes.getResponseData()[index];
+                    final recipe = recipesProvider.getResponseData()[index];
                     return InkWell(
                       child: FeedCard(
                         id: recipe.id,

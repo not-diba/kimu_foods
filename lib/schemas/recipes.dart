@@ -1,5 +1,5 @@
 class RecipesSchema {
-  static String getRecipesJSON = """ 
+  static String getRecipesSchemaJSON = """ 
     query GetRecipes {
       getRecipes {
         id

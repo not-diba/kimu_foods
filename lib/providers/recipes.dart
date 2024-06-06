@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:kimu_foods/models/models.dart';
-import 'package:kimu_foods/schemas/recipes/get_recipes.dart';
+import 'package:kimu_foods/schemas/recipes.dart';
 import 'package:kimu_foods/utils/url/url.dart';
 
 class GetRecipesProvider extends ChangeNotifier {
@@ -22,7 +22,7 @@ class GetRecipesProvider extends ChangeNotifier {
       ValueNotifier<GraphQLClient> client = _endPoint.getClient();
 
       QueryResult result = await client.value.mutate(MutationOptions(
-        document: gql(RecipesSchema.getRecipesJSON),
+        document: gql(RecipesSchema.getRecipesSchemaJSON),
       ));
 
       if (result.hasException) {

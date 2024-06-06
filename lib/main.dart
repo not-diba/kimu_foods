@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:kimu_foods/Routes/routes.dart';
-import 'package:kimu_foods/providers/recipes/get_recipes.dart';
+import 'package:kimu_foods/providers/recipes.dart';
 import 'package:kimu_foods/utils/utils.dart';
 import 'package:provider/provider.dart';
+
 
 void main() async {
   await initHiveForFlutter();
