@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:kimu_foods/data/responses/recipe/nutrition_info.dart';
+import 'package:kimu_foods/data/responses/recipe/recipe.dart';
+import 'package:kimu_foods/utils/generics/nutrition_icons.dart';
 import 'package:kimu_foods/utils/theme/partials/material_colors.dart';
-import 'package:kimu_foods/widgets/directions.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kimu_foods/components/components.dart';
-import 'package:kimu_foods/models/models.dart';
 
 class RecipeDetails extends StatefulWidget {
-  final RecipeModel recipe;
+  final Recipe recipe;
 
   const RecipeDetails({super.key, required this.recipe});
 
@@ -16,25 +17,24 @@ class RecipeDetails extends StatefulWidget {
 }
 
 class _RecipeDetailsState extends State<RecipeDetails> {
-  int selectedPeople = 1;
+  int _selectedPeople = 1;
 
   void updateAmount(int count) {
     setState(() {
-      selectedPeople = count;
+      _selectedPeople = count;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
     return SafeArea(
       child: Scaffold(
         body: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
-              collapsedHeight: screenHeight * .15,
-              expandedHeight: screenHeight * .3,
+              collapsedHeight: mediaQueryData.size.height * .15,
+              expandedHeight: mediaQueryData.size.height * .3,
               stretchTriggerOffset: 300.0,
               pinned: true,
               leading: Padding(
@@ -77,7 +77,7 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                     ),
                   ),
                   Positioned(
-                    width: screenWidth,
+                    width: mediaQueryData.size.width,
                     bottom: 0,
                     child: Material(
                       borderRadius: const BorderRadius.only(
@@ -87,11 +87,21 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                       color: backgroundColor[300],
                       child: Container(
                         height: 30,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: backgroundColor[300]!,
+                          ),
+                          color: backgroundColor[300],
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(8),
+                            topRight: Radius.circular(8),
+                          ),
+                        ),
                       ),
                     ),
                   ),
                   Positioned(
-                    width: screenWidth,
+                    width: mediaQueryData.size.width,
                     bottom: 0,
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
@@ -197,8 +207,8 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                 [
                   Padding(
                     padding: const EdgeInsets.only(
-                      left: 20,
-                      right: 20,
+                      left: 12,
+                      right: 12,
                       top: 10,
                     ),
                     child: Column(
@@ -224,62 +234,9 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                           ),
                         ),
                         const SizedBox(height: 10),
-                        Row(
+                        const Row(
                           children: [
-                            Container(
-                              width: 50,
-                              height: 50,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                      'https://i.pinimg.com/originals/20/92/ee/2092ee80c9f9dad52060c65724b1cc15.png'),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 5),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 6),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        'by',
-                                        textAlign: TextAlign.start,
-                                        style: GoogleFonts.rubik(
-                                          fontSize: 16,
-                                          color: backgroundColor[900],
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                      const SizedBox(width: 4),
-                                      Text(
-                                        'Elvis Madiba',
-                                        textAlign: TextAlign.start,
-                                        style: GoogleFonts.rubik(
-                                          fontSize: 16,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Text(
-                                    'elvis.madiba@gmail.com',
-                                    textAlign: TextAlign.start,
-                                    style: GoogleFonts.rubik(
-                                      fontSize: 14,
-                                      color: backgroundColor[900],
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                            Text('Place Holder for like counter and rating.')
                           ],
                         ),
                         const SizedBox(height: 16),
@@ -301,9 +258,11 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                           ),
                         ),
                         const SizedBox(height: 12),
-                        const Align(
+                        Align(
                           alignment: Alignment.center,
-                          child: NutritionBox(),
+                          child: _nutritionInfoItems(
+                            widget.recipe.nutrition,
+                          ),
                         ),
                         const SizedBox(height: 15),
                         Wrap(
@@ -315,43 +274,8 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                               color: mainColor[500],
                             ),
                             InkWell(
-                              onTap: () {
-                                showModalBottomSheet<void>(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 20, right: 20, bottom: 20),
-                                        child: SizedBox(
-                                          width: double.infinity,
-                                          height: screenHeight * .9,
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Directions',
-                                                textAlign: TextAlign.start,
-                                                style: GoogleFonts.rubik(
-                                                  fontSize: 20,
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 20),
-
-                                              Expanded(
-                                                child: Directions(
-                                                    instructions: widget
-                                                        .recipe.instructions),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      );
-                                    });
-                              },
+                              onTap: () => _recipeDirections(context,
+                                  mediaQueryData, widget.recipe.instructions),
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 2),
                                 child: Text(
@@ -388,7 +312,7 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                         ),
                         const SizedBox(height: 18),
                         ElevatedPrimaryButton(
-                            amount: widget.recipe.amount * selectedPeople,
+                            amount: widget.recipe.amount * _selectedPeople,
                             label: 'ADD TO BASKET'),
                         const SizedBox(height: 18),
                         IngredientsList(ingredients: widget.recipe.ingredients),
@@ -404,4 +328,182 @@ class _RecipeDetailsState extends State<RecipeDetails> {
       ),
     );
   }
+}
+
+Widget _nutritionInfoItems(List<NutritionInfo> nutritionInfo) {
+  return SingleChildScrollView(
+    scrollDirection: Axis.horizontal,
+    child: Row(
+      mainAxisSize: MainAxisSize.min,
+      children: _buildContainers(nutritionInfo),
+    ),
+  );
+}
+
+List<Widget> _buildContainers(List<NutritionInfo> nutritionInfo) {
+  List<Widget> containers = [];
+
+  for (var item in nutritionInfo) {
+    containers.add(
+      Padding(
+        padding: const EdgeInsets.only(left: 5, right: 5),
+        child: _nutritionInfoItem(item),
+      ),
+    );
+  }
+  return containers;
+}
+
+Widget _nutritionInfoItem(NutritionInfo nutritionInfoItem) {
+  return Container(
+    width: 77.5,
+    height: 105,
+    decoration: BoxDecoration(
+        color: Colors.white, borderRadius: BorderRadius.circular(12)),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          nutritionInfoIconMap[nutritionInfoItem.nutritionItem],
+          color: mainColor[500],
+        ),
+        const SizedBox(height: 6),
+        Text(
+          nutritionInfoItem.quantity.toUpperCase(),
+          textAlign: TextAlign.start,
+          style: GoogleFonts.rubik(
+            fontSize: 16,
+            color: Colors.black,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        Text(
+          nutritionInfoItem.nutritionItem,
+          textAlign: TextAlign.start,
+          style: GoogleFonts.rubik(
+            fontSize: 14,
+            color: backgroundColor[900],
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+Future<void> _recipeDirections(BuildContext context,
+    MediaQueryData mediaQueryData, List<String> instructions) {
+  return showModalBottomSheet<void>(
+    isScrollControlled: true,
+    useSafeArea: true,
+    context: context,
+    builder: (BuildContext context) {
+      return DraggableScrollableSheet(
+        initialChildSize: 0.6,
+        minChildSize: 0.6,
+        maxChildSize: 0.9,
+        expand: false,
+        builder: (context, scrollController) {
+          return Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Directions',
+                  textAlign: TextAlign.start,
+                  style: GoogleFonts.rubik(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                _directions(instructions, scrollController),
+              ],
+            ),
+          );
+        },
+      );
+    },
+  );
+}
+
+Widget _directions(
+    List<String> instructions, ScrollController scrollController) {
+  const double sharedWidth = 30;
+  const double sharedHeight = 30;
+  const double dividerSpacing = 5;
+  return Expanded(
+    child: ListView.separated(
+      controller: scrollController,
+      itemCount: instructions.length,
+      itemBuilder: (context, index) {
+        return Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              height: sharedHeight,
+              width: sharedWidth,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  width: 2.5,
+                  color: mainColor,
+                ),
+                shape: BoxShape.circle,
+              ),
+              child: Center(
+                child: Text(
+                  (index + 1).toString(),
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.rubik(
+                    fontSize: 16,
+                    color: darkAccentColor[900],
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Flexible(
+              child: Text(
+                instructions[index],
+                textAlign: TextAlign.start,
+                style: GoogleFonts.rubik(
+                  fontSize: 14,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            )
+          ],
+        );
+      },
+      separatorBuilder: (context, index) => Align(
+        alignment: Alignment.centerLeft,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(height: dividerSpacing),
+            SizedBox(
+              width: sharedWidth,
+              height: sharedHeight,
+              child: Center(
+                child: VerticalDivider(
+                  color: darkAccentColor[900],
+                  thickness: 1.5,
+                ),
+              ),
+            ),
+            const SizedBox(height: dividerSpacing),
+          ],
+        ),
+      ),
+    ),
+  );
 }

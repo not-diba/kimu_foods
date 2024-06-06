@@ -1,11 +1,11 @@
-class BasketModel {
+class Basket {
   final String imageUrl;
   final String recipeName;
   final String categoryName;
   final int serving;
   final double amount;
 
-  BasketModel({
+  Basket({
     required this.imageUrl,
     required this.recipeName,
     required this.categoryName,

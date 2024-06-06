@@ -1,10 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kimu_foods/models/recipe/ingredients.dart';
+import 'package:kimu_foods/data/responses/recipe/ingredient.dart';
+import 'package:kimu_foods/data/responses/recipe/nutrition_info.dart';
 
 part 'recipe.g.dart';
 
 @JsonSerializable()
-class RecipeModel {
+class Recipe {
   final String id;
   final String imageUrl;
   final String recipeName;
@@ -12,8 +13,9 @@ class RecipeModel {
   final double amount;
   final List<Ingredient> ingredients;
   final List<String> instructions;
+  final List<NutritionInfo> nutrition;
 
-  RecipeModel({
+  Recipe({
     required this.id,
     required this.imageUrl,
     required this.recipeName,
@@ -21,10 +23,10 @@ class RecipeModel {
     required this.amount,
     required this.ingredients,
     required this.instructions,
+    required this.nutrition,
   });
 
-  factory RecipeModel.fromJson(Map<String, dynamic> json) =>
-      _$RecipeModelFromJson(json);
+  factory Recipe.fromJson(Map<String, dynamic> json) => _$RecipeFromJson(json);
 
-  Map<String, dynamic> toJson() => _$RecipeModelToJson(this);
+  Map<String, dynamic> toJson() => _$RecipeToJson(this);
 }

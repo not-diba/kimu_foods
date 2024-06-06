@@ -20,7 +20,7 @@ class KimuFoods extends StatelessWidget {
       client: EndPoint().getClient(),
       child: MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (_) => GetRecipesProvider()),
+          ChangeNotifierProvider(create: (_) => RecipesProvider()),
         ],
         child: MaterialApp.router(
           theme: KimuFoodsTheme.light(),

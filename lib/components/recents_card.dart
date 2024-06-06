@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kimu_foods/components/components.dart';
+import 'package:kimu_foods/data/models/grey_badge_props.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -7,6 +8,7 @@ class RecentsCard extends StatelessWidget {
   final String imageUrl;
   final String recipeName;
   final String categoryName;
+
   const RecentsCard(
       {super.key,
       required this.imageUrl,
@@ -109,7 +111,13 @@ class RecentsCard extends StatelessWidget {
                 ),
               ],
             ),
-            LabelBadge(badgeText: categoryName.toUpperCase(),),
+            GreyBadge(
+              props: GreyBadgeProps(
+                top: 0,
+                left: 0,
+                badgeText: categoryName.toUpperCase(),
+              ),
+            ),
           ],
         ),
       ),

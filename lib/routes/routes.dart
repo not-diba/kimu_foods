@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kimu_foods/screens/kimu.dart';
-import 'package:kimu_foods/screens/recipe_details.dart';
-import 'package:kimu_foods/screens/screens.dart';
-import 'package:kimu_foods/models/models.dart';
+import 'package:kimu_foods/data/responses/recipe/recipe.dart';
+import 'package:kimu_foods/views/views.dart';
 
 class AppRoutes {
   static const kimu = 'kimu';
@@ -32,7 +30,7 @@ class AppRouter {
         GoRoute(
           name: AppRoutes.recipes,
           path: 'recipes',
-          builder: (context, state) => const Recipes(
+          builder: (context, state) => const Categories(
             key: PageStorageKey('recipes'),
           ),
         ),
@@ -40,7 +38,7 @@ class AppRouter {
             name: AppRoutes.recipeDetails,
             path: 'recipes-details',
             builder: (context, state) {
-              RecipeModel recipe = state.extra as RecipeModel;
+              Recipe recipe = state.extra as Recipe;
               return RecipeDetails(recipe: recipe);
             }),
         GoRoute(
@@ -53,7 +51,7 @@ class AppRouter {
         GoRoute(
           name: AppRoutes.basket,
           path: 'basket',
-          builder: (context, state) => Basket(
+          builder: (context, state) => BasketView(
             key: const PageStorageKey('basket'),
           ),
         ),
@@ -68,4 +66,3 @@ class AppRouter {
     ),
   ]);
 }
-

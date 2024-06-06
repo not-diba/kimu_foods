@@ -3,14 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kimu_foods/widgets/categories_list_view.dart';
 import 'package:kimu_foods/widgets/widgets.dart';
 
-class Recipes extends StatefulWidget {
-  const Recipes({super.key});
+class Categories extends StatefulWidget {
+  const Categories({super.key});
 
   @override
-  State<Recipes> createState() => _RecipesState();
+  State<Categories> createState() => _CategoriesState();
 }
 
-class _RecipesState extends State<Recipes> {
+class _CategoriesState extends State<Categories> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -30,8 +30,8 @@ class _RecipesState extends State<Recipes> {
                 size: 26,
               ),
               hintText: 'Search in Categories',
-              elevation: MaterialStatePropertyAll<double>(0.0),
-              padding: MaterialStatePropertyAll<EdgeInsets>(
+              elevation: WidgetStatePropertyAll<double>(0.0),
+              padding: WidgetStatePropertyAll<EdgeInsets>(
                   EdgeInsets.symmetric(horizontal: 15)),
             ),
           ),

@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kimu_foods/Routes/routes.dart';
 import 'package:kimu_foods/components/components.dart';
+import 'package:kimu_foods/data/responses/recipe/recipe.dart';
 import 'package:kimu_foods/providers/recipes.dart';
 import 'package:provider/provider.dart';
 
@@ -20,8 +21,8 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-        left: 20,
-        right: 20,
+        left: 12,
+        right: 12,
         top: 20,
       ),
       child: Column(
@@ -49,7 +50,7 @@ class _HomeState extends State<Home> {
             ),
           ),
           Expanded(
-            child: Consumer<GetRecipesProvider>(
+            child: Consumer<RecipesProvider>(
                 builder: (context, recipesProvider, child) {
               if (isFetched == false) {
                 recipesProvider.getRecipes();
@@ -66,14 +67,17 @@ class _HomeState extends State<Home> {
                   itemBuilder: (context, index) {
                     final recipe = recipesProvider.getResponseData()[index];
                     return InkWell(
-                      child: FeedCard(
-                        id: recipe.id,
-                        recipeName: recipe.recipeName,
-                        categoryName: recipe.categoryName,
-                        imageUrl: recipe.imageUrl,
-                        amount: recipe.amount,
-                        ingredients: recipe.ingredients,
-                        instructions: recipe.instructions,
+                      child: HomeCard(
+                        recipe: Recipe(
+                          id: recipe.id,
+                          recipeName: recipe.recipeName,
+                          categoryName: recipe.categoryName,
+                          imageUrl: recipe.imageUrl,
+                          amount: recipe.amount,
+                          ingredients: recipe.ingredients,
+                          instructions: recipe.instructions,
+                          nutrition: recipe.nutrition,
+                        ),
                       ),
                       onTap: () {
                         context.pushNamed(AppRoutes.recipeDetails,

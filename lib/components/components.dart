@@ -1,11 +1,10 @@
 export './bottom_nav_icon.dart';
-export './categories_card.dart';
-export './feed_card.dart';
-export './label_badge.dart';
+export '../views/categories/categories_card.dart';
+export '../views/home/home_card.dart';
+export 'grey_badge.dart';
 export './recents_card.dart';
-export './basket_item.dart';
+export '../views/basket/basket_item.dart';
 export './recipe_basket_item.dart';
-export './nutrition_box.dart';
 export './counter.dart';
 export './ingredients_list.dart';
 export './elevated_primary_button.dart';

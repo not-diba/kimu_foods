@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:kimu_foods/models/models.dart';
+import 'package:kimu_foods/data/responses/recipe/recipe.dart';
 import 'package:kimu_foods/schemas/recipes.dart';
 import 'package:kimu_foods/utils/url/url.dart';
 
-class GetRecipesProvider extends ChangeNotifier {
+class RecipesProvider extends ChangeNotifier {
   bool _status = false;
   String _response = "";
 
@@ -48,8 +48,8 @@ class GetRecipesProvider extends ChangeNotifier {
   dynamic getResponseData() {
     if (_list.isNotEmpty && _list['getRecipes'] != null) {
       final List<dynamic> recipesData = _list['getRecipes'];
-      final List<RecipeModel> recipes = recipesData
-          .map((recipe) => RecipeModel.fromJson(recipe))
+      final List<Recipe> recipes = recipesData
+          .map((recipe) => Recipe.fromJson(recipe))
           .toList();
       return recipes;
     } else {

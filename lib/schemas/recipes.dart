@@ -11,6 +11,10 @@ class RecipesSchema {
           name
           quantity
         }
+        nutrition {
+          nutritionItem
+          quantity
+        }
         instructions
       }
   }

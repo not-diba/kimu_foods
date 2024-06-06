@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kimu_foods/screens/screens.dart';
 import 'package:kimu_foods/utils/theme/partials/material_colors.dart';
 import 'package:kimu_foods/components/bottom_nav_icon.dart';
+import 'package:kimu_foods/views/views.dart';
 import 'package:line_icons/line_icons.dart';
 
 class Kimu extends StatefulWidget {
@@ -17,13 +17,13 @@ class _KimuState extends State<Kimu> {
     const Home(
       key: PageStorageKey('home'),
     ),
-    const Recipes(
+    const Categories(
       key: PageStorageKey('recipes'),
     ),
     const Products(
       key: PageStorageKey('products'),
     ),
-    Basket(
+    BasketView(
       key: const PageStorageKey('basket'),
     ),
     const Profile(

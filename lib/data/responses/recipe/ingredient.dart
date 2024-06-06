@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'ingredients.g.dart';
+part 'ingredient.g.dart';
 
 @JsonSerializable()
 class Ingredient {

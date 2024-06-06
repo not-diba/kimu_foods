@@ -1,18 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'ingredients.dart';
+part of 'nutrition_info.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Ingredient _$IngredientFromJson(Map<String, dynamic> json) => Ingredient(
-      name: json['name'] as String,
+NutritionInfo _$NutritionInfoFromJson(Map<String, dynamic> json) =>
+    NutritionInfo(
+      nutritionItem: json['nutritionItem'] as String,
       quantity: json['quantity'] as String,
     );
 
-Map<String, dynamic> _$IngredientToJson(Ingredient instance) =>
+Map<String, dynamic> _$NutritionInfoToJson(NutritionInfo instance) =>
     <String, dynamic>{
-      'name': instance.name,
+      'nutritionItem': instance.nutritionItem,
       'quantity': instance.quantity,
     };
