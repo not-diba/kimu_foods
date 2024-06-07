@@ -19,12 +19,6 @@ class RecipeDetails extends StatefulWidget {
 class _RecipeDetailsState extends State<RecipeDetails> {
   int _selectedPeople = 1;
 
-  void updateAmount(int count) {
-    setState(() {
-      _selectedPeople = count;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
@@ -306,16 +300,16 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                               ),
                             ),
                             Counter(
-                              onCountChanged: updateAmount,
+                              onCountChanged: _updateAmount,
                             ),
                           ],
                         ),
                         const SizedBox(height: 18),
+                        IngredientsList(ingredients: widget.recipe.ingredients),
+                        const SizedBox(height: 18),
                         ElevatedPrimaryButton(
                             amount: widget.recipe.amount * _selectedPeople,
                             label: 'ADD TO BASKET'),
-                        const SizedBox(height: 18),
-                        IngredientsList(ingredients: widget.recipe.ingredients),
                         const SizedBox(height: 18),
                       ],
                     ),
@@ -327,6 +321,12 @@ class _RecipeDetailsState extends State<RecipeDetails> {
         ),
       ),
     );
+  }
+
+  void _updateAmount(int count) {
+    setState(() {
+      _selectedPeople = count;
+    });
   }
 }
 
