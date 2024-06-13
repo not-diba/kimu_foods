@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:kimu_foods/components/counter.dart';
+import 'package:kimu_foods/components/elevated_primary_button.dart';
 import 'package:kimu_foods/data/responses/recipe/nutrition_info.dart';
 import 'package:kimu_foods/data/responses/recipe/recipe.dart';
 import 'package:kimu_foods/utils/generics/nutrition_icons.dart';
 import 'package:kimu_foods/utils/theme/partials/material_colors.dart';
+import 'package:kimu_foods/views/recipe/partails/ingredients_list.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kimu_foods/components/components.dart';
 
 class RecipeDetails extends StatefulWidget {
   final Recipe recipe;

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kimu_foods/Routes/routes.dart';
-import 'package:kimu_foods/components/components.dart';
 import 'package:kimu_foods/data/responses/recipe/recipe.dart';
 import 'package:kimu_foods/providers/recipes.dart';
+import 'package:kimu_foods/views/home/home_card.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {

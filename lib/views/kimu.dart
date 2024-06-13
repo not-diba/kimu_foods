@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:kimu_foods/utils/theme/partials/material_colors.dart';
 import 'package:kimu_foods/components/bottom_nav_icon.dart';
-import 'package:kimu_foods/views/views.dart';
+import 'package:kimu_foods/views/basket/basket_view.dart';
+import 'package:kimu_foods/views/categories/categories.dart';
+import 'package:kimu_foods/views/home/home.dart';
+import 'package:kimu_foods/views/products/products.dart';
+import 'package:kimu_foods/views/profile/profile_view.dart';
 import 'package:line_icons/line_icons.dart';
 
 class Kimu extends StatefulWidget {
@@ -23,10 +27,7 @@ class _KimuState extends State<Kimu> {
     const Products(
       key: PageStorageKey('products'),
     ),
-    BasketView(
-      key: const PageStorageKey('basket'),
-    ),
-    const Profile(
+    const ProfileView(
       key: PageStorageKey('profile'),
     ),
   ];
@@ -61,7 +62,7 @@ class _KimuState extends State<Kimu> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
         bottomNavigationBar: BottomAppBar(
-          height: 56.0,
+          height: 54.0,
           padding: const EdgeInsets.all(0),
           color: Colors.white,
           shape: const CircularNotchedRectangle(),
@@ -91,16 +92,16 @@ class _KimuState extends State<Kimu> {
                   _navigateToView(2);
                 },
               ),
-              BottomNavIcon(
-                selectedColor:
-                    _selectedIndex == 3 ? mainColor : grey[100] ?? grey,
-                icon: LineIcons.shoppingBasket,
-                label: 'Basket',
-                badgeText: const Text('9'),
-                onPressed: () {
-                  _navigateToView(3);
-                },
-              ),
+              // BottomNavIcon(
+              //   selectedColor:
+              //       _selectedIndex == 3 ? mainColor : grey[100] ?? grey,
+              //   icon: LineIcons.shoppingBasket,
+              //   label: 'Basket',
+              //   badgeText: const Text('9'),
+              //   onPressed: () {
+              //     _navigateToView(3);
+              //   },
+              // ),
               Padding(
                 padding: const EdgeInsets.only(right: 12),
                 child: BottomNavIcon(
@@ -110,7 +111,7 @@ class _KimuState extends State<Kimu> {
                   label: 'Profile',
                   badge: true,
                   onPressed: () {
-                    _navigateToView(4);
+                    _navigateToView(3);
                   },
                 ),
               ),

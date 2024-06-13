@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:kimu_foods/components/components.dart';
-import 'package:kimu_foods/data/models/grey_badge_props.dart';
+import 'package:kimu_foods/components/grey_badge.dart';
+import 'package:kimu_foods/models/grey_badge_props.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class RecentsCard extends StatelessWidget {
+class RecentCard extends StatelessWidget {
   final String imageUrl;
   final String recipeName;
   final String categoryName;
 
-  const RecentsCard(
+  const RecentCard(
       {super.key,
       required this.imageUrl,
       required this.recipeName,
@@ -18,7 +18,6 @@ class RecentsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.1,
       width: MediaQuery.of(context).size.width * .8,
       child: Card(
         elevation: 10,
@@ -37,6 +36,7 @@ class RecentsCard extends StatelessWidget {
                 imageUrl,
                 fit: BoxFit.cover,
                 width: double.infinity,
+                height: double.infinity,
               ),
             ),
             Container(

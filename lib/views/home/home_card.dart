@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kimu_foods/data/models/grey_badge_props.dart';
+import 'package:kimu_foods/components/grey_badge.dart';
 import 'package:kimu_foods/data/responses/recipe/recipe.dart';
+import 'package:kimu_foods/models/grey_badge_props.dart';
 import 'package:kimu_foods/utils/utils.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:kimu_foods/components/components.dart';
 
 class HomeCard extends StatelessWidget {
   Recipe recipe;

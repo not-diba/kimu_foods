@@ -10,9 +10,8 @@ class CategoriesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double cardHeight = MediaQuery.of(context).size.height * .12;
     return SizedBox(
-      height: cardHeight,
+      height: 100,
       child: Card(
         elevation: 10,
         shadowColor: Colors.transparent,
@@ -30,7 +29,7 @@ class CategoriesCard extends StatelessWidget {
                 imageUrl,
                 fit: BoxFit.cover,
                 width: double.infinity,
-                height: cardHeight,
+                height: double.infinity,
               ),
             ),
             Container(

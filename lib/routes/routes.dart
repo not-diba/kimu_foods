@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kimu_foods/data/responses/recipe/recipe.dart';
-import 'package:kimu_foods/views/views.dart';
+import 'package:kimu_foods/views/basket/basket_view.dart';
+import 'package:kimu_foods/views/categories/categories.dart';
+import 'package:kimu_foods/views/home/home.dart';
+import 'package:kimu_foods/views/kimu.dart';
+import 'package:kimu_foods/views/products/products.dart';
+import 'package:kimu_foods/views/profile/profile_view.dart';
+import 'package:kimu_foods/views/recipe/recipe_details.dart';
 
 class AppRoutes {
   static const kimu = 'kimu';
@@ -58,7 +64,7 @@ class AppRouter {
         GoRoute(
           name: AppRoutes.profile,
           path: 'profile',
-          builder: (context, state) => const Profile(
+          builder: (context, state) => const ProfileView(
             key: PageStorageKey('profile'),
           ),
         ),

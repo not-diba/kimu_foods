@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kimu_foods/components/components.dart';
 import 'package:kimu_foods/data/responses/recipe/ingredient.dart';
+import 'package:kimu_foods/views/basket/recipe_basket_item.dart';
 
 class IngredientsList extends StatefulWidget {
   final List<Ingredient> ingredients;

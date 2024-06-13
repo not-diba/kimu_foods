@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kimu_foods/components/components.dart';
-import 'package:kimu_foods/data/models/basket.dart';
+import 'package:kimu_foods/components/elevated_primary_button.dart';
+import 'package:kimu_foods/models/basket.dart';
 import 'package:kimu_foods/utils/utils.dart';
+import 'package:kimu_foods/views/basket/basket_item.dart';
 
 
 class BasketView extends StatefulWidget {

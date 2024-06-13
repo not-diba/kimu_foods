@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kimu_foods/data/models/grey_badge_props.dart';
+import 'package:kimu_foods/models/grey_badge_props.dart';
 import 'package:kimu_foods/utils/utils.dart';
 
 class GreyBadge extends StatelessWidget {
