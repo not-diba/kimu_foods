@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:kimu_foods/Routes/routes.dart';
-import 'package:kimu_foods/providers/recipes.dart';
-import 'package:kimu_foods/utils/utils.dart';
+import 'package:kimu_foods/features/recipe/domain/providers/recipe_provider.dart';
 import 'package:provider/provider.dart';
+
+import '../../core/utils/theme/theme.dart';
+import 'core/network/url.dart';
+import '../../core/routes.dart';
 
 
 void main() async {
@@ -20,7 +22,7 @@ class KimuFoods extends StatelessWidget {
       client: EndPoint().getClient(),
       child: MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (_) => RecipesProvider()),
+          ChangeNotifierProvider(create: (_) => RecipeProvider()),
         ],
         child: MaterialApp.router(
           theme: KimuFoodsTheme.light(),
