@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="bgColor">#D6D6D6</color>
+    <color name="kimu_logo_background">#FFF5E0</color>
+    <color name="dark_kimu_background">#171717</color>
 </resources>

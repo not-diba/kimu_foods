@@ -1,8 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="kimu_foods"
+        android:label="Kimu Foods"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/kimu_logo"
+        android:roundIcon="@mipmap/kimu_logo_round">
         <activity
             android:name=".MainActivity"
             android:exported="true"

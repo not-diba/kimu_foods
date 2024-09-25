@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:kimu_foods/features/recipe/domain/providers/recipe_provider.dart';
+import 'package:kimu_foods/core/utils/tools/cache_svgs.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/utils/theme/theme.dart';
 import 'core/network/url.dart';
 import '../../core/routes.dart';
-
+import '../../core/providers.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await preloadSVGs([
+    'lib/core/assets/svgs/logo.svg',
+    'lib/core/assets/svgs/ingredients_plate.svg',
+    'lib/core/assets/svgs/tossed_bowl.svg',
+    'lib/core/assets/svgs/delivery.svg',
+  ]);
   await initHiveForFlutter();
   runApp(const KimuFoods());
 }
@@ -21,13 +28,15 @@ class KimuFoods extends StatelessWidget {
     return GraphQLProvider(
       client: EndPoint().getClient(),
       child: MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (_) => RecipeProvider()),
-        ],
+        providers: providers,
         child: MaterialApp.router(
-          theme: KimuFoodsTheme.light(),
+          debugShowCheckedModeBanner: false,
+          themeMode: ThemeMode.light,
+          //or ThemeMode.dark
+          theme: KimuFoodsTheme.lightThemeData,
+          darkTheme: KimuFoodsTheme.darkThemeData,
           title: 'Kimu Foods',
-          routerConfig: AppRouter().router,
+          routerConfig: router,
         ),
       ),
     );

@@ -1,21 +1,24 @@
 class RecipesSchema {
-  static String getRecipesSchemaJSON = """ 
-    query GetRecipes {
-      getRecipes {
-        id
-        categoryName
-        imageUrl
-        recipeName
+  static String recipesSchemaJSON = """
+    query {
+      recipes {
         amount
+        categoryName
+        description
+        duration
+        id
+        imageUrl
         ingredients {
           name
           quantity
         }
+        instructions
         nutrition {
           nutritionItem
           quantity
         }
-        instructions
+        people
+        recipeName
       }
   }
   """;

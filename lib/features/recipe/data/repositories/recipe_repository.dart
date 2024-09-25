@@ -16,7 +16,7 @@ class RecipeRepository implements RecipeRepo {
       ValueNotifier<GraphQLClient> client = _endPoint.getClient();
 
       QueryResult result = await client.value.mutate(MutationOptions(
-        document: gql(RecipesSchema.getRecipesSchemaJSON),
+        document: gql(RecipesSchema.recipesSchemaJSON),
       ));
 
       if (result.hasException) {
@@ -40,8 +40,8 @@ class RecipeRepository implements RecipeRepo {
 
   List<Recipe> mapRecipeResponseData(Map<String, dynamic> recipeGraphQLData) {
     if (recipeGraphQLData.isNotEmpty &&
-        recipeGraphQLData['getRecipes'] != null) {
-      final List<dynamic> recipesData = recipeGraphQLData['getRecipes'];
+        recipeGraphQLData['recipes'] != null) {
+      final List<dynamic> recipesData = recipeGraphQLData['recipes'];
       final List<Recipe> recipes =
       recipesData.map((recipe) => RecipeModel.fromJson(recipe)).toList();
       return recipes;
