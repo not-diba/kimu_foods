@@ -4,6 +4,7 @@ import 'package:kimu_foods/features/basket/presentation/views/basket_view.dart';
 import 'package:kimu_foods/features/categories/presentation/views/categories.dart';
 import 'package:kimu_foods/features/intro/presentation/views/intro.dart';
 import 'package:kimu_foods/features/login/presentation/views/sign_in.dart';
+import 'package:kimu_foods/features/login/presentation/views/sign_up.dart';
 import 'package:kimu_foods/features/products/presentation/views/products.dart';
 import 'package:kimu_foods/features/profile/presentation/views/profile_view.dart';
 import 'package:kimu_foods/features/recipe/domain/entities/recipe.dart';
@@ -31,6 +32,11 @@ final router = GoRouter(routes: <RouteBase>[
     path: '/sign_in',
     name: 'sign-in',
     builder: (context, state) => const SignIn(),
+  ),
+  GoRoute(
+    path: '/sign_up',
+    name: 'sign-up',
+    builder: (context, state) => const SignUp(),
   ),
 
   // GoRoute(

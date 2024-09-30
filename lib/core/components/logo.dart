@@ -15,10 +15,15 @@ Column kimuLogo(BuildContext context,
       ),
       RichText(
         text: TextSpan(
-          style: Theme.of(context)
-              .textTheme
-              .displayLarge
-              ?.copyWith(fontWeight: FontWeight.w500),
+          style: height > 100
+              ? Theme.of(context)
+                  .textTheme
+                  .displayLarge
+                  ?.copyWith(fontWeight: FontWeight.w500)
+              : Theme.of(context)
+                  .textTheme
+                  .displaySmall
+                  ?.copyWith(fontWeight: FontWeight.w500),
           children: const <TextSpan>[
             TextSpan(text: 'Kimu '),
             TextSpan(text: 'F'),

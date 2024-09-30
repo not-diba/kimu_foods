@@ -59,7 +59,6 @@ class KimuFoodsTheme {
         style: TextButton.styleFrom(
           foregroundColor: colorScheme.onPrimary,
           backgroundColor: colorScheme.primary,
-          padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 13),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(14),
           ),
@@ -75,6 +74,52 @@ class KimuFoodsTheme {
           padding: const EdgeInsets.all(10),
           foregroundColor: colorScheme.primary,
           side: const BorderSide(color: bone, width: 1.2),
+        ),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14.0),
+          borderSide: const BorderSide(
+            color: bone,
+            width: 1.0,
+          ),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14.0),
+          borderSide: const BorderSide(
+            color: bone,
+            width: 1.0,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14.0),
+          borderSide: BorderSide(
+            color: kimuPrimary.withOpacity(.8),
+            width: 1.0,
+          ),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14.0),
+          borderSide: BorderSide(
+            color: kimuError.withOpacity(.2),
+            width: 1.0,
+          ),
+        ),
+        labelStyle: const TextStyle(
+          fontSize: 14.0,
+          fontWeight: FontWeight.w400,
+        ),
+        hintStyle: const TextStyle(
+          fontSize: 14.0,
+          fontWeight: FontWeight.w400,
+        ),
+        helperStyle: const TextStyle(
+          fontSize: 14.0,
+          fontWeight: FontWeight.w400,
+        ),
+        errorStyle: const TextStyle(
+          fontSize: 8.0,
+          fontWeight: FontWeight.w400,
         ),
       ),
       textTheme: TextTheme(

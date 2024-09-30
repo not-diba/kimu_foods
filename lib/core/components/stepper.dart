@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:kimu_foods/core/utils/theme/colours.dart';
 
 class KimuStepper extends StatefulWidget {
-  List<Widget> steps;
-  Function onCompletion;
+  final List<Widget> steps;
+  final VoidCallback onCompletion;
 
-  KimuStepper({super.key, required this.steps, required this.onCompletion});
+  const KimuStepper(
+      {super.key, required this.steps, required this.onCompletion});
 
   @override
   State<KimuStepper> createState() => _KimuStepperState();
@@ -27,96 +28,77 @@ class _KimuStepperState extends State<KimuStepper> {
             _stepIndicator(),
           ],
         ),
-        _stepActions()
+        _stepActions(),
       ],
     );
   }
 
-  SizedBox _stepItem() {
+  Widget _stepItem() {
     return SizedBox(
-      child: widget.steps[isActiveStep >= widget.steps.length - 1
-          ? isActiveStep - 1
-          : isActiveStep],
+      child: widget.steps[isActiveStep],
     );
   }
 
   Row _stepIndicator() {
-    List<Row> indicators = [];
-    for (int i = 0; i <= widget.steps.length - 1; i++) {
-      if (isActiveStep == i) {
-        indicators.insert(
-          isActiveStep,
-          Row(
-            children: [
-              Container(
-                height: 5,
-                width: 20,
-                decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  color: kimuPrimary,
-                  borderRadius: BorderRadius.circular(100),
-                ),
-              ),
-              const SizedBox(width: 10),
-            ],
-          ),
-        );
-      } else {
-        indicators.insert(
-          i,
-          Row(
-            children: [
-              Container(
-                height: 5,
-                width: 5,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: kimuPrimary.withOpacity(.5),
-                ),
-              ),
-              const SizedBox(width: 10),
-            ],
-          ),
-        );
-      }
-    }
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: indicators,
+      children: List.generate(widget.steps.length, (index) {
+        return Row(
+          children: [
+            Container(
+              height: 5,
+              width: isActiveStep == index ? 20 : 5,
+              decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                color: isActiveStep == index
+                    ? kimuPrimary
+                    : kimuPrimary.withOpacity(0.5),
+                borderRadius: BorderRadius.circular(100),
+              ),
+            ),
+            const SizedBox(width: 10),
+          ],
+        );
+      }),
     );
   }
 
-  Row _stepActions() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        // TODO: dont display back if its the first item.
-        IconButton.outlined(
-          onPressed: () {
-            setState(() {
-              if (isActiveStep > 0) {
-                isActiveStep -= 1;
-              }
-            });
-          },
-          icon: const Icon(Icons.chevron_left),
-        ),
-        const SizedBox(width: 6),
-        TextButton(
-          onPressed: () {
-            setState(() {
-              if (isActiveStep < widget.steps.length) {
-                isActiveStep += 1;
-              }
-            });
-            if (isActiveStep == widget.steps.length) {
-              widget.onCompletion();
-            }
-          },
-          child: const Text('Next'),
-        ),
-      ],
+  IntrinsicHeight _stepActions() {
+    return IntrinsicHeight(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (isActiveStep > 0)
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  if (isActiveStep > 0) {
+                    isActiveStep -= 1;
+                  }
+                });
+              },
+              icon: const Icon(Icons.chevron_left),
+            ),
+          const SizedBox(width: 6),
+          TextButton(
+            onPressed: () {
+              setState(() {
+                if (isActiveStep < widget.steps.length - 1) {
+                  isActiveStep += 1;
+                } else {
+                  widget.onCompletion();
+                }
+              });
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 36),
+              child: Text(
+                  isActiveStep < widget.steps.length - 1 ? 'Next' : 'Finish'),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
