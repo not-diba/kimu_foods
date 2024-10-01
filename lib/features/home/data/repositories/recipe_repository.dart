@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:kimu_foods/core/network/entities/graphql_base_response.dart';
 import 'package:kimu_foods/core/network/url.dart';
-import 'package:kimu_foods/features/recipe/data/models/recipe_model.dart';
-import 'package:kimu_foods/features/recipe/data/schemas/recipes.dart';
-import 'package:kimu_foods/features/recipe/domain/entities/recipe.dart';
-import 'package:kimu_foods/features/recipe/domain/repos/recipe_repo.dart';
+import 'package:kimu_foods/features/home/data/models/recipe_model.dart';
+import 'package:kimu_foods/features/home/data/schemas/recipes.dart';
+import 'package:kimu_foods/features/home/domain/entities/recipe.dart';
+import 'package:kimu_foods/features/home/domain/repos/recipe_repo.dart';
+
 
 class RecipeRepository implements RecipeRepo {
   final EndPoint _endPoint = EndPoint();

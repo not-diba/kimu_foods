@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kimu_foods/core/network/entities/graphql_base_response.dart';
 import 'package:kimu_foods/core/utils/generics/notifier_state.dart';
-import 'package:kimu_foods/features/recipe/data/repositories/recipe_repository.dart';
-import 'package:kimu_foods/features/recipe/domain/entities/recipe.dart';
-import 'package:kimu_foods/features/recipe/domain/repos/recipe_repo.dart';
+import 'package:kimu_foods/features/home/data/repositories/recipe_repository.dart';
+import 'package:kimu_foods/features/home/domain/entities/recipe.dart';
+import 'package:kimu_foods/features/home/domain/repos/recipe_repo.dart';
+
 
 class RecipeProvider extends ChangeNotifier {
   RecipeRepo recipeRepo = RecipeRepository();

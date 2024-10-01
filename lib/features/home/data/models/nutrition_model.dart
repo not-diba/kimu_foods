@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kimu_foods/features/recipe/domain/entities/nutrition.dart';
+import 'package:kimu_foods/features/home/domain/entities/nutrition.dart';
 
 part 'nutrition_model.g.dart';
 

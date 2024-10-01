@@ -156,7 +156,7 @@ class _SignInState extends State<SignIn> {
             child: SizedBox(
               width: double.infinity,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () => context.goNamed('kimu'),
                 child: const Text('Sign In'),
               ),
             ),

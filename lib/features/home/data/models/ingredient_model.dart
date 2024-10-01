@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kimu_foods/features/recipe/domain/entities/ingredient.dart';
+
+import '../../domain/entities/ingredient.dart';
 
 part 'ingredient_model.g.dart';
 

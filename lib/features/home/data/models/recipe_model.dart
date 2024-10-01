@@ -1,7 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kimu_foods/features/recipe/data/models/ingredient_model.dart';
-import 'package:kimu_foods/features/recipe/data/models/nutrition_model.dart';
-import 'package:kimu_foods/features/recipe/domain/entities/recipe.dart';
+import 'package:kimu_foods/features/home/data/models/ingredient_model.dart';
+import 'package:kimu_foods/features/home/data/models/nutrition_model.dart';
+import 'package:kimu_foods/features/home/domain/entities/recipe.dart';
+
 
 part 'recipe_model.g.dart';
 

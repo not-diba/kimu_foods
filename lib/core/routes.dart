@@ -7,9 +7,6 @@ import 'package:kimu_foods/features/login/presentation/views/sign_in.dart';
 import 'package:kimu_foods/features/login/presentation/views/sign_up.dart';
 import 'package:kimu_foods/features/products/presentation/views/products.dart';
 import 'package:kimu_foods/features/profile/presentation/views/profile_view.dart';
-import 'package:kimu_foods/features/recipe/domain/entities/recipe.dart';
-import 'package:kimu_foods/features/recipe/presentation/views/recipe_details.dart';
-import 'package:kimu_foods/features/recipe/presentation/views/recipes.dart';
 import 'package:kimu_foods/kimu.dart';
 
 class AppRoutes {
@@ -37,6 +34,11 @@ final router = GoRouter(routes: <RouteBase>[
     path: '/sign_up',
     name: 'sign-up',
     builder: (context, state) => const SignUp(),
+  ),
+  GoRoute(
+    path: '/kimu',
+    name: 'kimu',
+    builder: (context, state) => const Kimu(),
   ),
 
   // GoRoute(

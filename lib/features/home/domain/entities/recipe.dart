@@ -1,5 +1,6 @@
-import 'package:kimu_foods/features/recipe/domain/entities/ingredient.dart';
-import 'package:kimu_foods/features/recipe/domain/entities/nutrition.dart';
+import 'package:kimu_foods/features/home/domain/entities/ingredient.dart';
+import 'package:kimu_foods/features/home/domain/entities/nutrition.dart';
+
 
 class Recipe {
   final String id;
