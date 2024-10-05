@@ -105,6 +105,7 @@ class _SignInState extends State<SignIn> {
             onPressed: () {},
             icon: Icon(
               MingCute.tiktok_line,
+              size: 22.0,
               color: Theme.of(context).textTheme.bodyLarge?.color,
             ),
           ),
@@ -112,6 +113,7 @@ class _SignInState extends State<SignIn> {
           IconButton.outlined(
             onPressed: () {},
             icon: Icon(MingCute.ins_line,
+                size: 22.0,
                 color: Theme.of(context).textTheme.bodyLarge?.color),
           ),
         ],

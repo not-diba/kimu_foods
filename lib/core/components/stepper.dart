@@ -78,7 +78,7 @@ class _KimuStepperState extends State<KimuStepper> {
                   }
                 });
               },
-              icon: const Icon(Icons.chevron_left),
+              icon: const Icon(Icons.chevron_left, size: 24.0,),
             ),
           const SizedBox(width: 6),
           TextButton(
