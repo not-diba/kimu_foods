@@ -43,6 +43,7 @@ class KimuFoodsTheme {
       scaffoldBackgroundColor: colorScheme.surface,
       highlightColor: Colors.transparent,
       focusColor: focusColor,
+      iconTheme: IconThemeData(color: colorScheme.onSurface, size: 12.0),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           foregroundColor: colorScheme.primary,

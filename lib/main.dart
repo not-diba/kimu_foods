@@ -15,6 +15,17 @@ void main() async {
     'lib/core/assets/svgs/ingredients_plate.svg',
     'lib/core/assets/svgs/tossed_bowl.svg',
     'lib/core/assets/svgs/delivery.svg',
+    'lib/core/assets/svgs/c_chicken_2.svg',
+    'lib/core/assets/svgs/c_salad.svg',
+    'lib/core/assets/svgs/c_fruits.svg',
+    'lib/core/assets/svgs/c_beef.svg',
+    'lib/core/assets/svgs/c_coffee.svg',
+    'lib/core/assets/svgs/c_fish.svg',
+    'lib/core/assets/svgs/c_flour.svg',
+    'lib/core/assets/svgs/c_milkshakes.svg',
+    'lib/core/assets/svgs/c_pasta.svg',
+    'lib/core/assets/svgs/c_pastries.svg',
+    'lib/core/assets/svgs/c_teas.svg'
   ]);
   await initHiveForFlutter();
   runApp(const KimuFoods());
