@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kimu_foods/core/utils/theme/colours.dart';
+import 'package:kimu_foods/features/categories/presentation/views/categories.dart';
+import 'package:kimu_foods/features/favourites/presentation/views/favourites.dart';
 import 'package:kimu_foods/features/home/presentation/views/home.dart';
 import 'package:ming_cute/ming_cute.dart';
 
@@ -135,18 +137,10 @@ class Kimu extends StatefulWidget {
 class _KimuState extends State<Kimu> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _pages = <Widget>[
+  static const List<Widget> _views = <Widget>[
     Home(),
-    Center(
-      child: Text(
-        'Index 1: Favourites',
-      ),
-    ),
-    Center(
-      child: Text(
-        'Index 2: Categories',
-      ),
-    ),
+    Favourites(),
+    Categories(),
     Center(
       child: Text(
         'Index 3: Meal plans',
@@ -212,7 +206,7 @@ class _KimuState extends State<Kimu> {
         ),
       ),
       body: SafeArea(
-        child: _pages.elementAt(_selectedIndex),
+        child: _views.elementAt(_selectedIndex),
       ),
     );
   }

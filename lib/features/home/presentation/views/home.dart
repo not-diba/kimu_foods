@@ -1,30 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:kimu_foods/core/components/kimu_app_bar.dart';
+import 'package:kimu_foods/core/utils/generics/sliver_header_delegate.dart';
 import 'package:kimu_foods/core/utils/theme/colours.dart';
 import 'package:ming_cute/ming_cute.dart';
-
-class _FixedHeaderDelegate extends SliverPersistentHeaderDelegate {
-  final Widget child;
-
-  _FixedHeaderDelegate({required this.child});
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return child;
-  }
-
-  @override
-  double get maxExtent => 80.0;
-
-  @override
-  double get minExtent => 80.0;
-
-  @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return true;
-  }
-}
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -117,7 +97,12 @@ class _HomeState extends State<Home> {
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
-            _appBar(),
+            kimuAppBar(
+              context: context,
+              collapsedTitle: 'Recipes',
+              mainTitleMedium: 'Amazing recipes',
+              mainTitleBold: 'for you ✨',
+            ),
             _categoriesHeader(categoriesList),
             _recipesList(),
           ],
@@ -126,110 +111,26 @@ class _HomeState extends State<Home> {
     );
   }
 
-  SliverAppBar _appBar() {
-    return SliverAppBar(
-      pinned: true,
-      floating: false,
-      expandedHeight: 90.0,
-      elevation: 0.0,
-      surfaceTintColor: Theme.of(context).scaffoldBackgroundColor,
-      flexibleSpace: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-          bool isCollapsed = constraints.biggest.height <= kToolbarHeight;
-          return FlexibleSpaceBar(
-            centerTitle: true,
-            titlePadding: const EdgeInsets.symmetric(horizontal: 16.0),
-            title: Row(
-              mainAxisAlignment: isCollapsed
-                  ? MainAxisAlignment.spaceBetween
-                  : MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                if (isCollapsed)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16.0),
-                    child: Text(
-                      'Recipes',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineMedium
-                          ?.copyWith(fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 16.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: apricot,
-                        shape: BoxShape.rectangle,
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Icon(
-                          MingCute.user_1_line,
-                          size: 16,
-                        ),
-                      ),
-                    ),
-                  ), // Visible in collapsed state
-                )
-              ],
-            ),
-            background: Padding(
-              padding:
-                  const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.5,
-                child: Text.rich(
-                  textAlign: TextAlign.start,
-                  TextSpan(
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: 'Amazing recipes\n',
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineMedium
-                            ?.copyWith(fontWeight: FontWeight.w300),
-                      ),
-                      TextSpan(
-                        text: 'for you ✨',
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineMedium
-                            ?.copyWith(fontWeight: FontWeight.w700),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
   SliverPersistentHeader _categoriesHeader(List<GestureDetector> categories) {
     return SliverPersistentHeader(
       pinned: true,
-      delegate: _FixedHeaderDelegate(
+      delegate: SliverAppBarDelegate(
+        height: 80.0,
         child: Container(
           color: Theme.of(context).scaffoldBackgroundColor,
           padding: const EdgeInsets.only(top: 12.0),
           child: Center(
-              child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) => SizedBox(
-              width: 70,
-              height: 70,
-              child: categories[index],
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) => SizedBox(
+                width: 70,
+                height: 70,
+                child: categories[index],
+              ),
+              separatorBuilder: (context, index) => const SizedBox(width: 10),
+              itemCount: categories.length,
             ),
-            separatorBuilder: (context, index) => const SizedBox(width: 10),
-            itemCount: categories.length,
-          )),
+          ),
         ),
       ),
     );
@@ -240,120 +141,127 @@ class _HomeState extends State<Home> {
       delegate: SliverChildBuilderDelegate(
         (context, index) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-          child: Container(
-              decoration: BoxDecoration(
-                color: apricot,
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(24.0),
-              ),
-              child: Stack(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+          child: _recipeItem(
+            index: index,
+            imgUrl: index.isEven
+                ? 'https://www.foodandwine.com/thmb/DI29Houjc_ccAtFKly0BbVsusHc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/crispy-comte-cheesburgers-FT-RECIPE0921-6166c6552b7148e8a8561f7765ddf20b.jpg'
+                : 'https://recipes.timesofindia.com/thumb/59736398.cms?width=1200&height=900',
+          ),
+        ),
+        childCount: 20,
+      ),
+    );
+  }
+
+  GestureDetector _recipeItem({required int index, required String imgUrl}) {
+    return GestureDetector(
+      onTap: () => context.pushNamed('recipe-details', extra: imgUrl),
+      child: Container(
+        decoration: BoxDecoration(
+          color: apricot,
+          shape: BoxShape.rectangle,
+          borderRadius: BorderRadius.circular(24.0),
+        ),
+        child: Stack(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: 300,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(24.0),
+                      topRight: Radius.circular(24.0),
+                    ),
+                    image: DecorationImage(
+                      image: NetworkImage(imgUrl),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        height: 300,
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(24.0),
-                            topRight: Radius.circular(24.0),
-                          ),
-                          image: DecorationImage(
-                            image: NetworkImage(
-                              index.isEven
-                                  ? 'https://www.foodandwine.com/thmb/DI29Houjc_ccAtFKly0BbVsusHc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/crispy-comte-cheesburgers-FT-RECIPE0921-6166c6552b7148e8a8561f7765ddf20b.jpg'
-                                  : 'https://recipes.timesofindia.com/thumb/59736398.cms?width=1200&height=900',
-                            ),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  width: MediaQuery.sizeOf(context).width * .6,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(bottom: 4.0),
-                                    child: Text(
-                                      'Example Recipe Name',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headlineSmall
-                                          ?.copyWith(
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: MediaQuery.sizeOf(context).width * .6,
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 4.0),
+                              child: Text(
+                                'Example Recipe Name',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 24.0),
-                                  child: Text(
-                                    'Ingredients - 4',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium
-                                        ?.copyWith(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 14.0,
-                                          color: taupe,
-                                        ),
-                                  ),
-                                ),
-                                Text(
-                                  'KSh 2,000',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleLarge
-                                      ?.copyWith(
-                                        color: kimuSecondary,
-                                        fontWeight: FontWeight.w800,
-                                        fontSize: 20.0,
-                                      ),
-                                ),
-                              ],
+                              ),
                             ),
-                            Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.rectangle,
-                                borderRadius: BorderRadius.circular(12.0),
-                                border: Border.all(color: paleTaupe, width: 1),
-                              ),
-                              child: const Padding(
-                                padding: EdgeInsets.all(12.0),
-                                child: Icon(MingCute.add_fill, size: 18.0),
-                              ),
-                            )
-                          ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 24.0),
+                            child: Text(
+                              'Ingredients - 4',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14.0,
+                                    color: taupe,
+                                  ),
+                            ),
+                          ),
+                          Text(
+                            'KSh 2,000',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
+                                  color: kimuSecondary,
+                                  fontWeight: FontWeight.w800,
+                                  fontSize: 20.0,
+                                ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.circular(12.0),
+                          border: Border.all(color: paleTaupe, width: 1),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.all(12.0),
+                          child: Icon(MingCute.add_fill, size: 18.0),
                         ),
                       )
                     ],
                   ),
-                  Positioned(
-                    top: 0,
-                    right: 0,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Icon(
-                        index.isEven
-                            ? MingCute.heart_line
-                            : MingCute.heart_fill,
-                        color: kimuSecondary,
-                        size: 24.0,
-                      ),
-                    ),
-                  ),
-                ],
-              )),
+                )
+              ],
+            ),
+            Positioned(
+              top: 0,
+              right: 0,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Icon(
+                  index.isEven ? MingCute.heart_line : MingCute.heart_fill,
+                  color: kimuSecondary,
+                  size: 24.0,
+                ),
+              ),
+            ),
+          ],
         ),
-        childCount: 20,
       ),
     );
   }
