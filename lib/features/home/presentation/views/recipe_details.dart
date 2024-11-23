@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kimu_foods/core/utils/configs.dart';
 import 'package:kimu_foods/core/utils/theme/colours.dart';
+import 'package:kimu_foods/features/home/domain/entities/ingredient.dart';
 import 'package:kimu_foods/features/home/domain/entities/nutrition.dart';
 import 'package:ming_cute/ming_cute.dart';
 
@@ -16,6 +17,8 @@ class RecipeDetails extends StatefulWidget {
 }
 
 class _RecipeDetailsState extends State<RecipeDetails> {
+  final List<String> _alreadyHave = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,7 +107,7 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                               spreadRadius: 5,
                               blurRadius: 7,
                               offset: const Offset(
-                                  0, 3), // changes position of shadow
+                                  0, 3),
                             ),
                           ],
                         ),
@@ -163,20 +166,56 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 16.0, right: 16.0, top: 12.0),
-                  child: ListView.builder(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: 400,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        height: 50,
-                        color: index.isEven ? Colors.black : Colors.white,
-                        child: Center(
-                          child: Text('Entry $index'),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 10),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              MingCute.soup_pot_2_line,
+                              size: 20,
+                            ),
+                            const SizedBox(
+                              width: 4,
+                            ),
+                            Text(
+                              'Ingredients',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
+                                  ?.copyWith(fontWeight: FontWeight.w500),
+                            ),
+                          ],
                         ),
-                      );
-                    },
+                        const SizedBox(height: 4),
+                        ..._ingredientsList(),
+                        const SizedBox(height: 10),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              MingCute.soup_pot_line,
+                              size: 20,
+                            ),
+                            const SizedBox(
+                              width: 4,
+                            ),
+                            Text(
+                              'Cooking instructions',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
+                                  ?.copyWith(fontWeight: FontWeight.w500),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 4),
+                        _directions(widget.recipe.instructions),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -221,6 +260,136 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                 ),
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  List<Padding> _ingredientsList() {
+    return widget.recipe.ingredients.map((item) {
+      return _ingredientsListItem(item);
+    }).toList();
+  }
+
+  Padding _ingredientsListItem(Ingredient ingredient) {
+    final bool isChecked = _alreadyHave.contains(ingredient.name);
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16.0),
+      child: Stack(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(width: 22.0),
+                  const Text(
+                    '·',
+                    style: TextStyle(
+                      height: .6,
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.w900,
+                    ),
+                    textAlign: TextAlign.start,
+                  ),
+                  const SizedBox(width: 6.0),
+                  Text(
+                    '${ingredient.quantity} - ${ingredient.name}',
+                    textAlign: TextAlign.start,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20.0,
+                child: Checkbox(
+                  value: isChecked,
+                  activeColor: kimuPrimary,
+                  onChanged: (bool? checked) {
+                    setState(() {
+                      if (checked == true) {
+                        _alreadyHave.add(ingredient.name);
+                      } else {
+                        _alreadyHave.remove(ingredient.name);
+                      }
+                    });
+                  },
+                ),
+              ),
+            ],
+          ),
+          if (isChecked)
+            Positioned.fill(
+              child: Align(
+                alignment: Alignment.center,
+                child: Container(
+                  height: 1.2,
+                  color: taupe,
+                  margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  ListView _directions(List<String> instructions) {
+    const double sharedWidth = 25;
+    const double sharedHeight = 25;
+    return ListView.separated(
+      shrinkWrap: true,
+      padding: EdgeInsets.zero,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: instructions.length,
+      itemBuilder: (context, index) {
+        return Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              height: sharedHeight,
+              width: sharedWidth,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  width: 2.5,
+                  color: kimuSecondary,
+                ),
+                shape: BoxShape.circle,
+              ),
+              child: Center(
+                child: Text(
+                  (index + 1).toString(),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Flexible(
+              child: Text(
+                instructions[index],
+                textAlign: TextAlign.start,
+              ),
+            )
+          ],
+        );
+      },
+      separatorBuilder: (context, index) => Align(
+        alignment: Alignment.centerLeft,
+        child:  SizedBox(
+          width: sharedWidth,
+          height: sharedHeight,
+          child: Center(
+            child: VerticalDivider(
+              color: Colors.grey[900],
+              thickness: 1.5,
+            ),
           ),
         ),
       ),
