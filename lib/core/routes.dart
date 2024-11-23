@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:kimu_foods/features/basket/presentation/views/basket_view.dart';
 import 'package:kimu_foods/features/categories/presentation/views/categories.dart';
 import 'package:kimu_foods/features/favourites/presentation/views/favourites.dart';
+import 'package:kimu_foods/features/home/domain/entities/recipe.dart';
 import 'package:kimu_foods/features/home/presentation/views/recipe_details.dart';
 import 'package:kimu_foods/features/intro/presentation/views/intro.dart';
 import 'package:kimu_foods/features/login/presentation/views/sign_in.dart';
@@ -44,9 +45,9 @@ final router = GoRouter(routes: <RouteBase>[
     path: '/recipe_details',
     name: 'recipe-details',
     builder: (context, state) {
-      String imageUrl =
-          state.extra as String; // TODO: Diba - change this to recipe object
-      return RecipeDetails(imgURL: imageUrl);
+      Recipe recipe =
+          state.extra as Recipe;
+      return RecipeDetails(recipe: recipe);
     },
   ),
 

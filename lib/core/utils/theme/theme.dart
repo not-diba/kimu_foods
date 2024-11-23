@@ -44,11 +44,30 @@ class KimuFoodsTheme {
       highlightColor: Colors.transparent,
       focusColor: focusColor,
       iconTheme: IconThemeData(color: colorScheme.onSurface, size: 12.0),
+      tabBarTheme: TabBarTheme(
+          dividerColor: Colors.transparent,
+          dividerHeight: 0,
+          splashFactory: NoSplash.splashFactory,
+          indicator: UnderlineTabIndicator(
+            borderSide: BorderSide(width: 3.0, color: colorScheme.primary),
+            insets: const EdgeInsets.only(right: 32.0),
+          ),
+          labelStyle: TextStyle(
+            color: colorScheme.onSurface,
+            fontWeight: FontWeight.w500,
+            fontFamily: 'Poppins',
+            fontSize: 16,
+          ),
+          unselectedLabelStyle: const TextStyle(
+            color: taupe,
+            fontWeight: FontWeight.w400,
+            fontFamily: 'Poppins',
+            fontSize: 16,
+          )),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           foregroundColor: colorScheme.primary,
           side: const BorderSide(color: bone, width: 1.2),
-          padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 13),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(14),
           ),

@@ -4,6 +4,7 @@ import 'package:kimu_foods/core/utils/generics/sliver_header_delegate.dart';
 import 'package:ming_cute/ming_cute.dart';
 
 import '../../../../core/components/kimu_app_bar.dart';
+import '../../../../core/components/scrollable_item_type.dart';
 import '../../../../core/utils/theme/colours.dart';
 
 class Categories extends StatefulWidget {
@@ -16,7 +17,7 @@ class Categories extends StatefulWidget {
 String _selectedCategoryItem = 'Main dishes';
 
 class _CategoriesState extends State<Categories> {
-  //TODO: Might have to change this to an object.
+  //TODO: This may be tabs probably.
   final List<String> _typesList = [
     'Main dishes',
     'Breakfast',
@@ -200,50 +201,21 @@ class _CategoriesState extends State<Categories> {
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext context, int index) {
-          return _typeItem(index);
+          return scrollableItemType(
+            context,
+            item: _typesList[index],
+            externalItem: _selectedCategoryItem,
+            onTap: () {
+              setState(() {
+                _selectedCategoryItem = _typesList[index];
+              });
+            },
+          );
         },
         separatorBuilder: (BuildContext context, int index) =>
             const SizedBox(width: 20.0),
         itemCount: _typesList.length,
       ),
-    );
-  }
-
-  Column _typeItem(int index) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Stack(
-          children: [
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  _selectedCategoryItem = _typesList[index];
-                });
-              },
-              child: Text(
-                _typesList[index],
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: _selectedCategoryItem == _typesList[index]
-                        ? Theme.of(context).textTheme.bodyLarge?.color
-                        : taupe,
-                    fontWeight: _selectedCategoryItem == _typesList[index]
-                        ? FontWeight.w500
-                        : FontWeight.w400),
-              ),
-            ),
-            if (_selectedCategoryItem == _typesList[index])
-              Positioned(
-                bottom: 0,
-                child: Container(
-                  width: 20,
-                  height: 2.0,
-                  color: kimuPrimary,
-                ),
-              ),
-          ],
-        ),
-      ],
     );
   }
 

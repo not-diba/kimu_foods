@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'dart:io';
 
-// String url =
-String endpointUrl = Platform.isAndroid ? 'http://10.0.2.2:4000/' : 'http://localhost:4000/';
-
+String endpointUrl = 'https://c926-41-90-173-6.ngrok-free.app';
 
 class EndPoint {
   ValueNotifier<GraphQLClient> getClient() {

@@ -3,6 +3,6 @@ import 'package:kimu_foods/features/profile/domain/providers/profile_provider.da
 import 'package:provider/provider.dart';
 
 var providers = [
-  ChangeNotifierProvider(create: (_) => RecipeProvider()),
+  ChangeNotifierProvider(create: (_) => RecipesProvider()),
   ChangeNotifierProvider(create: (_) => ProfileProvider()),
 ];

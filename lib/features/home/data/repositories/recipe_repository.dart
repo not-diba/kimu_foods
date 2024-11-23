@@ -7,7 +7,6 @@ import 'package:kimu_foods/features/home/data/schemas/recipes.dart';
 import 'package:kimu_foods/features/home/domain/entities/recipe.dart';
 import 'package:kimu_foods/features/home/domain/repos/recipe_repo.dart';
 
-
 class RecipeRepository implements RecipeRepo {
   final EndPoint _endPoint = EndPoint();
 
@@ -19,7 +18,6 @@ class RecipeRepository implements RecipeRepo {
       QueryResult result = await client.value.mutate(MutationOptions(
         document: gql(RecipesSchema.recipesSchemaJSON),
       ));
-
       if (result.hasException) {
         String errorMessage;
         if (result.exception!.graphqlErrors.isEmpty) {
@@ -35,16 +33,16 @@ class RecipeRepository implements RecipeRepo {
     } catch (e, stackTrace) {
       // TODO: log instead of print
       print('Stack trace $stackTrace');
-      return GraphqlBaseResponse(message: 'An error occurred: $e', successful: false);
+      return GraphqlBaseResponse(
+          message: 'An error occurred: $e', successful: false);
     }
   }
 
   List<Recipe> mapRecipeResponseData(Map<String, dynamic> recipeGraphQLData) {
-    if (recipeGraphQLData.isNotEmpty &&
-        recipeGraphQLData['recipes'] != null) {
+    if (recipeGraphQLData.isNotEmpty && recipeGraphQLData['recipes'] != null) {
       final List<dynamic> recipesData = recipeGraphQLData['recipes'];
       final List<Recipe> recipes =
-      recipesData.map((recipe) => RecipeModel.fromJson(recipe)).toList();
+          recipesData.map((recipe) => RecipeModel.fromJson(recipe)).toList();
       return recipes;
     } else {
       return [];

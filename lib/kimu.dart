@@ -3,6 +3,7 @@ import 'package:kimu_foods/core/utils/theme/colours.dart';
 import 'package:kimu_foods/features/categories/presentation/views/categories.dart';
 import 'package:kimu_foods/features/favourites/presentation/views/favourites.dart';
 import 'package:kimu_foods/features/home/presentation/views/home.dart';
+import 'package:kimu_foods/features/orders/presentation/views/orders.dart';
 import 'package:ming_cute/ming_cute.dart';
 
 // import 'package:kimu_foods/core/components/widgets/bottom_nav_icon.dart';
@@ -146,11 +147,7 @@ class _KimuState extends State<Kimu> {
         'Index 3: Meal plans',
       ),
     ),
-    Center(
-      child: Text(
-        'Index 4: Orders',
-      ),
-    ),
+    Orders()
   ];
 
   void _onItemTapped(int index) {

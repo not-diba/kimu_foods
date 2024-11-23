@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kimu_foods/core/components/kimu_app_bar.dart';
+import 'package:kimu_foods/core/utils/configs.dart';
 import 'package:kimu_foods/core/utils/generics/sliver_header_delegate.dart';
 import 'package:kimu_foods/core/utils/theme/colours.dart';
 import 'package:ming_cute/ming_cute.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../core/utils/generics/notifier_state.dart';
+import '../../domain/entities/recipe.dart';
+import '../../domain/providers/recipe_provider.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -16,6 +22,14 @@ class Home extends StatefulWidget {
 String _selectedCategory = 'all';
 
 class _HomeState extends State<Home> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<RecipesProvider>(context, listen: false).getRecipes();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<GestureDetector> categoriesList = [
@@ -95,17 +109,30 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
       body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            kimuAppBar(
-              context: context,
-              collapsedTitle: 'Recipes',
-              mainTitleMedium: 'Amazing recipes',
-              mainTitleBold: 'for you ✨',
-            ),
-            _categoriesHeader(categoriesList),
-            _recipesList(),
-          ],
+        child: Consumer<RecipesProvider>(
+          builder: (context, recipeProvider, child) {
+            if (recipeProvider.state == NotifierState.loading) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            if (recipeProvider.recipesResponse == null ||
+                recipeProvider.recipesResponse!.data == null) {
+              return const Center(child: Text("No recipes available"));
+            }
+
+            return CustomScrollView(
+              slivers: [
+                kimuAppBar(
+                  context: context,
+                  collapsedTitle: 'Recipes',
+                  mainTitleMedium: 'Amazing recipes',
+                  mainTitleBold: 'for you ✨',
+                ),
+                _categoriesHeader(categoriesList),
+                _recipesList(recipeProvider.recipesResponse!.data!),
+              ],
+            );
+          },
         ),
       ),
     );
@@ -136,26 +163,28 @@ class _HomeState extends State<Home> {
     );
   }
 
-  SliverList _recipesList() {
+  SliverList _recipesList(List<Recipe> recipes) {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
-        (context, index) => Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-          child: _recipeItem(
-            index: index,
-            imgUrl: index.isEven
-                ? 'https://www.foodandwine.com/thmb/DI29Houjc_ccAtFKly0BbVsusHc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/crispy-comte-cheesburgers-FT-RECIPE0921-6166c6552b7148e8a8561f7765ddf20b.jpg'
-                : 'https://recipes.timesofindia.com/thumb/59736398.cms?width=1200&height=900',
-          ),
-        ),
-        childCount: 20,
+        (context, index) {
+          Recipe recipe = recipes[index];
+          return Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            child: _recipeItem(
+              index: index,
+              recipe: recipe,
+            ),
+          );
+        },
+        childCount: recipes.length,
       ),
     );
   }
 
-  GestureDetector _recipeItem({required int index, required String imgUrl}) {
+  GestureDetector _recipeItem({required int index, required Recipe recipe}) {
     return GestureDetector(
-      onTap: () => context.pushNamed('recipe-details', extra: imgUrl),
+      onTap: () => context.pushNamed('recipe-details', extra: recipe),
       child: Container(
         decoration: BoxDecoration(
           color: apricot,
@@ -175,7 +204,7 @@ class _HomeState extends State<Home> {
                       topRight: Radius.circular(24.0),
                     ),
                     image: DecorationImage(
-                      image: NetworkImage(imgUrl),
+                      image: NetworkImage(recipe.imageUrl),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -195,7 +224,7 @@ class _HomeState extends State<Home> {
                             child: Padding(
                               padding: const EdgeInsets.only(bottom: 4.0),
                               child: Text(
-                                'Example Recipe Name',
+                                recipe.recipeName,
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineSmall
@@ -208,7 +237,7 @@ class _HomeState extends State<Home> {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 24.0),
                             child: Text(
-                              'Ingredients - 4',
+                              'Ingredients - ${recipe.ingredients.length}',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
@@ -220,7 +249,7 @@ class _HomeState extends State<Home> {
                             ),
                           ),
                           Text(
-                            'KSh 2,000',
+                            '${Configs.defaultCurrency} ${recipe.amount.toInt()}',
                             style: Theme.of(context)
                                 .textTheme
                                 .titleLarge
@@ -301,3 +330,5 @@ class _HomeState extends State<Home> {
     );
   }
 }
+
+// Future<>

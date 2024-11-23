@@ -3,10 +3,11 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:kimu_foods/core/utils/tools/cache_svgs.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/routes.dart';
 import '../../core/utils/theme/theme.dart';
 import 'core/network/url.dart';
-import '../../core/routes.dart';
-import '../../core/providers.dart';
+import 'features/favourites/domain/providers/profile_provider.dart';
+import 'features/home/domain/providers/recipe_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,11 +40,13 @@ class KimuFoods extends StatelessWidget {
     return GraphQLProvider(
       client: EndPoint().getClient(),
       child: MultiProvider(
-        providers: providers,
+        providers: [
+          ChangeNotifierProvider(create: (_) => RecipesProvider()),
+          ChangeNotifierProvider(create: (_) => ProfileProvider()),
+        ],
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,
           themeMode: ThemeMode.light,
-          //or ThemeMode.dark
           theme: KimuFoodsTheme.lightThemeData,
           darkTheme: KimuFoodsTheme.darkThemeData,
           title: 'Kimu Foods',

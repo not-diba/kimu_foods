@@ -6,7 +6,7 @@ import 'package:kimu_foods/features/home/domain/entities/recipe.dart';
 import 'package:kimu_foods/features/home/domain/repos/recipe_repo.dart';
 
 
-class RecipeProvider extends ChangeNotifier {
+class RecipesProvider extends ChangeNotifier {
   RecipeRepo recipeRepo = RecipeRepository();
 
   GraphqlBaseResponse<List<Recipe>>? _recipesResponse;

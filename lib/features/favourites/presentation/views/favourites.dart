@@ -188,7 +188,7 @@ class _FavouritesState extends State<Favourites> {
         height: 155,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: apricot,
+          color: blanchedAlmond,
           shape: BoxShape.rectangle,
           borderRadius: BorderRadius.circular(24.0),
         ),
