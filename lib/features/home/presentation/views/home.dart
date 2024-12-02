@@ -197,7 +197,7 @@ class _HomeState extends State<Home> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  height: 300,
+                  height: 270,
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(24.0),
@@ -209,71 +209,125 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
-                            width: MediaQuery.sizeOf(context).width * .6,
-                            child: Padding(
-                              padding: const EdgeInsets.only(bottom: 4.0),
-                              child: Text(
-                                recipe.recipeName,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headlineSmall
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 24.0),
-                            child: Text(
-                              'Ingredients - ${recipe.ingredients.length}',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium
-                                  ?.copyWith(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 14.0,
-                                    color: taupe,
-                                  ),
-                            ),
-                          ),
                           Text(
-                            '${Configs.defaultCurrency} ${recipe.amount.toInt()}',
+                            recipe.recipeName,
                             style: Theme.of(context)
                                 .textTheme
-                                .titleLarge
+                                .headlineSmall
                                 ?.copyWith(
-                                  color: kimuSecondary,
-                                  fontWeight: FontWeight.w800,
-                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
                                 ),
+                          ),
+                          const SizedBox(height: 16),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Icon(
+                                    MingCute.soup_pot_2_line,
+                                    size: 16,
+                                    color: taupe,
+                                  ),
+                                  const SizedBox(width: 4),
+                                  Text(
+                                    'Ingredients - ${recipe.ingredients.length}',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.copyWith(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 14.0,
+                                          color: taupe,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Icon(
+                                    MingCute.time_duration_line,
+                                    size: 16,
+                                    color: taupe,
+                                  ),
+                                  const SizedBox(width: 4),
+                                  Text(
+                                    recipe.duration,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.copyWith(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 14.0,
+                                          color: taupe,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.rectangle,
-                          borderRadius: BorderRadius.circular(12.0),
-                          border: Border.all(color: paleTaupe, width: 1),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(12.0),
-                          child: Icon(MingCute.add_fill, size: 18.0),
-                        ),
-                      )
-                    ],
-                  ),
+                    ),
+                    const Divider(thickness: .4, color: taupe),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 16.0, right: 16.0, bottom: 16.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: MediaQuery.sizeOf(context).width * .6,
+                            child: Text(
+                              '${Configs.defaultCurrency} ${recipe.amount.toInt()}',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.copyWith(
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                            ),
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Icon(
+                                MingCute.arrow_right_line,
+                                color: kimuSecondary,
+                                size: 20,
+                              ),
+                              const SizedBox(width: 4.0),
+                              Text(
+                                'VIEW',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge
+                                    ?.copyWith(
+                                      color: kimuSecondary,
+                                      fontWeight: FontWeight.w800,
+                                    ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
                 )
               ],
             ),
@@ -284,7 +338,7 @@ class _HomeState extends State<Home> {
                 padding: const EdgeInsets.all(16.0),
                 child: Icon(
                   index.isEven ? MingCute.heart_line : MingCute.heart_fill,
-                  color: kimuSecondary,
+                  color: Colors.white,
                   size: 24.0,
                 ),
               ),

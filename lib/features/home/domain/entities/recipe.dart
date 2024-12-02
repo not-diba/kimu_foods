@@ -8,6 +8,7 @@ class Recipe {
   final String recipeName;
   final String categoryName;
   final double amount;
+  final String duration;
   final List<Ingredient> ingredients;
   final List<String> instructions;
   final List<Nutrition> nutrition;
@@ -21,5 +22,6 @@ class Recipe {
     required this.ingredients,
     required this.instructions,
     required this.nutrition,
+    required this.duration,
   });
 }

@@ -17,6 +17,7 @@ class RecipeModel extends Recipe {
     required super.recipeName,
     required super.categoryName,
     required super.amount,
+    required super.duration,
     required List<IngredientModel> ingredients,
     required super.instructions,
     required List<NutritionModel> nutrition,
