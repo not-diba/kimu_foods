@@ -19,6 +19,7 @@ class RecipeDetails extends StatefulWidget {
 
 class _RecipeDetailsState extends State<RecipeDetails> {
   final List<String> _alreadyHave = [];
+  int _items = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -127,6 +128,7 @@ class _RecipeDetailsState extends State<RecipeDetails> {
           SliverList(
             delegate: SliverChildListDelegate(
               [
+                // TODO: Maybe an about section ?? This will be a white card with the description text
                 Padding(
                   padding:
                       const EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0),
@@ -435,8 +437,7 @@ class _RecipeDetailsState extends State<RecipeDetails> {
         '${item.quantity} ${nutritionInfo['label']}',
         nutritionInfo['icon'] as IconData,
       );
-    }).toList()
-      ..shuffle();
+    }).toList();
 
     return Wrap(
       crossAxisAlignment: WrapCrossAlignment.start,
@@ -468,20 +469,35 @@ class _RecipeDetailsState extends State<RecipeDetails> {
             ),
             Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Counter here'),
-                  SizedBox(
-                    width: MediaQuery.sizeOf(context).width * .4,
-                    child: TextButton(
-                      onPressed: () {},
-                      child: const Text('Add to cart'),
+                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
+              child: IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Badge.count(
+                      count: _items,
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          MingCute.shopping_cart_2_line,
+                          size: 24.0,
+                        ),
+                      ),
                     ),
-                  ),
-                ],
+                    const SizedBox(width: 6.0),
+                    Expanded(
+                      child: TextButton(
+                        onPressed: () {
+                          setState(() {
+                            _items++;
+                          });
+                        },
+                        child: const Text('Add to cart'),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
