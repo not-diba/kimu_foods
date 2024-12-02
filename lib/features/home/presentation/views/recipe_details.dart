@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kimu_foods/core/utils/configs.dart';
+import 'package:kimu_foods/core/utils/generics/sliver_header_delegate.dart';
 import 'package:kimu_foods/core/utils/theme/colours.dart';
 import 'package:kimu_foods/features/home/domain/entities/ingredient.dart';
 import 'package:kimu_foods/features/home/domain/entities/nutrition.dart';
@@ -99,15 +100,14 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                       child: Container(
                         padding: const EdgeInsets.all(10.0),
                         decoration: BoxDecoration(
-                          color: kimuPrimary,
+                          color: kimuSecondary,
                           borderRadius: BorderRadius.circular(12.0),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.grey.withOpacity(0.5),
                               spreadRadius: 5,
                               blurRadius: 7,
-                              offset: const Offset(
-                                  0, 3),
+                              offset: const Offset(0, 3),
                             ),
                           ],
                         ),
@@ -123,6 +123,7 @@ class _RecipeDetailsState extends State<RecipeDetails> {
               ],
             ),
           ),
+          _recipeHeader(),
           SliverList(
             delegate: SliverChildListDelegate(
               [
@@ -132,33 +133,6 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            width: MediaQuery.sizeOf(context).width * .5,
-                            child: Text(
-                              widget.recipe.recipeName,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headlineMedium
-                                  ?.copyWith(fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                          Text(
-                            '${Configs.defaultCurrency} ${widget.recipe.amount.toInt()}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineSmall
-                                ?.copyWith(
-                                  fontWeight: FontWeight.w600,
-                                  color: taupe,
-                                ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 22.0),
                       _buildNutritionItems(widget.recipe.nutrition),
                     ],
                   ),
@@ -223,41 +197,62 @@ class _RecipeDetailsState extends State<RecipeDetails> {
           ),
         ],
       ),
-      bottomNavigationBar: SizedBox(
-        height: 100,
-        child: BottomAppBar(
-          color: Theme.of(context).scaffoldBackgroundColor,
-          padding: EdgeInsets.zero,
+      bottomNavigationBar: _bottomNavBar(),
+    );
+  }
+
+  SliverPersistentHeader _recipeHeader() {
+    return SliverPersistentHeader(
+      pinned: true,
+      delegate: SliverAppBarDelegate(
+        height: 67,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+          color: apricot,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                width: double.infinity,
-                height: 20,
-                decoration: const BoxDecoration(
-                  color: apricot,
-                  borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(24.0),
-                    bottomLeft: Radius.circular(24.0),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 16.0, vertical: 16.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Counter here'),
-                    SizedBox(
-                      width: MediaQuery.sizeOf(context).width * .4,
-                      child: OutlinedButton(
-                        onPressed: () {},
-                        child: const Text('Add to cart'),
-                      ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: MediaQuery.sizeOf(context).width * .5,
+                    child: Text(
+                      widget.recipe.recipeName,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineMedium
+                          ?.copyWith(fontWeight: FontWeight.w600),
                     ),
-                  ],
-                ),
+                  ),
+                  Text(
+                    '${Configs.defaultCurrency} ${widget.recipe.amount.toInt()}',
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                          fontWeight: FontWeight.w600,
+                          color: taupe,
+                        ),
+                  ),
+                ],
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Icon(
+                    MingCute.time_duration_line,
+                    size: 16,
+                    color: taupe,
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    widget.recipe.duration,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14.0,
+                          color: taupe,
+                        ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -382,7 +377,7 @@ class _RecipeDetailsState extends State<RecipeDetails> {
       },
       separatorBuilder: (context, index) => Align(
         alignment: Alignment.centerLeft,
-        child:  SizedBox(
+        child: SizedBox(
           width: sharedWidth,
           height: sharedHeight,
           child: Center(
@@ -440,7 +435,8 @@ class _RecipeDetailsState extends State<RecipeDetails> {
         '${item.quantity} ${nutritionInfo['label']}',
         nutritionInfo['icon'] as IconData,
       );
-    }).toList();
+    }).toList()
+      ..shuffle();
 
     return Wrap(
       crossAxisAlignment: WrapCrossAlignment.start,
@@ -448,6 +444,49 @@ class _RecipeDetailsState extends State<RecipeDetails> {
       runSpacing: 10.0,
       spacing: 10.0,
       children: nutritionWidgets,
+    );
+  }
+
+  SizedBox _bottomNavBar() {
+    return SizedBox(
+      height: 100,
+      child: BottomAppBar(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        padding: EdgeInsets.zero,
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              height: 20,
+              decoration: const BoxDecoration(
+                color: apricot,
+                borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(24.0),
+                  bottomLeft: Radius.circular(24.0),
+                ),
+              ),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Counter here'),
+                  SizedBox(
+                    width: MediaQuery.sizeOf(context).width * .4,
+                    child: TextButton(
+                      onPressed: () {},
+                      child: const Text('Add to cart'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
