@@ -1,7 +1,4 @@
 import 'package:go_router/go_router.dart';
-import 'package:kimu_foods/features/basket/presentation/views/basket_view.dart';
-import 'package:kimu_foods/features/categories/presentation/views/categories.dart';
-import 'package:kimu_foods/features/favourites/presentation/views/favourites.dart';
 import 'package:kimu_foods/features/home/domain/entities/recipe.dart';
 import 'package:kimu_foods/features/home/presentation/views/recipe_details.dart';
 import 'package:kimu_foods/features/intro/presentation/views/intro.dart';
@@ -45,59 +42,13 @@ final router = GoRouter(routes: <RouteBase>[
     path: '/recipe_details',
     name: 'recipe-details',
     builder: (context, state) {
-      Recipe recipe =
-          state.extra as Recipe;
+      Recipe recipe = state.extra as Recipe;
       return RecipeDetails(recipe: recipe);
     },
   ),
-
-  // GoRoute(
-  //   name: AppRoutes.kimu,
-  //   path: '/',
-  //   builder: (context, state) => const Kimu(),
-  //   routes: [
-  //     GoRoute(
-  //       name: AppRoutes.home,
-  //       path: 'home',
-  //       builder: (context, state) => const Recipes(
-  //         key: PageStorageKey('home'),
-  //       ),
-  //     ),
-  //     GoRoute(
-  //       name: AppRoutes.recipes,
-  //       path: 'recipes',
-  //       builder: (context, state) => const Categories(
-  //         key: PageStorageKey('categories'),
-  //       ),
-  //     ),
-  //     GoRoute(
-  //         name: AppRoutes.recipeDetails,
-  //         path: 'recipes-details',
-  //         builder: (context, state) {
-  //           Recipe recipe = state.extra as Recipe;
-  //           return RecipeDetails(recipe: recipe);
-  //         }),
-  //     GoRoute(
-  //       name: AppRoutes.products,
-  //       path: 'products',
-  //       builder: (context, state) => const Products(
-  //         key: PageStorageKey('products'),
-  //       ),
-  //     ),
-  //     GoRoute(
-  //       name: AppRoutes.basket,
-  //       path: 'basket',
-  //       builder: (context, state) => BasketView(
-  //         key: const PageStorageKey('basket'),
-  //       ),
-  //     ),
-  //     GoRoute(
-  //       name: AppRoutes.profile,
-  //       path: 'profile',
-  //       builder: (context, state) => const ProfileView(
-  //         key: PageStorageKey('profile'),
-  //       ),
-  //     ),
-  //   ],
-  // ),
+  GoRoute(
+    path: '/profile_view',
+    name: 'profile-view',
+    builder: (context, state) => const ProfileView(),
+  ),
 ]);
