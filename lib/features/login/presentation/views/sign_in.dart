@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kimu_foods/core/routes.dart';
 import 'package:kimu_foods/core/utils/theme/colours.dart';
 import 'package:ming_cute/ming_cute.dart';
 

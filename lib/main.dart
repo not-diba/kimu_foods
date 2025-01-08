@@ -6,8 +6,8 @@ import 'package:provider/provider.dart';
 import '../../core/routes.dart';
 import '../../core/utils/theme/theme.dart';
 import 'core/network/url.dart';
-import 'features/favourites/domain/providers/profile_provider.dart';
 import 'features/home/domain/providers/recipe_provider.dart';
+import 'features/profile/domain/providers/profile_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

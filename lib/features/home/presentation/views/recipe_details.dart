@@ -9,9 +9,9 @@ import 'package:ming_cute/ming_cute.dart';
 import '../../domain/entities/recipe.dart';
 
 class RecipeDetails extends StatefulWidget {
-  Recipe recipe;
+  final Recipe recipe;
 
-  RecipeDetails({super.key, required this.recipe});
+  const RecipeDetails({super.key, required this.recipe});
 
   @override
   State<RecipeDetails> createState() => _RecipeDetailsState();

@@ -75,6 +75,21 @@ class KimuFoodsTheme {
               const TextStyle(fontWeight: FontWeight.w600, fontSize: 15.0),
         ),
       ),
+      switchTheme: SwitchThemeData(
+        thumbColor: WidgetStateProperty.resolveWith<Color>((states) {
+          if (states.contains(WidgetState.selected)) {
+            return kimuPrimary;
+          }
+          return taupe;
+        }),
+        trackColor: MaterialStateProperty.resolveWith<Color>((states) {
+          if (states.contains(MaterialState.selected)) {
+            return kimuPrimary.withValues(alpha: 0.5);
+          }
+          return taupe.withValues(alpha: 0.5);
+        }),
+        trackOutlineWidth: WidgetStateProperty.all(0.0),
+      ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           foregroundColor: colorScheme.onPrimary,
@@ -211,7 +226,7 @@ class KimuFoodsTheme {
           fontFamily: 'Poppins',
           fontSize: 14,
           fontWeight: FontWeight.w400,
-          color: colorScheme.onPrimary,
+          color: colorScheme.onSurface,
         ),
         labelSmall: TextStyle(
           fontFamily: 'Poppins',

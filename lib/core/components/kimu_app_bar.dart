@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:kimu_foods/core/utils/theme/colours.dart';
 import 'package:ming_cute/ming_cute.dart';
@@ -40,23 +41,26 @@ SliverAppBar kimuAppBar({
                 ),
               Align(
                 alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 16.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: apricot,
-                      shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Icon(
-                        MingCute.user_1_line,
-                        size: 16,
+                child: GestureDetector(
+                  onTap: () => context.pushNamed('profile-view'),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 16.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: apricot,
+                        shape: BoxShape.rectangle,
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Icon(
+                          MingCute.user_1_line,
+                          size: 16,
+                        ),
                       ),
                     ),
                   ),
-                ), // Visible in collapsed state
+                ),
               )
             ],
           ),
