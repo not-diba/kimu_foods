@@ -6,14 +6,14 @@ import 'package:ming_cute/ming_cute.dart';
 
 import '../../../../core/components/logo.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({super.key});
+class Auth extends StatefulWidget {
+  const Auth({super.key});
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<Auth> createState() => _AuthState();
 }
 
-class _SignInState extends State<SignIn> {
+class _AuthState extends State<Auth> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

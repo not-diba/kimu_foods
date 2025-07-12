@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "633411139888",
+    "project_id": "kimu-foods",
+    "storage_bucket": "kimu-foods.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:633411139888:android:b35136964a79713615f0f5",
+        "android_client_info": {
+          "package_name": "com.example.kimu_foods"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVFTqccnHK2501p-2SkH20pUXZ00IPOrE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

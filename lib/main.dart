@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:kimu_foods/core/utils/tools/cache_svgs.dart';
@@ -8,6 +9,7 @@ import '../../core/utils/theme/theme.dart';
 import 'core/network/url.dart';
 import 'features/home/domain/providers/recipe_provider.dart';
 import 'features/profile/domain/providers/profile_provider.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +31,9 @@ void main() async {
     'lib/core/assets/svgs/c_teas.svg'
   ]);
   await initHiveForFlutter();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const KimuFoods());
 }
 

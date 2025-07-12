@@ -2,7 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:kimu_foods/features/home/domain/entities/recipe.dart';
 import 'package:kimu_foods/features/home/presentation/views/recipe_details.dart';
 import 'package:kimu_foods/features/intro/presentation/views/intro.dart';
-import 'package:kimu_foods/features/login/presentation/views/sign_in.dart';
+import 'package:kimu_foods/features/login/presentation/views/auth.dart';
 import 'package:kimu_foods/features/login/presentation/views/sign_up.dart';
 import 'package:kimu_foods/features/profile/presentation/views/profile_view.dart';
 import 'package:kimu_foods/kimu.dart';
@@ -26,7 +26,7 @@ final router = GoRouter(routes: <RouteBase>[
   GoRoute(
     path: '/sign_in',
     name: 'sign-in',
-    builder: (context, state) => const SignIn(),
+    builder: (context, state) => const Auth(),
   ),
   GoRoute(
     path: '/sign_up',
