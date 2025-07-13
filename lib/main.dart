@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:kimu_foods/core/utils/tools/cache_svgs.dart';
 import 'package:provider/provider.dart';
@@ -10,6 +11,8 @@ import 'core/network/url.dart';
 import 'features/home/domain/providers/recipe_provider.dart';
 import 'features/profile/domain/providers/profile_provider.dart';
 import 'firebase_options.dart';
+
+final GoogleSignIn googleSignIn = GoogleSignIn.instance;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,6 +37,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await googleSignIn.initialize(
+      serverClientId:
+          "633411139888-68ng93s331827ll8a1hu32e85mi531k3.apps.googleusercontent.com");
   runApp(const KimuFoods());
 }
 

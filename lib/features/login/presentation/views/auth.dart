@@ -1,7 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kimu_foods/core/utils/theme/colours.dart';
+import 'package:kimu_foods/main.dart';
 import 'package:ming_cute/ming_cute.dart';
 
 import '../../../../core/components/logo.dart';
@@ -66,6 +68,20 @@ class _AuthState extends State<Auth> {
     );
   }
 
+  Future<void> signInWithGoogle() async {
+    final GoogleSignInAccount? gUser =
+        await googleSignIn.authenticate(scopeHint: ['email', 'profile']);
+
+    if (gUser == null) {
+      print('Google Sign In was cancelled');
+      return;
+    }
+
+    final GoogleSignInAuthentication gAuth = await gUser.authentication;
+    print('🟢 Google Sign In: ${gUser.email}');
+    print('🟢 Google Sign In: ${gAuth.idToken} 🔴');
+  }
+
   IntrinsicHeight _signInActions() {
     return IntrinsicHeight(
       child: Row(
@@ -96,7 +112,7 @@ class _AuthState extends State<Auth> {
                   )
                 ],
               ),
-              onPressed: () {},
+              onPressed: () => signInWithGoogle(),
             ),
           ),
           const SizedBox(width: 12),
