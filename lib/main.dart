@@ -9,6 +9,7 @@ import '../../core/routes.dart';
 import '../../core/utils/theme/theme.dart';
 import 'core/network/url.dart';
 import 'features/home/domain/providers/recipe_provider.dart';
+import 'features/auth/domain/providers/auth_provider.dart';
 import 'features/profile/domain/providers/profile_provider.dart';
 import 'firebase_options.dart';
 
@@ -54,6 +55,7 @@ class KimuFoods extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: (_) => RecipesProvider()),
           ChangeNotifierProvider(create: (_) => ProfileProvider()),
+          ChangeNotifierProvider(create: (_) => AuthProvider()),
         ],
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,

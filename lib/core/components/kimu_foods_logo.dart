@@ -1,0 +1,52 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:kimu_foods/core/utils/theme/colours.dart';
+
+class KimuFoodsLogo extends StatelessWidget {
+  final double height;
+  final bool subText;
+  const KimuFoodsLogo({super.key, this.height = 250, this.subText = false});
+
+  @override
+  Column build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SvgPicture.asset(
+          'lib/core/assets/svgs/logo.svg',
+          semanticsLabel: 'Kimu Foods',
+          height: height,
+        ),
+        RichText(
+          text: TextSpan(
+            style: height > 100
+                ? Theme.of(context)
+                    .textTheme
+                    .displayLarge
+                    ?.copyWith(fontWeight: FontWeight.w500)
+                : Theme.of(context)
+                    .textTheme
+                    .displaySmall
+                    ?.copyWith(fontWeight: FontWeight.w500),
+            children: const <TextSpan>[
+              TextSpan(text: 'Kimu '),
+              TextSpan(text: 'F'),
+              TextSpan(text: 'o', style: TextStyle(color: kimuSecondary)),
+              TextSpan(text: 'o', style: TextStyle(color: kimuPrimary)),
+              TextSpan(text: 'ds')
+            ],
+          ),
+        ),
+        if (subText)
+          Text(
+            'GROCERIES DELIVERY APP',
+            style: Theme.of(context)
+                .textTheme
+                .titleSmall
+                ?.copyWith(fontWeight: FontWeight.w700, color: kimuSecondary),
+          )
+      ],
+    );
+  }
+}

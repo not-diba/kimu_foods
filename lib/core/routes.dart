@@ -2,10 +2,11 @@ import 'package:go_router/go_router.dart';
 import 'package:kimu_foods/features/home/domain/entities/recipe.dart';
 import 'package:kimu_foods/features/home/presentation/views/recipe_details.dart';
 import 'package:kimu_foods/features/intro/presentation/views/intro.dart';
-import 'package:kimu_foods/features/login/presentation/views/auth.dart';
-import 'package:kimu_foods/features/login/presentation/views/sign_up.dart';
+import 'package:kimu_foods/features/auth/presentation/views/verify_phone_number_view.dart';
 import 'package:kimu_foods/features/profile/presentation/views/profile_view.dart';
 import 'package:kimu_foods/kimu.dart';
+
+import '../features/auth/presentation/views/auth_view.dart';
 
 class AppRoutes {
   static const kimu = 'kimu';
@@ -26,12 +27,15 @@ final router = GoRouter(routes: <RouteBase>[
   GoRoute(
     path: '/sign_in',
     name: 'sign-in',
-    builder: (context, state) => const Auth(),
+    builder: (context, state) => const AuthView(),
   ),
   GoRoute(
-    path: '/sign_up',
-    name: 'sign-up',
-    builder: (context, state) => const SignUp(),
+    path: '/add_phone_number',
+    name: 'add-phone-number',
+    builder: (context, state) {
+      String userId = state.extra as String;
+      return VerifyPhoneNumberView(userId: userId);
+    },
   ),
   GoRoute(
     path: '/kimu',
