@@ -43,6 +43,7 @@ class _VerifyPhoneNumberViewState extends State<VerifyPhoneNumberView> {
                     const SizedBox(height: 40),
                     Text(
                       'Verify your phone number',
+                      textAlign: TextAlign.center,
                       style:
                           Theme.of(context).textTheme.headlineMedium?.copyWith(
                                 fontWeight: FontWeight.w500,

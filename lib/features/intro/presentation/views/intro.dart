@@ -10,34 +10,49 @@ class Intro extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(
-              left: 16.0, right: 16.0, bottom: 44.0, top: 72.0),
-          child: KimuStepper(
-            onCompletion: () => context.goNamed('sign-in'),
-            steps: [
-              _intoItem(
-                  context,
-                  'lib/core/assets/svgs/ingredient_bowl.png',
-                  'Diverse',
-                  ' and fresh flavors',
-                  'With extensive recipes with high-quality, fresh ingredients.',
-                  isPng: true),
-              _intoItem(
-                context,
-                'lib/core/assets/svgs/ingredients_plate.svg',
-                'Easy to',
-                'change dish ingredients',
-                'You are a foodie, you can add or subtract ingredients in the recipe.',
+        child: LayoutBuilder(
+          builder: (context, constraint) {
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraint.maxHeight),
+                child: IntrinsicHeight(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 16.0,
+                      right: 16.0,
+                      bottom: 44.0,
+                      top: 72.0,
+                    ),
+                    child: KimuStepper(
+                      onCompletion: () => context.goNamed('sign-in'),
+                      steps: [
+                        _intoItem(
+                            context,
+                            'lib/core/assets/svgs/ingredient_bowl.png',
+                            'Diverse',
+                            ' and fresh flavors',
+                            'With extensive recipes with high-quality, fresh ingredients.',
+                            isPng: true),
+                        _intoItem(
+                          context,
+                          'lib/core/assets/svgs/ingredients_plate.svg',
+                          'Easy to',
+                          'change dish ingredients',
+                          'You are a foodie, you can add or subtract ingredients in the recipe.',
+                        ),
+                        _intoItem(
+                            context,
+                            'lib/core/assets/svgs/delivery.svg',
+                            'Delivery',
+                            'is given on time',
+                            'On schedule, just as promised.'),
+                      ],
+                    ),
+                  ),
+                ),
               ),
-              _intoItem(
-                  context,
-                  'lib/core/assets/svgs/delivery.svg',
-                  'Delivery',
-                  'is given on time',
-                  'On schedule, just as promised.'),
-            ],
-          ),
+            );
+          },
         ),
       ),
     );

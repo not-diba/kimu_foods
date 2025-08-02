@@ -26,6 +26,7 @@ class _KimuStepperState extends State<KimuStepper> {
             _stepItem(),
             const SizedBox(height: 36),
             _stepIndicator(),
+            const SizedBox(height: 36),
           ],
         ),
         _stepActions(),
@@ -78,7 +79,10 @@ class _KimuStepperState extends State<KimuStepper> {
                   }
                 });
               },
-              icon: const Icon(Icons.chevron_left, size: 24.0,),
+              icon: const Icon(
+                Icons.chevron_left,
+                size: 24.0,
+              ),
             ),
           const SizedBox(width: 6),
           TextButton(
