@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../theme/colours.dart';
 
 class KimuFoodsTheme {
+  static Color skeletonBase = kimuTertiary.withValues(alpha: 0.4);
+  static final Color skeletonHighlight = kimuTertiary.withValues(alpha: 0.6);
   static const ColorScheme lightColorScheme = ColorScheme(
     primary: kimuPrimary,
     onPrimary: Colors.white,

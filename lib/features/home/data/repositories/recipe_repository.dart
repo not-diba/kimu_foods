@@ -11,12 +11,15 @@ class RecipeRepository implements RecipeRepo {
   final EndPoint _endPoint = EndPoint();
 
   @override
-  Future<GraphqlBaseResponse<List<Recipe>>> getRecipes() async {
+  Future<GraphqlBaseResponse<List<Recipe>>> getRecipes(String? category) async {
     try {
       ValueNotifier<GraphQLClient> client = _endPoint.getClient();
 
       QueryResult result = await client.value.mutate(MutationOptions(
         document: gql(RecipesSchema.recipesSchemaJSON),
+        variables: {
+          'categoryName': category,
+        },
       ));
       if (result.hasException) {
         String errorMessage;

@@ -5,7 +5,6 @@ import 'package:kimu_foods/features/home/data/repositories/recipe_repository.dar
 import 'package:kimu_foods/features/home/domain/entities/recipe.dart';
 import 'package:kimu_foods/features/home/domain/repos/recipe_repo.dart';
 
-
 class RecipesProvider extends ChangeNotifier {
   RecipeRepo recipeRepo = RecipeRepository();
 
@@ -22,9 +21,10 @@ class RecipesProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<GraphqlBaseResponse<List<Recipe>>> getRecipes() async {
+  Future<GraphqlBaseResponse<List<Recipe>>> getRecipes(
+      {String? category}) async {
     setNotifierState(NotifierState.loading);
-    _recipesResponse = await recipeRepo.getRecipes();
+    _recipesResponse = await recipeRepo.getRecipes(category);
     setNotifierState(NotifierState.loaded);
     return Future.value(_recipesResponse);
   }

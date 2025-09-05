@@ -8,31 +8,33 @@ part of 'recipe_model.dart';
 
 RecipeModel _$RecipeModelFromJson(Map<String, dynamic> json) => RecipeModel(
       id: json['id'] as String,
-      imageUrl: json['imageUrl'] as String,
-      recipeName: json['recipeName'] as String,
-      categoryName: json['categoryName'] as String,
-      amount: (json['amount'] as num).toDouble(),
-      duration: json['duration'] as String,
+      name: json['name'] as String,
+      image: json['image'] as String,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      createdBy: json['createdBy'] as String?,
+      duration: (json['duration'] as num).toInt(),
+      instructions: json['instructions'] as String,
+      totalPrice: (json['totalPrice'] as num).toDouble(),
+      updatedAt: DateTime.parse(json['updatedAt'] as String),
       ingredients: (json['ingredients'] as List<dynamic>)
           .map((e) => IngredientModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      instructions: (json['instructions'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
-      nutrition: (json['nutrition'] as List<dynamic>)
-          .map((e) => NutritionModel.fromJson(e as Map<String, dynamic>))
+      categories: (json['categories'] as List<dynamic>)
+          .map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
 Map<String, dynamic> _$RecipeModelToJson(RecipeModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'imageUrl': instance.imageUrl,
-      'recipeName': instance.recipeName,
-      'categoryName': instance.categoryName,
-      'amount': instance.amount,
+      'name': instance.name,
+      'image': instance.image,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'createdBy': instance.createdBy,
       'duration': instance.duration,
       'instructions': instance.instructions,
-      'ingredients': instance.ingredients,
-      'nutrition': instance.nutrition,
+      'totalPrice': instance.totalPrice,
+      'updatedAt': instance.updatedAt.toIso8601String(),
+      'ingredients': instance.ingredients.map((e) => e.toJson()).toList(),
+      'categories': instance.categories.map((e) => e.toJson()).toList(),
     };

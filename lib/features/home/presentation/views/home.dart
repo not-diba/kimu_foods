@@ -5,8 +5,10 @@ import 'package:kimu_foods/core/components/kimu_app_bar.dart';
 import 'package:kimu_foods/core/utils/configs.dart';
 import 'package:kimu_foods/core/utils/generics/sliver_header_delegate.dart';
 import 'package:kimu_foods/core/utils/theme/colours.dart';
+import 'package:kimu_foods/core/utils/theme/theme.dart';
 import 'package:ming_cute/ming_cute.dart';
 import 'package:provider/provider.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/utils/generics/notifier_state.dart';
 import '../../domain/entities/recipe.dart';
@@ -26,7 +28,7 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<RecipesProvider>(context, listen: false).getRecipes();
+      _getRecipes();
     });
   }
 
@@ -37,7 +39,7 @@ class _HomeState extends State<Home> {
         context: context,
         assetName: 'lib/core/assets/svgs/c_all.svg',
         label: 'All',
-        category: 'all',
+        category: '',
       ),
       _buildCategoryItem(
         context: context,
@@ -84,8 +86,8 @@ class _HomeState extends State<Home> {
       _buildCategoryItem(
         context: context,
         assetName: 'lib/core/assets/svgs/c_milkshakes.svg',
-        label: 'Shakes',
-        category: 'shakes',
+        label: 'Dairy',
+        category: 'dairy',
       ),
       _buildCategoryItem(
         context: context,
@@ -111,14 +113,9 @@ class _HomeState extends State<Home> {
       body: SafeArea(
         child: Consumer<RecipesProvider>(
           builder: (context, recipeProvider, child) {
-            if (recipeProvider.state == NotifierState.loading) {
-              return const Center(child: CircularProgressIndicator());
-            }
+            final isLoading = recipeProvider.state == NotifierState.loading;
 
-            if (recipeProvider.recipesResponse == null ||
-                recipeProvider.recipesResponse!.data == null) {
-              return const Center(child: Text("No recipes available"));
-            }
+            final recipes = (recipeProvider.recipesResponse?.data ?? []);
 
             return CustomScrollView(
               slivers: [
@@ -129,7 +126,7 @@ class _HomeState extends State<Home> {
                   mainTitleBold: 'for you ✨',
                 ),
                 _categoriesHeader(categoriesList),
-                _recipesList(recipeProvider.recipesResponse!.data!),
+                _recipesList(recipes, isLoading),
               ],
             );
           },
@@ -163,28 +160,85 @@ class _HomeState extends State<Home> {
     );
   }
 
-  SliverList _recipesList(List<Recipe> recipes) {
+  Widget _recipesList(List<Recipe> recipes, bool isLoading) {
+    if (recipes.isEmpty && !isLoading) {
+      return SliverFillRemaining(
+        hasScrollBody: false,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                MingCute.soup_pot_line,
+                size: 150,
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+              const SizedBox(height: 16),
+              SizedBox(
+                width: MediaQuery.sizeOf(context).width * .7,
+                child: Text(
+                  'No tasty ideas here right now — try another category!',
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        fontStyle: FontStyle.italic,
+                      ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    final displayRecipes =
+        isLoading ? List.generate(5, (index) => _fakeRecipe()) : recipes;
+
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (context, index) {
-          Recipe recipe = recipes[index];
+          final recipe = displayRecipes[index];
           return Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-            child: _recipeItem(
-              index: index,
-              recipe: recipe,
+            child: Skeletonizer(
+              enabled: isLoading,
+              child: _recipeItem(
+                index: index,
+                recipe: recipe,
+                isLoading: isLoading,
+              ),
             ),
           );
         },
-        childCount: recipes.length,
+        childCount: displayRecipes.length,
       ),
     );
   }
 
-  GestureDetector _recipeItem({required int index, required Recipe recipe}) {
+  Recipe _fakeRecipe() {
+    return Recipe(
+      id: "skeleton",
+      name: "Loading...",
+      image: "https://via.placeholder.com/300",
+      createdAt: DateTime.now(),
+      createdBy: null,
+      duration: 0,
+      instructions: "",
+      totalPrice: 0,
+      updatedAt: DateTime.now(),
+      categories: [],
+      ingredients: [],
+    );
+  }
+
+  GestureDetector _recipeItem(
+      {required int index, required Recipe recipe, required bool isLoading}) {
     return GestureDetector(
-      onTap: () => context.pushNamed('recipe-details', extra: recipe),
+      onTap: isLoading
+          ? null
+          : () => context.pushNamed('recipe-details', extra: recipe),
       child: Container(
         decoration: BoxDecoration(
           color: apricot,
@@ -204,7 +258,7 @@ class _HomeState extends State<Home> {
                       topRight: Radius.circular(24.0),
                     ),
                     image: DecorationImage(
-                      image: NetworkImage(recipe.imageUrl),
+                      image: NetworkImage(recipe.image),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -220,7 +274,7 @@ class _HomeState extends State<Home> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            recipe.recipeName,
+                            recipe.name,
                             style: Theme.of(context)
                                 .textTheme
                                 .headlineSmall
@@ -266,7 +320,7 @@ class _HomeState extends State<Home> {
                                   ),
                                   const SizedBox(width: 4),
                                   Text(
-                                    recipe.duration,
+                                    '${recipe.duration.toString()} minutes',
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium
@@ -295,7 +349,7 @@ class _HomeState extends State<Home> {
                           SizedBox(
                             width: MediaQuery.sizeOf(context).width * .6,
                             child: Text(
-                              '${Configs.defaultCurrency} ${recipe.amount.toInt()}',
+                              '${Configs.defaultCurrency} ${recipe.totalPrice}',
                               style: Theme.of(context)
                                   .textTheme
                                   .titleLarge
@@ -360,6 +414,7 @@ class _HomeState extends State<Home> {
         setState(() {
           _selectedCategory = category;
         });
+        _getRecipes(category: category);
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -383,5 +438,10 @@ class _HomeState extends State<Home> {
         ],
       ),
     );
+  }
+
+  void _getRecipes({String? category}) {
+    Provider.of<RecipesProvider>(context, listen: false)
+        .getRecipes(category: category);
   }
 }

@@ -1,7 +1,3 @@
-// ignore_for_file: constant_identifier_names
-// ignore_for_file: undefined_class
-// ignore_for_file: invalid_type
-
 library ming_cute;
 
 import 'package:flutter/widgets.dart';
