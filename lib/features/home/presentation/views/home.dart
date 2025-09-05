@@ -5,7 +5,6 @@ import 'package:kimu_foods/core/components/kimu_app_bar.dart';
 import 'package:kimu_foods/core/utils/configs.dart';
 import 'package:kimu_foods/core/utils/generics/sliver_header_delegate.dart';
 import 'package:kimu_foods/core/utils/theme/colours.dart';
-import 'package:kimu_foods/core/utils/theme/theme.dart';
 import 'package:ming_cute/ming_cute.dart';
 import 'package:provider/provider.dart';
 import 'package:skeletonizer/skeletonizer.dart';
