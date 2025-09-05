@@ -4,6 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:kimu_foods/core/utils/tools/cache_svgs.dart';
 import 'package:provider/provider.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../core/routes.dart';
 import '../../core/utils/theme/theme.dart';
@@ -57,13 +58,21 @@ class KimuFoods extends StatelessWidget {
           ChangeNotifierProvider(create: (_) => ProfileProvider()),
           ChangeNotifierProvider(create: (_) => AuthProvider()),
         ],
-        child: MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          themeMode: ThemeMode.light,
-          theme: KimuFoodsTheme.lightThemeData,
-          darkTheme: KimuFoodsTheme.darkThemeData,
-          title: 'Kimu Foods',
-          routerConfig: router,
+        child: SkeletonizerConfig(
+          data: SkeletonizerConfigData(
+            effect: ShimmerEffect(
+              baseColor: KimuFoodsTheme.skeletonBase,
+              highlightColor: KimuFoodsTheme.skeletonHighlight,
+            ),
+          ),
+          child: MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            themeMode: ThemeMode.light,
+            theme: KimuFoodsTheme.lightThemeData,
+            darkTheme: KimuFoodsTheme.darkThemeData,
+            title: 'Kimu Foods',
+            routerConfig: router,
+          ),
         ),
       ),
     );

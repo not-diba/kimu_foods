@@ -1,27 +1,30 @@
-import 'package:kimu_foods/features/home/domain/entities/ingredient.dart';
-import 'package:kimu_foods/features/home/domain/entities/nutrition.dart';
-
+import 'category.dart';
+import 'ingredient.dart';
 
 class Recipe {
   final String id;
-  final String imageUrl;
-  final String recipeName;
-  final String categoryName;
-  final double amount;
-  final String duration;
+  final String name;
+  final String image;
+  final DateTime createdAt;
+  final String? createdBy;
+  final int duration;
+  final String instructions;
+  final double totalPrice;
+  final DateTime updatedAt;
+  final List<Category> categories;
   final List<Ingredient> ingredients;
-  final List<String> instructions;
-  final List<Nutrition> nutrition;
 
   Recipe({
     required this.id,
-    required this.imageUrl,
-    required this.recipeName,
-    required this.categoryName,
-    required this.amount,
-    required this.ingredients,
-    required this.instructions,
-    required this.nutrition,
+    required this.name,
+    required this.image,
+    required this.createdAt,
+    this.createdBy,
     required this.duration,
+    required this.instructions,
+    required this.totalPrice,
+    required this.updatedAt,
+    required this.categories,
+    required this.ingredients,
   });
 }

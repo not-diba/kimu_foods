@@ -1,6 +1,20 @@
-class Ingredient {
+class IngredientDetails {
   final String name;
-  final String quantity;
+  final String type;
 
-  Ingredient({required this.name, required this.quantity});
+  IngredientDetails({required this.name, required this.type});
+}
+
+class Ingredient {
+  final double price;
+  final int quantity;
+  final String unit;
+  final IngredientDetails ingredientDetails;
+
+  Ingredient({
+    required this.price,
+    required this.quantity,
+    required this.unit,
+    required this.ingredientDetails,
+  });
 }

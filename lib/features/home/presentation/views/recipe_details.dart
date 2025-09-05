@@ -66,7 +66,7 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                   ),
                   child: ClipRRect(
                     child: Image.network(
-                      widget.recipe.imageUrl,
+                      widget.recipe.image,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -135,7 +135,11 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _buildNutritionItems(widget.recipe.nutrition),
+                      _buildNutritionItems([
+                        Nutrition(nutritionItem: 'calories', quantity: '250'),
+                        Nutrition(nutritionItem: 'saturates', quantity: '3g'),
+                        Nutrition(nutritionItem: 'salt', quantity: '1.5g'),
+                      ]),
                     ],
                   ),
                 ),
@@ -189,7 +193,12 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                           ],
                         ),
                         const SizedBox(height: 4),
-                        _directions(widget.recipe.instructions),
+                        _directions(
+                          widget.recipe.instructions
+                              .split(',')
+                              .map((e) => e.trim())
+                              .toList(),
+                        ),
                       ],
                     ),
                   ),
@@ -207,53 +216,51 @@ class _RecipeDetailsState extends State<RecipeDetails> {
     return SliverPersistentHeader(
       pinned: true,
       delegate: SliverAppBarDelegate(
-        height: 67,
+        height: 80,
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           color: apricot,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(
+                widget.recipe.name,
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineMedium
+                    ?.copyWith(fontWeight: FontWeight.w600),
+              ),
+              const SizedBox(height: 4.0),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(
-                    width: MediaQuery.sizeOf(context).width * .5,
-                    child: Text(
-                      widget.recipe.recipeName,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineMedium
-                          ?.copyWith(fontWeight: FontWeight.w600),
-                    ),
-                  ),
                   Text(
-                    '${Configs.defaultCurrency} ${widget.recipe.amount.toInt()}',
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: taupe,
-                        ),
-                  ),
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Icon(
-                    MingCute.time_duration_line,
-                    size: 16,
-                    color: taupe,
-                  ),
-                  const SizedBox(width: 4),
-                  Text(
-                    widget.recipe.duration,
+                    '${Configs.defaultCurrency} ${widget.recipe.totalPrice}',
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14.0,
-                          color: taupe,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18.0,
+                          color: kimuSecondary,
                         ),
                   ),
+                  Row(
+                    children: [
+                      const Icon(
+                        MingCute.time_duration_line,
+                        size: 16,
+                        color: taupe,
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        '${widget.recipe.duration.toString()} minutes',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 11.0,
+                              color: taupe,
+                            ),
+                      ),
+                    ],
+                  )
                 ],
               ),
             ],
@@ -270,7 +277,8 @@ class _RecipeDetailsState extends State<RecipeDetails> {
   }
 
   Padding _ingredientsListItem(Ingredient ingredient) {
-    final bool isChecked = _alreadyHave.contains(ingredient.name);
+    final bool isChecked =
+        _alreadyHave.contains(ingredient.ingredientDetails.name);
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
@@ -296,7 +304,7 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                   ),
                   const SizedBox(width: 6.0),
                   Text(
-                    '${ingredient.quantity} - ${ingredient.name}',
+                    '${ingredient.quantity}${ingredient.unit} - ${ingredient.ingredientDetails.name}',
                     textAlign: TextAlign.start,
                   ),
                 ],
@@ -309,9 +317,9 @@ class _RecipeDetailsState extends State<RecipeDetails> {
                   onChanged: (bool? checked) {
                     setState(() {
                       if (checked == true) {
-                        _alreadyHave.add(ingredient.name);
+                        _alreadyHave.add(ingredient.ingredientDetails.name);
                       } else {
-                        _alreadyHave.remove(ingredient.name);
+                        _alreadyHave.remove(ingredient.ingredientDetails.name);
                       }
                     });
                   },

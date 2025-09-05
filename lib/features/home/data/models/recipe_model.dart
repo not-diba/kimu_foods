@@ -1,38 +1,40 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kimu_foods/features/home/data/models/ingredient_model.dart';
-import 'package:kimu_foods/features/home/data/models/nutrition_model.dart';
-import 'package:kimu_foods/features/home/domain/entities/recipe.dart';
 
+import '../../domain/entities/recipe.dart';
+import 'category_model.dart';
+import 'ingredient_model.dart';
 
 part 'recipe_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class RecipeModel extends Recipe {
   final List<IngredientModel> _ingredients;
-  final List<NutritionModel> _nutrition;
+  final List<CategoryModel> _categories;
 
   RecipeModel({
     required super.id,
-    required super.imageUrl,
-    required super.recipeName,
-    required super.categoryName,
-    required super.amount,
+    required super.name,
+    required super.image,
+    required super.createdAt,
+    super.createdBy,
     required super.duration,
-    required List<IngredientModel> ingredients,
     required super.instructions,
-    required List<NutritionModel> nutrition,
+    required super.totalPrice,
+    required super.updatedAt,
+    required List<IngredientModel> ingredients,
+    required List<CategoryModel> categories,
   })  : _ingredients = ingredients,
-        _nutrition = nutrition,
+        _categories = categories,
         super(
           ingredients: ingredients,
-          nutrition: nutrition,
+          categories: categories,
         );
 
   @override
   List<IngredientModel> get ingredients => _ingredients;
 
   @override
-  List<NutritionModel> get nutrition => _nutrition;
+  List<CategoryModel> get categories => _categories;
 
   factory RecipeModel.fromJson(Map<String, dynamic> json) =>
       _$RecipeModelFromJson(json);
